@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 const path = require('path');
 
 class CPAFunnelTester {
-  constructor(configPath, deviceProfilePath = null) {
+  constructor(configPath, deviceProfilePath = null, proxyConfig = null) {
     this.browser = null;
     this.page = null;
     this.config = null;
@@ -11,6 +11,7 @@ class CPAFunnelTester {
     this.deviceProfilePath = deviceProfilePath;
     this.deviceProfiles = [];
     this.selectedProfile = null;
+    this.proxyConfig = proxyConfig;
     this.testResults = {
       startTime: new Date().toISOString(),
       success: false,
@@ -18,7 +19,8 @@ class CPAFunnelTester {
       pageResults: [],
       metrics: {},
       configUsed: configPath,
-      deviceProfile: null
+      deviceProfile: null,
+      proxy: proxyConfig ? 'enabled' : 'disabled'
     };
   }
 
@@ -73,7 +75,8 @@ class CPAFunnelTester {
     const BrowserType = this.getBrowserType();
     const browserName = process.env.BROWSER || 'chromium';
     
-    this.browser = await BrowserType.launch({
+    // Browser launch options
+    const launchOptions = {
       headless: process.env.HEADLESS !== 'false',
       args: [
         '--no-sandbox',
@@ -82,12 +85,28 @@ class CPAFunnelTester {
         '--disable-accelerated-2d-canvas',
         '--no-first-run',
         '--no-zygote',
-        '--disable-gpu'
+        '--disable-gpu',
+        '--disable-blink-features=AutomationControlled'
       ]
-    });
+    };
+
+    // Add proxy if configured
+    if (this.proxyConfig) {
+      launchOptions.proxy = {
+        server: `http://${this.proxyConfig.server}`,
+        username: this.proxyConfig.username,
+        password: this.proxyConfig.password
+      };
+      console.log(`🌐 Using proxy: ${this.proxyConfig.server}`);
+    }
+
+    this.browser = await BrowserType.launch(launchOptions);
 
     // Create context with device profile if available
-    const contextOptions = {};
+    const contextOptions = {
+      ignoreHTTPSErrors: true,
+      bypassCSP: true
+    };
     
     if (this.selectedProfile) {
       contextOptions.userAgent = this.selectedProfile.user_agent;
@@ -98,17 +117,32 @@ class CPAFunnelTester {
       contextOptions.deviceScaleFactor = parseFloat(this.selectedProfile.pixel_ratio);
     } else {
       // Default settings
-      contextOptions.userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36';
+      contextOptions.userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36';
       contextOptions.viewport = { width: 1366, height: 768 };
     }
 
     const context = await this.browser.newContext(contextOptions);
+    
+    // Add extra headers to appear more legitimate
+    await context.setExtraHTTPHeaders({
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    });
+
     this.page = await context.newPage();
     
     // Enable request/response monitoring
     this.page.on('request', request => {
       if (request.url().includes('facebook.com/tr') || request.url().includes('google-analytics.com')) {
         console.log(`📊 Tracking pixel fired: ${request.url()}`);
+      }
+    });
+
+    // Monitor for navigation events
+    this.page.on('framenavigated', frame => {
+      if (frame === this.page.mainFrame()) {
+        console.log(`🔄 Navigated to: ${frame.url()}`);
       }
     });
     
@@ -169,7 +203,234 @@ class CPAFunnelTester {
     return null;
   }
 
-  // Improved page inspection with better debugging info
+  // Enhanced Facebook redirect handling
+  async handleFacebookRedirect(targetUrl) {
+    console.log(`🔄 Handling Facebook redirect...`);
+    
+    // Extract the actual URL from Facebook's redirect
+    let actualUrl = targetUrl;
+    const urlMatch = targetUrl.match(/[?&]u=([^&]+)/);
+    if (urlMatch) {
+      actualUrl = decodeURIComponent(urlMatch[1]);
+      console.log(`🎯 Extracted target URL: ${actualUrl}`);
+    }
+
+    // Method 1: Direct navigation
+    try {
+      console.log(`🚀 Attempting direct navigation to: ${actualUrl}`);
+      await this.page.goto(actualUrl, { 
+        waitUntil: 'domcontentloaded',
+        timeout: 30000 
+      });
+      
+      await this.page.waitForTimeout(3000);
+      
+      const currentUrl = this.page.url();
+      if (!currentUrl.includes('facebook.com')) {
+        console.log(`✅ Successfully navigated to: ${currentUrl}`);
+        return true;
+      }
+    } catch (error) {
+      console.log(`⚠️ Direct navigation failed: ${error.message}`);
+    }
+
+    // Method 2: Click through Facebook's redirect page
+    try {
+      // Wait for Facebook's redirect page to load
+      await this.page.waitForTimeout(2000);
+      
+      // Look for any continue/proceed buttons or links
+      const continueSelectors = [
+        'a:has-text("Continue")',
+        'button:has-text("Continue")',
+        'a:has-text("Proceed")',
+        'a[href*="opph3hftrk.com"]',
+        'a:visible'
+      ];
+      
+      for (const selector of continueSelectors) {
+        try {
+          const element = await this.page.$(selector);
+          if (element) {
+            console.log(`🖱️ Clicking redirect element: ${selector}`);
+            await element.click();
+            await this.page.waitForTimeout(5000);
+            
+            if (!this.page.url().includes('facebook.com')) {
+              console.log(`✅ Successfully redirected to: ${this.page.url()}`);
+              return true;
+            }
+          }
+        } catch (clickError) {
+          // Continue trying other selectors
+        }
+      }
+    } catch (error) {
+      console.log(`⚠️ Click-through method failed: ${error.message}`);
+    }
+
+    // Method 3: JavaScript redirect
+    try {
+      console.log(`🔧 Attempting JavaScript redirect...`);
+      await this.page.evaluate((url) => {
+        window.location.href = url;
+      }, actualUrl);
+      
+      await this.page.waitForTimeout(5000);
+      
+      if (!this.page.url().includes('facebook.com')) {
+        console.log(`✅ JavaScript redirect successful: ${this.page.url()}`);
+        return true;
+      }
+    } catch (error) {
+      console.log(`⚠️ JavaScript redirect failed: ${error.message}`);
+    }
+
+    return false;
+  }
+
+  // Enhanced navigation for Facebook pages
+  async navigateToNextPage(navigation, pageNumber) {
+    const { selector, selectors, waitAfterClick = 2000, waitForUrlChange = false, retryIfNoNavigation = false, expectNewTab = false, maxWaitTime = 45000 } = navigation;
+    
+    try {
+      const currentUrl = this.page.url();
+      console.log(`🔄 Navigating from page ${pageNumber}...`);
+      console.log(`📍 Current URL: ${currentUrl}`);
+      
+      // Handle both old and new selector formats
+      const selectorsToTry = selectors || [selector];
+      const foundSelector = await this.waitForElement(selectorsToTry, 15000);
+      
+      if (!foundSelector) {
+        throw new Error(`Navigation element not found`);
+      }
+      
+      // Get element
+      const element = await this.page.locator(foundSelector).first();
+      
+      // Special handling for Facebook links
+      if (currentUrl.includes('facebook.com')) {
+        console.log('📱 Facebook detected - using special navigation handling...');
+        
+        // Get the href
+        const href = await element.getAttribute('href');
+        console.log(`🔗 Target link: ${href}`);
+        
+        // If it's a Facebook redirect link, handle it specially
+        if (href && href.includes('l.facebook.com')) {
+          const success = await this.handleFacebookRedirect(href);
+          if (success) {
+            return true;
+          }
+        }
+        
+        // Try regular click with new tab handling
+        if (expectNewTab) {
+          const newPagePromise = this.page.context().waitForEvent('page');
+          await element.click();
+          
+          try {
+            const newPage = await Promise.race([
+              newPagePromise,
+              new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 10000))
+            ]);
+            
+            this.page = newPage;
+            
+            // Handle redirect on new page
+            if (this.page.url().includes('facebook.com')) {
+              await this.handleFacebookRedirect(this.page.url());
+            }
+            
+            return true;
+          } catch (error) {
+            console.log(`⚠️ New tab handling failed: ${error.message}`);
+          }
+        }
+      }
+      
+      // Regular click for non-Facebook pages
+      await element.click();
+      
+      if (waitAfterClick) {
+        await this.page.waitForTimeout(waitAfterClick);
+      }
+      
+      if (waitForUrlChange) {
+        const newUrl = this.page.url();
+        if (newUrl === currentUrl && retryIfNoNavigation) {
+          console.log(`⚠️ No URL change detected, retrying...`);
+          await element.click();
+          await this.page.waitForTimeout(waitAfterClick);
+        }
+      }
+      
+      return true;
+    } catch (error) {
+      console.log(`❌ Navigation failed: ${error.message}`);
+      throw error;
+    }
+  }
+
+  async fillField(field, testData) {
+    const { fieldType, selector, selectors, action, optional = false, required = true } = field;
+    const actuallyRequired = required && !optional;
+    
+    try {
+      // Handle both old and new selector formats
+      const selectorsToTry = selectors || [selector];
+      const foundSelector = await this.waitForElement(selectorsToTry, actuallyRequired ? 10000 : 3000);
+      
+      if (!foundSelector) {
+        if (actuallyRequired) {
+          throw new Error(`Required field not found: ${fieldType}`);
+        } else {
+          console.log(`⭐ Optional field skipped: ${fieldType}`);
+          return true;
+        }
+      }
+
+      const element = await this.page.locator(foundSelector).first();
+      
+      // Get the correct test data value
+      let dataValue = testData[fieldType];
+      
+      switch (action) {
+        case 'clear_and_type':
+          await element.clear();
+          await element.fill(dataValue);
+          break;
+        case 'type':
+          await element.fill(dataValue);
+          break;
+        case 'select':
+          await element.selectOption(dataValue);
+          break;
+        case 'click':
+          await element.click();
+          break;
+        default:
+          throw new Error(`Unknown action: ${action}`);
+      }
+      
+      console.log(`✅ ${fieldType}: ${dataValue || 'clicked'}`);
+      
+      // Brief delay to mimic human behavior
+      const delay = this.config.settings?.delays?.betweenFields || [500, 1500];
+      const randomDelay = Array.isArray(delay) 
+        ? delay[0] + Math.random() * (delay[1] - delay[0])
+        : delay;
+      await this.page.waitForTimeout(randomDelay);
+      
+      return true;
+    } catch (error) {
+      console.log(`❌ Failed to fill ${fieldType}: ${error.message}`);
+      if (actuallyRequired) throw error;
+      return false;
+    }
+  }
+
   async inspectPageForAlternatives(originalSelector) {
     try {
       console.log(`🔍 Inspecting page for alternatives to: ${originalSelector}`);
@@ -249,361 +510,6 @@ class CPAFunnelTester {
       console.log(`⚠️ Page inspection failed: ${error.message}`);
       return { inputs: [], buttons: [], onFacebook: false };
     }
-  }
-
-  async fillField(field, testData) {
-    const { fieldType, selector, selectors, action, optional = false, required = true } = field;
-    const actuallyRequired = required && !optional;
-    
-    try {
-      // Handle both old and new selector formats
-      const selectorsToTry = selectors || [selector];
-      const foundSelector = await this.waitForElement(selectorsToTry, actuallyRequired ? 10000 : 3000);
-      
-      if (!foundSelector) {
-        // If required field not found, try to inspect the page
-        if (actuallyRequired) {
-          await this.inspectPageForAlternatives(selector);
-          throw new Error(`Required field not found: ${fieldType}`);
-        } else {
-          console.log(`⭐ Optional field skipped: ${fieldType}`);
-          return true;
-        }
-      }
-
-      // Handle multiple elements by using .first() or .nth(0)
-      const element = await this.page.locator(foundSelector).first();
-      
-      // Check if multiple elements exist and log it
-      const count = await this.page.locator(foundSelector).count();
-      if (count > 1) {
-        console.log(`🔍 Found ${count} matching elements for ${fieldType}, using the first one`);
-      }
-      
-      // Get the correct test data value
-      let dataValue = testData[fieldType];
-      
-      // Handle special cases for incorrect field type mappings
-      if (fieldType === 'phone' && foundSelector.includes('zip')) {
-        dataValue = testData.zipCode;
-      }
-      
-      switch (action) {
-        case 'clear_and_type':
-          await element.clear();
-          await element.fill(dataValue);
-          break;
-        case 'type':
-          await element.fill(dataValue);
-          break;
-        case 'select':
-          await element.selectOption(dataValue);
-          break;
-        case 'click':
-          await element.click();
-          break;
-        default:
-          throw new Error(`Unknown action: ${action}`);
-      }
-      
-      console.log(`✅ ${fieldType}: ${dataValue || 'clicked'}`);
-      
-      // Brief delay to mimic human behavior
-      const delay = this.config.settings?.delays?.betweenFields || [500, 1500];
-      const randomDelay = Array.isArray(delay) 
-        ? delay[0] + Math.random() * (delay[1] - delay[0])
-        : delay;
-      await this.page.waitForTimeout(randomDelay);
-      
-      return true;
-    } catch (error) {
-      console.log(`❌ Failed to fill ${fieldType}: ${error.message}`);
-      if (actuallyRequired) throw error;
-      return false;
-    }
-  }
-
-  // Enhanced Facebook navigation with aggressive redirect handling
-  async navigateToNextPage(navigation, pageNumber) {
-    const { selector, selectors, waitAfterClick = 2000, waitForUrlChange = false, retryIfNoNavigation = false, expectNewTab = false, maxWaitTime = 45000 } = navigation;
-    
-    try {
-      const currentUrl = this.page.url();
-      console.log(`🔄 Navigating from page ${pageNumber}...`);
-      console.log(`📍 Current URL: ${currentUrl}`);
-      
-      // Handle both old and new selector formats
-      const selectorsToTry = selectors || [selector];
-      const foundSelector = await this.waitForElement(selectorsToTry, 15000);
-      
-      if (!foundSelector) {
-        // Inspect page for navigation alternatives
-        const inspection = await this.inspectPageForAlternatives(selector);
-        
-        // If we're on Facebook and have external links, try direct navigation
-        if (inspection.onFacebook && inspection.externalLinks && inspection.externalLinks.length > 0) {
-          console.log(`🔄 Attempting to extract and navigate to external link directly...`);
-          const validLink = inspection.externalLinks.find(link => 
-            link.href && link.href.includes('opph3hftrk.com')
-          );
-          
-          if (validLink) {
-            console.log(`🌐 Found valid external link: ${validLink.href}`);
-            
-            // Extract the actual destination URL from Facebook's redirect
-            let targetUrl = validLink.href;
-            if (targetUrl.includes('l.facebook.com')) {
-              const urlMatch = targetUrl.match(/u=([^&]+)/);
-              if (urlMatch) {
-                targetUrl = decodeURIComponent(urlMatch[1]);
-                console.log(`🔗 Extracted target URL: ${targetUrl}`);
-              }
-            }
-            
-            // Navigate directly to avoid Facebook redirect issues
-            console.log(`🚀 Direct navigation to: ${targetUrl}`);
-            await this.page.goto(targetUrl, { 
-              waitUntil: 'domcontentloaded', 
-              timeout: maxWaitTime 
-            });
-            
-            // Wait for page to settle
-            await this.page.waitForTimeout(3000);
-            
-            console.log(`✅ Successfully navigated to: ${this.page.url()}`);
-            return true;
-          }
-        }
-        
-        throw new Error(`Navigation element not found`);
-      }
-      
-      // Get element and try clicking
-      const element = await this.page.locator(foundSelector).first();
-      const count = await this.page.locator(foundSelector).count();
-      
-      if (count > 1) {
-        console.log(`🔍 Found ${count} matching elements, using the first one`);
-      }
-      
-      // Special Facebook link handling
-      if (currentUrl.includes('facebook.com') && expectNewTab) {
-        console.log('📱 Facebook detected - using enhanced navigation strategy...');
-        
-        try {
-          // Get the href to see what we're clicking
-          const href = await element.getAttribute('href');
-          console.log(`🔗 Target link: ${href}`);
-          
-          // Method 1: Try new tab handling
-          const newPagePromise = this.page.context().waitForEvent('page');
-          await element.click();
-          console.log('👆 Clicked Facebook link');
-          
-          try {
-            // Wait for new page with longer timeout
-            console.log('⏳ Waiting for new tab to open...');
-            const newPage = await Promise.race([
-              newPagePromise,
-              new Promise((_, reject) => setTimeout(() => reject(new Error('New tab timeout')), 20000))
-            ]);
-            
-            console.log(`🔗 New tab opened: ${newPage.url()}`);
-            
-            // Enhanced redirect handling
-            await this.handleFacebookRedirectsAggressively(newPage, maxWaitTime);
-            
-            // Switch to the new page
-            this.page = newPage;
-            
-            // Set up monitoring for new page
-            this.page.on('request', request => {
-              if (request.url().includes('facebook.com/tr') || request.url().includes('google-analytics.com')) {
-                console.log(`📊 Tracking pixel fired: ${request.url()}`);
-              }
-            });
-            
-            console.log(`✅ Successfully navigated via new tab to: ${this.page.url()}`);
-            return true;
-            
-          } catch (newTabError) {
-            console.log(`⚠️ New tab method failed: ${newTabError.message}`);
-            
-            // Method 2: Extract URL and navigate directly
-            if (href && href.includes('l.facebook.com')) {
-              console.log(`🔄 Fallback: Extracting URL from Facebook link`);
-              
-              let targetUrl = href;
-              const urlMatch = href.match(/u=([^&]+)/);
-              if (urlMatch) {
-                targetUrl = decodeURIComponent(urlMatch[1]);
-                console.log(`🎯 Extracted target: ${targetUrl}`);
-                
-                await this.page.goto(targetUrl, { 
-                  waitUntil: 'domcontentloaded', 
-                  timeout: maxWaitTime 
-                });
-                
-                await this.page.waitForTimeout(3000);
-                console.log(`✅ Direct navigation successful: ${this.page.url()}`);
-                return true;
-              }
-            }
-            
-            // Method 3: Wait and check if current page changed
-            console.log(`🔄 Fallback: Checking for same-tab navigation`);
-            await this.page.waitForTimeout(5000);
-            
-            const newUrl = this.page.url();
-            if (newUrl !== currentUrl && !newUrl.includes('facebook.com')) {
-              console.log(`✅ Same-tab navigation successful: ${newUrl}`);
-              return true;
-            }
-            
-            throw new Error('All Facebook navigation methods failed');
-          }
-        } catch (error) {
-          console.log(`❌ Facebook navigation error: ${error.message}`);
-          throw error;
-        }
-      }
-      
-      // Regular click handling for non-Facebook pages
-      await element.click();
-      
-      if (waitAfterClick) {
-        await this.page.waitForTimeout(waitAfterClick);
-      }
-      
-      if (waitForUrlChange) {
-        let urlChanged = false;
-        let retries = 0;
-        const maxRetries = retryIfNoNavigation ? 3 : 1;
-        
-        while (!urlChanged && retries < maxRetries) {
-          await this.page.waitForTimeout(2000);
-          const newUrl = this.page.url();
-          
-          if (newUrl !== currentUrl) {
-            urlChanged = true;
-            console.log(`✅ URL changed: ${newUrl}`);
-          } else if (retryIfNoNavigation && retries < maxRetries - 1) {
-            console.log(`⚠️ No URL change detected, retrying click... (${retries + 1}/${maxRetries})`);
-            await element.click();
-            retries++;
-          } else {
-            retries++;
-          }
-        }
-        
-        if (!urlChanged && waitForUrlChange) {
-          throw new Error('Expected URL change but none occurred');
-        }
-      }
-      
-      return true;
-    } catch (error) {
-      console.log(`❌ Navigation failed: ${error.message}`);
-      throw error;
-    }
-  }
-
-  // More aggressive Facebook redirect handling
-  async handleFacebookRedirectsAggressively(page, maxWaitTime = 45000) {
-    let finalUrl = page.url();
-    let redirectCount = 0;
-    const maxRedirects = 15;
-    const startTime = Date.now();
-    
-    console.log(`🔄 Starting redirect handling for: ${finalUrl}`);
-    
-    // Wait for initial load
-    try {
-      await page.waitForLoadState('domcontentloaded', { timeout: 15000 });
-      console.log(`✅ Initial page load complete`);
-    } catch (error) {
-      console.log(`⚠️ Initial load timeout: ${error.message}`);
-    }
-    
-    // Handle Facebook redirect chain with multiple strategies
-    while ((finalUrl.includes('l.facebook.com') || finalUrl.includes('facebook.com')) && 
-           !finalUrl.includes('opph3hftrk.com') && 
-           redirectCount < maxRedirects && 
-           (Date.now() - startTime) < maxWaitTime) {
-      
-      console.log(`🔄 Handling redirect ${redirectCount + 1}/${maxRedirects}: ${finalUrl}`);
-      
-      // Strategy 1: Wait for natural redirect
-      await page.waitForTimeout(3000);
-      
-      let currentUrl = page.url();
-      if (currentUrl !== finalUrl) {
-        finalUrl = currentUrl;
-        console.log(`↪️ Natural redirect to: ${finalUrl}`);
-        
-        // If we've reached the target domain, break
-        if (currentUrl.includes('opph3hftrk.com')) {
-          console.log(`🎯 Reached target domain!`);
-          break;
-        }
-      } else {
-        // Strategy 2: Look for meta refresh or JavaScript redirects
-        try {
-          const metaRefresh = await page.$('meta[http-equiv="refresh"]');
-          if (metaRefresh) {
-            const content = await metaRefresh.getAttribute('content');
-            console.log(`🔄 Found meta refresh: ${content}`);
-          }
-          
-          // Strategy 3: Check for redirect links on page
-          const redirectLinks = await page.$eval('a', links => 
-            links.filter(link => link.href && (link.href.includes('opph3hftrk.com') || link.textContent.includes('click here')))
-                 .map(link => ({ href: link.href, text: link.textContent.trim() }))
-          );
-          
-          if (redirectLinks.length > 0) {
-            console.log(`🔗 Found ${redirectLinks.length} potential redirect links`);
-            const targetLink = redirectLinks.find(link => link.href.includes('opph3hftrk.com'));
-            if (targetLink) {
-              console.log(`🎯 Clicking redirect link: ${targetLink.href}`);
-              await page.goto(targetLink.href, { waitUntil: 'domcontentloaded', timeout: 15000 });
-              finalUrl = page.url();
-              console.log(`✅ Redirect link navigation: ${finalUrl}`);
-              break;
-            }
-          }
-          
-        } catch (strategyError) {
-          console.log(`⚠️ Redirect strategy error: ${strategyError.message}`);
-        }
-      }
-      
-      redirectCount++;
-      
-      // Progressive backoff
-      if (redirectCount > 5) {
-        await page.waitForTimeout(5000);
-      }
-    }
-    
-    // Final wait for page stability
-    await page.waitForTimeout(3000);
-    
-    try {
-      await page.waitForLoadState('networkidle', { timeout: 10000 });
-    } catch (error) {
-      console.log(`⚠️ Final networkidle timeout: ${error.message}`);
-    }
-    
-    finalUrl = page.url();
-    console.log(`🏁 Final destination: ${finalUrl}`);
-    
-    if (!finalUrl.includes('opph3hftrk.com') && finalUrl.includes('facebook.com')) {
-      console.log(`🚨 WARNING: Still on Facebook after ${redirectCount} redirects`);
-      throw new Error('Facebook redirect chain did not reach target domain');
-    }
-    
-    console.log(`✅ Redirect handling completed successfully`);
   }
 
   async testPage(pageConfig, testData) {
@@ -734,11 +640,12 @@ class CPAFunnelTester {
       // Take screenshot on failure
       if (this.page) {
         try {
+          const screenshotPath = `failure-${Date.now()}.png`;
           await this.page.screenshot({ 
-            path: `failure-${Date.now()}.png`,
+            path: screenshotPath,
             fullPage: true 
           });
-          console.log(`📸 Screenshot saved: failure-${Date.now()}.png`);
+          console.log(`📸 Screenshot saved: ${screenshotPath}`);
         } catch (screenshotError) {
           console.log(`⚠️ Could not take screenshot: ${screenshotError.message}`);
         }
@@ -760,6 +667,10 @@ class CPAFunnelTester {
       console.log(`📱 Device: ${this.selectedProfile.device_name} (${this.selectedProfile.brand})`);
     }
     
+    if (this.proxyConfig) {
+      console.log(`🌐 Proxy: ${this.proxyConfig.server}`);
+    }
+    
     this.testResults.pageResults.forEach(result => {
       const status = result.success ? '✅' : '❌';
       console.log(`${status} Page ${result.pageNumber} (${result.pageName}): ${result.fieldsCompleted}/${result.totalFields} fields`);
@@ -777,7 +688,6 @@ class CPAFunnelTester {
     }
   }
 
-  // Export results for CI/CD
   async saveResults(outputPath = 'test-results.json') {
     const finalOutputPath = outputPath.includes('browser') 
       ? outputPath 
@@ -824,7 +734,7 @@ async function findDeviceProfileFiles() {
   return profileFiles;
 }
 
-// Main execution function with multi-template support
+// Main execution function
 async function runTest() {
   const configFile = process.argv[2] || './wfh_localjobmatcher.json';
   let deviceProfileFile = process.argv[3] || null;
@@ -849,27 +759,29 @@ async function runTest() {
   if (!deviceProfileFile) {
     const availableProfiles = await findDeviceProfileFiles();
     if (availableProfiles.length > 0) {
-      deviceProfileFile = availableProfiles[0]; // Default to first found
+      deviceProfileFile = availableProfiles[0];
       console.log(`📱 Auto-discovered device profiles: ${deviceProfileFile}`);
-    }
-  } else {
-    // Check if specified device profile file exists
-    try {
-      await fs.access(deviceProfileFile);
-    } catch (error) {
-      console.log(`⚠️ Specified device profile ${deviceProfileFile} not found. Searching...`);
-      const availableProfiles = await findDeviceProfileFiles();
-      if (availableProfiles.length > 0) {
-        deviceProfileFile = availableProfiles[0];
-        console.log(`📱 Using alternative device profiles: ${deviceProfileFile}`);
-      } else {
-        deviceProfileFile = null;
-        console.log(`⚠️ No device profile files found, proceeding with defaults`);
-      }
     }
   }
   
-  const tester = new CPAFunnelTester(actualConfigFile, deviceProfileFile);
+  // Configure proxy if environment variables are set
+  let proxyConfig = null;
+  if (process.env.PROXY_SERVER) {
+    proxyConfig = {
+      server: process.env.PROXY_SERVER,
+      username: process.env.PROXY_USER,
+      password: process.env.PROXY_PASS
+    };
+  } else if (process.env.USE_DEFAULT_PROXY === 'true') {
+    // Use the default proxy you provided
+    proxyConfig = {
+      server: '38.146.27.33:11000',
+      username: 'neon',
+      password: 'neon'
+    };
+  }
+  
+  const tester = new CPAFunnelTester(actualConfigFile, deviceProfileFile, proxyConfig);
   
   try {
     await tester.runFullTest();
