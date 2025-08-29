@@ -1,0 +1,33 @@
+{
+  "name": "cpa-funnel-automation",
+  "version": "1.0.0",
+  "description": "Automated testing for CPA funnel conversion flows",
+  "main": "test-funnel.js",
+  "scripts": {
+    "test": "node test-funnel.js",
+    "test:debug": "HEADLESS=false node test-funnel.js",
+    "test:chromium": "BROWSER=chromium node test-funnel.js",
+    "test:firefox": "BROWSER=firefox node test-funnel.js",
+    "test:webkit": "BROWSER=webkit node test-funnel.js",
+    "install-browsers": "npx playwright install"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "playwright": "^1.40.0"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JohncMr/wfh-headless-automation.git"
+  },
+  "keywords": [
+    "automation",
+    "testing",
+    "cpa",
+    "funnel",
+    "playwright",
+    "github-actions"
+  ]
+}
