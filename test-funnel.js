@@ -244,7 +244,14 @@ class CPAFunnelTester {
         }
       }
 
-      const element = await this.page.locator(foundSelector);
+      // Handle multiple elements by using .first() or .nth(0)
+      const element = await this.page.locator(foundSelector).first();
+      
+      // Check if multiple elements exist and log it
+      const count = await this.page.locator(foundSelector).count();
+      if (count > 1) {
+        console.log(`🔍 Found ${count} matching elements for ${fieldType}, using the first one`);
+      }
       
       // Get the correct test data value
       let dataValue = testData[fieldType];
@@ -306,7 +313,15 @@ class CPAFunnelTester {
         throw new Error(`Navigation element not found`);
       }
       
-      const element = await this.page.locator(foundSelector);
+      // Handle multiple elements by using .first() or .nth(0)
+      const element = await this.page.locator(foundSelector).first();
+      
+      // Check if multiple elements exist and log it
+      const count = await this.page.locator(foundSelector).count();
+      if (count > 1) {
+        console.log(`🔍 Found ${count} matching elements, clicking the first one`);
+      }
+      
       await element.click();
       
       if (waitAfterClick) {
