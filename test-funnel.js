@@ -335,16 +335,45 @@ class CPAFunnelTester {
           // Wait for the new page to be created
           const newPage = await Promise.race([
             newPagePromise,
-            new Promise((_, reject) => setTimeout(() => reject(new Error('New tab timeout')), 10000))
+            new Promise((_, reject) => setTimeout(() => reject(new Error('New tab timeout')), 15000))
           ]);
           
-          // Wait for the new page to load
-          await newPage.waitForLoadState('networkidle', { timeout: 30000 });
+          console.log(`🔗 New tab opened: ${newPage.url()}`);
+          
+          // Wait for initial load
+          await newPage.waitForLoadState('domcontentloaded', { timeout: 15000 });
+          
+          // Handle Facebook redirect chain - wait for final destination
+          let finalUrl = newPage.url();
+          let redirectCount = 0;
+          const maxRedirects = 5;
+          
+          while (finalUrl.includes('l.facebook.com') && redirectCount < maxRedirects) {
+            console.log(`🔄 Waiting for Facebook redirect ${redirectCount + 1}/${maxRedirects}...`);
+            await newPage.waitForTimeout(2000);
+            
+            try {
+              await newPage.waitForLoadState('networkidle', { timeout: 10000 });
+            } catch (networkError) {
+              // Sometimes networkidle is too strict, continue anyway
+              console.log('⚠️ NetworkIdle timeout, continuing...');
+            }
+            
+            const currentUrl = newPage.url();
+            if (currentUrl !== finalUrl) {
+              finalUrl = currentUrl;
+              console.log(`🔗 Redirected to: ${finalUrl}`);
+            }
+            redirectCount++;
+          }
+          
+          // Final wait for page to be fully ready
+          await newPage.waitForTimeout(3000);
           
           // Switch to the new page
           this.page = newPage;
           
-          console.log(`✅ Switched to new tab: ${this.page.url()}`);
+          console.log(`✅ Final destination reached: ${this.page.url()}`);
           
           // Update request monitoring for the new page
           this.page.on('request', request => {
@@ -355,7 +384,7 @@ class CPAFunnelTester {
           
           return true;
         } catch (newTabError) {
-          console.log(`⚠️ New tab not detected, checking for same-tab navigation...`);
+          console.log(`⚠️ New tab handling failed: ${newTabError.message}`);
           // Fall back to regular navigation handling
         }
       }
@@ -414,10 +443,25 @@ class CPAFunnelTester {
     };
 
     try {
+      // Extra wait for page to settle after navigation (especially important after Facebook redirects)
+      if (pageNumber > 0) {
+        console.log('⏳ Waiting for page to fully load...');
+        await this.page.waitForTimeout(5000);
+        
+        try {
+          await this.page.waitForLoadState('networkidle', { timeout: 10000 });
+        } catch (networkError) {
+          console.log('⚠️ NetworkIdle timeout, continuing with page detection...');
+        }
+      }
+      
       // Check if we're on the right page
       if (pageDetection?.checkForElement) {
-        const pageDetected = await this.waitForElement([pageDetection.checkForElement], 5000);
+        console.log(`🔍 Looking for page detection element: ${pageDetection.checkForElement}`);
+        const pageDetected = await this.waitForElement([pageDetection.checkForElement], 15000);
         if (!pageDetected) {
+          // Try to inspect the page to see what's actually there
+          await this.inspectPageForAlternatives(pageDetection.checkForElement);
           throw new Error(`Page detection failed: ${pageDetection.checkForElement} not found`);
         }
         console.log(`✅ Page detected correctly`);
