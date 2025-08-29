@@ -43,7 +43,6 @@ class CPAFunnelTester {
             inQuotes = true;
           } else if (char === '"' && inQuotes) {
             if (i + 1 < line.length && line[i + 1] === '"') {
-              // Escaped quote (though not present in your CSV, handling for robustness)
               current += '"';
               i++;
             } else {
@@ -198,7 +197,7 @@ class CPAFunnelTester {
       address: '123 Test Street',
       city: 'New York',
       state: 'NY',
-      gender: 'M'
+      gender: Math.random() > 0.5 ? 'M' : 'F'  // Randomize gender
     };
 
     // Use device profile location if available
@@ -241,8 +240,6 @@ class CPAFunnelTester {
   async handleFacebookRedirect() {
     console.log(`🔄 Handling Facebook redirect via click-through only...`);
     
-    // Since we're now clicking the original link in navigateToNextPage,
-    // we should already be on or navigating to the redirect page after click.
     // Wait for potential redirect page to load
     try {
       await this.page.waitForLoadState('domcontentloaded', { timeout: 15000 });
@@ -261,7 +258,7 @@ class CPAFunnelTester {
         'a:has-text("Proceed")',
         'a[href*="opph3hftrk.com"]',
         'a[href*="HMLWQ96"]',
-        'a:visible'  // Fallback, but be cautious as it might click wrong
+        'a:visible'  // Fallback
       ];
       
       for (const selector of continueSelectors) {
@@ -300,15 +297,14 @@ class CPAFunnelTester {
     }
     
     try {
-      // Always click the element directly
       console.log(`🖱️ Clicking navigation element: ${foundSelector}`);
       await this.page.click(foundSelector);
       
-      // Wait for potential new tab if expected
+      // Handle potential new tab if expected
       if (navigation.expectNewTab) {
         const [newPage] = await Promise.all([
           this.browser.contexts()[0].waitForEvent('page', { timeout: 15000 }),
-          this.page.waitForTimeout(1000)  // Small delay
+          this.page.waitForTimeout(1000)
         ]);
         this.page = newPage;
         await this.page.bringToFront();
@@ -322,45 +318,56 @@ class CPAFunnelTester {
         await this.page.waitForURL(url => url !== this.page.url(), { timeout: 15000 });
       }
       
-      // Now handle any Facebook redirect page if we land on one
-      await this.handleFacebookRedirect();  // No need for targetUrl anymore
+      // Handle Facebook redirect if applicable
+      await this.handleFacebookRedirect();
       
       console.log(`✅ Navigated successfully to: ${this.page.url()}`);
     } catch (error) {
       if (navigation.retryIfNoNavigation) {
         console.log('⚠️ Retry navigation...');
-        // You could add retry logic here if needed
       }
       throw new Error(`Navigation failed: ${error.message}`);
     }
   }
 
   async fillField(field, testData) {
-    const foundSelector = await this.waitForElement(field.selectors);
+    // Normalize optional/required
+    const isOptional = field.optional || field.required === false;
+
+    const foundSelector = await this.waitForElement(field.selectors || field.selector);
     if (!foundSelector) {
-      throw new Error(`Field not found: ${field.fieldType}`);
+      if (!isOptional) {
+        throw new Error(`Required field not found: ${field.fieldType}`);
+      }
+      return false;
     }
 
     const value = testData[field.fieldType];
-    if (!value && !field.optional) {
+    if (!value && !isOptional) {
       throw new Error(`No test data for required field: ${field.fieldType}`);
     }
 
-    if (field.optional && !value) return false;
+    if (!value) return false;
 
     switch (field.action) {
       case 'clear_and_type':
         await this.page.fill(foundSelector, '');
-        await this.page.type(foundSelector, value, { delay: 100 });
+        await this.page.type(foundSelector, value, { delay: this.config.settings?.delays?.typingSpeed || 100 });
         break;
       case 'type':
-        await this.page.type(foundSelector, value, { delay: 100 });
+        await this.page.type(foundSelector, value, { delay: this.config.settings?.delays?.typingSpeed || 100 });
         break;
       case 'select':
         await this.page.selectOption(foundSelector, value);
         break;
       case 'click':
-        await this.page.click(foundSelector);
+        // For radio/checkbox, if options, select matching one
+        if (field.options && field.fieldType === 'gender') {
+          const genderSelector = foundSelector.replace(/-f--/, `-${value.toLowerCase()}--`); // Adjust for M/F if pattern matches
+          await this.page.click(genderSelector);
+        } else {
+          await this.page.click(foundSelector);
+        }
         break;
       default:
         await this.page.fill(foundSelector, value);
@@ -418,10 +425,8 @@ class CPAFunnelTester {
         console.log(`🔍 Looking for page detection element: ${pageDetection.checkForElement}`);
         const pageDetected = await this.waitForElement([pageDetection.checkForElement], 15000);
         if (!pageDetected) {
-          // Try to inspect the page to see what's actually there
           const inspection = await this.inspectPageForAlternatives(pageDetection.checkForElement);
           
-          // If we're still on Facebook, this is likely the navigation issue
           if (inspection.onFacebook) {
             throw new Error(`Still on Facebook page - navigation from page ${pageNumber - 1} failed`);
           }
@@ -438,7 +443,8 @@ class CPAFunnelTester {
           if (success) pageResult.fieldsCompleted++;
         } catch (error) {
           pageResult.errors.push(`${field.fieldType}: ${error.message}`);
-          if (field.required && !field.optional) throw error;
+          const isRequired = !field.optional && field.required !== false;
+          if (isRequired) throw error;
         }
       }
 
@@ -469,9 +475,9 @@ class CPAFunnelTester {
       const testData = this.generateTestData();
       console.log(`🧪 Generated test data for: ${testData.email}`);
       
-      // Navigate to Facebook post (entry point)
+      // Navigate to entry point
       const startUrl = this.config.metadata.entryPoint.startUrl;
-      console.log(`🌐 Navigating to Facebook post: ${startUrl}`);
+      console.log(`🌐 Navigating to entry point: ${startUrl}`);
       
       const startTime = Date.now();
       await this.page.goto(startUrl, {
@@ -481,17 +487,17 @@ class CPAFunnelTester {
       
       this.testResults.metrics.initialPageLoad = Date.now() - startTime;
       
-      // Wait for Facebook page to load completely
-      console.log('⏳ Waiting for Facebook page to load...');
+      // Wait for initial page to load
+      console.log('⏳ Waiting for initial page to load...');
       await this.page.waitForTimeout(5000);
       
       try {
         await this.page.waitForLoadState('networkidle', { timeout: 15000 });
       } catch (networkError) {
-        console.log('⚠️ NetworkIdle timeout on Facebook, continuing...');
+        console.log('⚠️ NetworkIdle timeout on initial page, continuing...');
       }
       
-      // Test each page in sequence (starting from Facebook)
+      // Test each page in sequence
       for (const pageConfig of this.config.funnel.pages) {
         await this.testPage(pageConfig, testData);
       }
@@ -648,7 +654,6 @@ async function runTest() {
       password: process.env.PROXY_PASS
     };
   } else if (process.env.USE_DEFAULT_PROXY === 'true') {
-    // Use the default proxy you provided
     proxyConfig = {
       server: '38.146.27.33:11000',
       username: 'neon',
