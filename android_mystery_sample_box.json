@@ -1,0 +1,272 @@
+{
+  "metadata": {
+    "offerName": "Android Mystery Sample Box",
+    "offerCreator": "sampleshunterusa.com",
+    "version": "converted-2025-08-27",
+    "description": "Auto-converted from tracker data - Sweepstakes offer",
+    "entryPoint": {
+      "startUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid028CNBWuYkyXR4ogHqLFrg92EMeB4g4ZRZ71G5UVoaDmK2atv754XfAauxXE3GQ2pol&id=61574653963370"
+    },
+    "totalPages": 6,
+    "estimatedTime": "5-7 minutes"
+  },
+  "funnel": {
+    "pages": [
+      {
+        "pageNumber": 1,
+        "pageName": "Quiz 1",
+        "fields": [],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "button[type=\"submit\"]",
+            "button:contains('Yes')",
+            "input[value='Yes']",
+            "*[title='Yes']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 2,
+        "pageName": "Email Page",
+        "fields": [
+          {
+            "fieldType": "email",
+            "selector": [
+              "#entersweeps",
+              "[name=\"emailAddress\"]",
+              "input[type=\"email\"][placeholder*=\"Enter\"]",
+              "input[type=\"email\"]"
+            ],
+            "action": "type",
+            "required": false,
+            "placeholder": "Enter Email Address"
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#entersweep",
+            "button:contains('Continue')",
+            "input[value='Continue']",
+            "*[title='Continue']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 3,
+        "pageName": "Personal Info Page",
+        "fields": [
+          {
+            "fieldType": "firstName",
+            "selector": [
+              "#firstName",
+              "[name=\"userFname\"]",
+              "input[type=\"text\"][placeholder*=\"First\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": false,
+            "placeholder": "First Name"
+          },
+          {
+            "fieldType": "lastName",
+            "selector": [
+              "#lastName",
+              "[name=\"userLname\"]",
+              "input[type=\"text\"][placeholder*=\"Last\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": false,
+            "placeholder": "Last Name"
+          },
+          {
+            "fieldType": "gender",
+            "selector": [
+              "#male",
+              "[name=\"gendervalue1\"]",
+              "input[type=\"radio\"]"
+            ],
+            "action": "click",
+            "options": [
+              "M",
+              "F"
+            ],
+            "required": false
+          },
+          {
+            "fieldType": "dobMonth",
+            "selector": [
+              "#dbodatemonth",
+              "[name=\"dobmonth\"]",
+              "input[type=\"select-one\"]"
+            ],
+            "action": "select",
+            "required": false
+          },
+          {
+            "fieldType": "dobYear",
+            "selector": [
+              "#dbodateyear",
+              "[name=\"dobyear\"]",
+              "input[type=\"select-one\"]"
+            ],
+            "action": "select",
+            "required": false
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#entersweep",
+            "button:contains('Continue')",
+            "input[value='Continue']",
+            "*[title='Continue']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 4,
+        "pageName": "Address Page",
+        "fields": [
+          {
+            "fieldType": "address",
+            "selector": [
+              "#address",
+              "[name=\"userAddress\"]",
+              "input[type=\"text\"][placeholder*=\"Street\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": false,
+            "placeholder": "Street Address"
+          },
+          {
+            "fieldType": "city",
+            "selector": [
+              "#cityName",
+              "[name=\"cityName\"]",
+              "input[type=\"text\"][placeholder*=\"Enter\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": false,
+            "placeholder": "Enter City Name"
+          },
+          {
+            "fieldType": "state",
+            "selector": [
+              "#stateCode",
+              "[name=\"stateCode\"]",
+              "input[type=\"select-one\"]"
+            ],
+            "action": "select",
+            "required": false
+          },
+          {
+            "fieldType": "phone",
+            "selector": [
+              "#phoneNumber",
+              "[name=\"mobile\"]",
+              "input[type=\"tel\"][placeholder*=\"Enter\"]",
+              "input[type=\"tel\"]"
+            ],
+            "action": "type",
+            "required": false,
+            "placeholder": "Enter Phone Number"
+          },
+          {
+            "fieldType": "phone",
+            "selector": [
+              "#zipcode",
+              "[name=\"zipcode\"]",
+              "input[type=\"tel\"][placeholder*=\"Zip\"]",
+              "input[type=\"tel\"]"
+            ],
+            "action": "type",
+            "required": false,
+            "placeholder": "Zip Code"
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#entersweep",
+            "button:contains('Get Samples')",
+            "input[value='Get Samples']",
+            "*[title='Get Samples']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 5,
+        "pageName": "survey-1",
+        "fields": [],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#myBtn",
+            "button:contains('Continue')",
+            "input[value='Continue']",
+            "*[title='Continue']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 6,
+        "pageName": "how many cars",
+        "fields": [],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#myBtn",
+            "button:contains('Continue')",
+            "input[value='Continue']",
+            "*[title='Continue']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      }
+    ]
+  },
+  "settings": {
+    "humanBehavior": true,
+    "autoRetry": true,
+    "requiresProxy": false,
+    "delays": {
+      "betweenFields": [
+        150,
+        400
+      ],
+      "betweenPages": [
+        2000,
+        4000
+      ],
+      "typingSpeed": 75
+    }
+  }
+}

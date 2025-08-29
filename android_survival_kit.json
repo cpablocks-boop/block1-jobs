@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "offerName": "Survival Kit",
+    "offerCreator": "prizegrab.com",
+    "version": "converted-2025-08-27",
+    "description": "Auto-converted from tracker data - Sweepstakes offer",
+    "entryPoint": {
+      "startUrl": "https://www.facebook.com/permalink.php?story_fbid=pfbid0tFzXzkzyBbburuwd3JUDr93vvzpURHUha8HMVZytgxcFC7AMCUFbykLyqLAJP37rl&id=61574653963370"
+    },
+    "totalPages": 6,
+    "estimatedTime": "5-7 minutes"
+  },
+  "funnel": {
+    "pages": [
+      {
+        "pageNumber": 1,
+        "pageName": "Offer Page",
+        "fields": [
+          {
+            "fieldType": "lastName",
+            "selector": [
+              "[name=\"fullname\"]",
+              "input[type=\"text\"][placeholder*=\"Full\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": true,
+            "placeholder": "Full Name"
+          },
+          {
+            "fieldType": "email",
+            "selector": [
+              "#reg-email",
+              "[name=\"email\"]",
+              "input[type=\"email\"][placeholder*=\"Email\"]",
+              "input[type=\"email\"]"
+            ],
+            "action": "type",
+            "required": true,
+            "placeholder": "Email address"
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#register-button",
+            "button:contains('Submit Entry')",
+            "input[value='Submit Entry']",
+            "*[title='Submit Entry']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        }
+      },
+      {
+        "pageNumber": 2,
+        "pageName": "Address Page",
+        "fields": [
+          {
+            "fieldType": "address",
+            "selector": [
+              "#address__comp__input",
+              "[name=\"address\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": true
+          },
+          {
+            "fieldType": "address",
+            "selector": [
+              "#address2__input",
+              "[name=\"address2\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": false
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            ".button",
+            "button:contains('Next')",
+            "input[value='Next']",
+            "*[title='Next']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 3,
+        "pageName": "Full Address Page",
+        "fields": [
+          {
+            "fieldType": "address",
+            "selector": [
+              "#address__input",
+              "[name=\"address\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": true
+          },
+          {
+            "fieldType": "address",
+            "selector": [
+              "#address2__input",
+              "[name=\"address2\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": false
+          },
+          {
+            "fieldType": "city",
+            "selector": [
+              "#city__input",
+              "[name=\"city\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": true
+          },
+          {
+            "fieldType": "state",
+            "selector": [
+              "#state__input",
+              "[name=\"state\"]",
+              "input[type=\"select-one\"]"
+            ],
+            "action": "select",
+            "required": true
+          },
+          {
+            "fieldType": "phone",
+            "selector": [
+              "#zip__input",
+              "[name=\"zip\"]",
+              "input[type=\"tel\"]"
+            ],
+            "action": "type",
+            "required": true
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            ".button",
+            "button:contains('Next')",
+            "input[value='Next']",
+            "*[title='Next']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 4,
+        "pageName": "Page 4",
+        "fields": [
+          {
+            "fieldType": "phone",
+            "selector": [
+              "#dob__input",
+              "[name=\"date of birth\"]",
+              "input[type=\"tel\"][placeholder*=\"mm/dd/yyyy\"]",
+              "input[type=\"tel\"]"
+            ],
+            "action": "type",
+            "required": true,
+            "placeholder": "mm/dd/yyyy"
+          },
+          {
+            "fieldType": "phone",
+            "selector": [
+              "#phone__input",
+              "[name=\"phone\"]",
+              "input[type=\"tel\"][placeholder*=\"(999)\"]",
+              "input[type=\"tel\"]"
+            ],
+            "action": "type",
+            "required": true,
+            "placeholder": "(999) 999-9999"
+          },
+          {
+            "fieldType": "gender",
+            "selector": [
+              "#gender__male",
+              "[name=\"gender\"]",
+              "input[type=\"radio\"]"
+            ],
+            "action": "click",
+            "options": [
+              "M",
+              "F"
+            ],
+            "required": true
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            ".button",
+            "button:contains('Agree & Submit')",
+            "input[value='Agree & Submit']",
+            "*[title='Agree & Submit']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 5,
+        "pageName": "survey",
+        "fields": [],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#answer-1958",
+            "button:contains('Yes')",
+            "input[value='Yes']",
+            "*[title='Yes']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 6,
+        "pageName": "survey2",
+        "fields": [],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#answer-1960",
+            "button:contains('Yes')",
+            "input[value='Yes']",
+            "*[title='Yes']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      }
+    ]
+  },
+  "settings": {
+    "humanBehavior": true,
+    "autoRetry": true,
+    "requiresProxy": false,
+    "delays": {
+      "betweenFields": [
+        150,
+        400
+      ],
+      "betweenPages": [
+        2000,
+        4000
+      ],
+      "typingSpeed": 75
+    }
+  }
+}

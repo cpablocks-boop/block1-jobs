@@ -1,0 +1,299 @@
+{
+  "metadata": {
+    "offerName": "Desktop Walmart Gift Card",
+    "offerCreator": "getitfree-samples.com",
+    "version": "converted-2025-08-27",
+    "description": "Auto-converted from tracker data - Gift Card offer",
+    "entryPoint": {
+      "startUrl": "https://try.getitfree-samples.com/a?zDc=Desktop&zEx=&zVr=SWPS28&c1=146&c2=770bf5e297b84bb08e3fccb770b2300c&c3=1808676&c4=&c5=&click_id=d18a4db29c754dd394291a7602a01803&creative_name=wlmt_2k&date_of_birth=&email=&first_name=&gender=&last_name=&phone=&postal=&state_initials=&street1=&utm_content=wlmt_2k&utm_medium=1808676&utm_source=ev_163&utm_term=146&zRid=SA&zct=wlmt_2k&zsr=ev_163&ztm=146"
+    },
+    "totalPages": 7,
+    "estimatedTime": "6-8 minutes"
+  },
+  "funnel": {
+    "pages": [
+      {
+        "pageNumber": 1,
+        "pageName": "Offer Page",
+        "fields": [],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "a:nth-child(1)",
+            "button:contains('Play to Win')",
+            "input[value='Play to Win']",
+            "*[title='Play to Win']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 2,
+        "pageName": "Personal Info Page",
+        "fields": [
+          {
+            "fieldType": "firstName",
+            "selector": [
+              "#edit-first-name",
+              "[name=\"first_name\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": true
+          },
+          {
+            "fieldType": "lastName",
+            "selector": [
+              "#edit-last-name",
+              "[name=\"last_name\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": true
+          },
+          {
+            "fieldType": "phone",
+            "selector": [
+              "#edit-postal",
+              "[name=\"postal\"]",
+              "input[type=\"tel\"]"
+            ],
+            "action": "type",
+            "required": true
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#edit-actions-wizard-next",
+            "button:contains('Get Started Now')",
+            "input[value='Get Started Now']",
+            "*[title='Get Started Now']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 3,
+        "pageName": "Address Page",
+        "fields": [
+          {
+            "fieldType": "address",
+            "selector": [
+              "#edit-street1--Ma2V3ljCaYs",
+              "[name=\"street1\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": true
+          },
+          {
+            "fieldType": "city",
+            "selector": [
+              "#edit-city--utmqdA6yESs",
+              "[name=\"city\"]",
+              "input[type=\"text\"]"
+            ],
+            "action": "type",
+            "required": true
+          },
+          {
+            "fieldType": "state",
+            "selector": [
+              "#edit-state-initials--CAQ0AfyyN0o",
+              "[name=\"state_initials\"]",
+              "input[type=\"select-one\"]"
+            ],
+            "action": "select",
+            "required": true
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#edit-actions-wizard-next--7FKy_V4BcUo",
+            "button:contains('Continue')",
+            "input[value='Continue']",
+            "*[title='Continue']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 4,
+        "pageName": "Email Page",
+        "fields": [
+          {
+            "fieldType": "email",
+            "selector": [
+              "#edit-email--3keJi66I3Tg",
+              "[name=\"email\"]",
+              "input[type=\"email\"]"
+            ],
+            "action": "type",
+            "required": true
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#edit-actions-wizard-next--t0bG60Ya-ys",
+            "button:contains('Continue')",
+            "input[value='Continue']",
+            "*[title='Continue']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 5,
+        "pageName": "DOB Page",
+        "fields": [
+          {
+            "fieldType": "dobMonth",
+            "selector": [
+              "#edit-date-of-birth-month--QZCObmtiEEo",
+              "[name=\"date_of_birth[month]\"]",
+              "input[type=\"select-one\"]"
+            ],
+            "action": "select",
+            "required": true
+          },
+          {
+            "fieldType": "dobDay",
+            "selector": [
+              "#edit-date-of-birth-day--OxmJJ_DkxXU",
+              "[name=\"date_of_birth[day]\"]",
+              "input[type=\"select-one\"]"
+            ],
+            "action": "select",
+            "required": true
+          },
+          {
+            "fieldType": "dobYear",
+            "selector": [
+              "#edit-date-of-birth-year--3S8K59tv6Nw",
+              "[name=\"date_of_birth[year]\"]",
+              "input[type=\"select-one\"]"
+            ],
+            "action": "select",
+            "required": true
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#edit-actions-wizard-next--zcpD9u2v8Ro",
+            "button:contains('Continue')",
+            "input[value='Continue']",
+            "*[title='Continue']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 6,
+        "pageName": "Contact Page",
+        "fields": [
+          {
+            "fieldType": "phone",
+            "selector": [
+              "#edit-phone--0HKbDM5fRLI",
+              "[name=\"phone\"]",
+              "input[type=\"tel\"]"
+            ],
+            "action": "type",
+            "required": true
+          },
+          {
+            "fieldType": "phone",
+            "selector": [
+              "#leadid_tcpa_disclosure",
+              "[name=\"smsCheck\"]",
+              "input[type=\"checkbox\"]"
+            ],
+            "action": "click",
+            "required": false
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "#edit-actions-wizard-next--bT__xQCk6jk",
+            "button:contains('Continue')",
+            "input[value='Continue']",
+            "*[title='Continue']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      },
+      {
+        "pageNumber": 7,
+        "pageName": "Gender Page",
+        "fields": [
+          {
+            "fieldType": "gender",
+            "selector": [
+              "#edit-gender-f--tpElYGutHxw",
+              "[name=\"gender\"]",
+              "input[type=\"radio\"]"
+            ],
+            "action": "click",
+            "options": [
+              "M",
+              "F"
+            ],
+            "required": true
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            ".btn.button",
+            "button:contains('Continue')",
+            "input[value='Continue']",
+            "*[title='Continue']",
+            "button[type=\"submit\"]",
+            "input[type=\"submit\"]",
+            ".btn-primary, .btn-default, .button"
+          ]
+        },
+        "isCompletionPage": true
+      }
+    ]
+  },
+  "settings": {
+    "humanBehavior": true,
+    "autoRetry": true,
+    "requiresProxy": false,
+    "delays": {
+      "betweenFields": [
+        150,
+        400
+      ],
+      "betweenPages": [
+        2000,
+        4000
+      ],
+      "typingSpeed": 75
+    }
+  }
+}
