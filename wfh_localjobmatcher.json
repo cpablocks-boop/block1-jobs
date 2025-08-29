@@ -36,14 +36,14 @@
         "pageNumber": 1,
         "pageName": "ZIP Code Entry",
         "pageDetection": {
-          "checkForElement": "input[name*='Zip Code'], input[placeholder*='ZIP'], input[placeholder*='zip'], input[type='text'], input[name='postal_code'], input[name='zipcode']"
+          "checkForElement": "input[name*='Zip Code'], input[placeholder*='Zip Code'], input[placeholder*='zip'], input[type='text'], input[name='postal_code'], input[name='zipcode']"
         },
         "fields": [
           { 
             "fieldType": "zipCode", 
             "selectors": [
               "input[name*='Zip Code']:visible",
-              "input[placeholder*='ZIP']:visible", 
+              "input[placeholder*='Zip Code']:visible", 
               "input[placeholder*='zip']:visible",
               "input[name='postal_code']:visible",
               "input[name='zipcode']:visible",
