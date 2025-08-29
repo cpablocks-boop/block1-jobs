@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "offerName": "Work From Home - LocalJobMatcher",
+    "offerCreator": "localjobsmatcher.com",
+    "version": "5.0",
+    "description": "Enhanced navigation with retry",
+    "entryPoint": {
+      "startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
+    }
+  },
+  "funnel": {
+    "pages": [
+      {
+        "pageNumber": 1,
+        "pageName": "ZIP Code Entry",
+        "fields": [
+          { 
+            "fieldType": "zipCode", 
+            "selector": "[name=\"l-input\"]", 
+            "action": "clear_and_type" 
+          }
+        ],
+        "navigation": { 
+          "type": "button", 
+          "selector": "[data-testid=\"viewJobsButton\"]",
+          "waitAfterClick": 5000,
+          "waitForUrlChange": true
+        }
+      },
+      {
+        "pageNumber": 2,
+        "pageName": "Personal Info",
+        "fields": [
+          { "fieldType": "firstName", "selector": "input[placeholder=\"First Name\"]", "action": "type" },
+          { "fieldType": "lastName", "selector": "input[placeholder=\"Last Name\"]", "action": "type" },
+          { "fieldType": "email", "selector": "input[placeholder=\"Email\"]", "action": "type" }
+        ],
+        "navigation": { 
+          "type": "button", 
+          "selector": "button.sc-oTNDV.gyhzwv, button.sc-oTNDV",
+          "waitAfterClick": 5000,
+          "waitForUrlChange": true,
+          "retryIfNoNavigation": true
+        }
+      },
+      {
+        "pageNumber": 3,
+        "pageName": "Phone and Consent",
+        "pageDetection": {
+          "checkForElement": "input[name=\"phone\"]"
+        },
+        "fields": [
+          { "fieldType": "phone", "selector": "input[name=\"phone\"]", "action": "type" },
+          { "fieldType": "dobMonth", "selector": "select[autocomplete=\"bday-month\"]", "action": "select", "optional": true },
+          { "fieldType": "dobDay", "selector": "select[autocomplete=\"bday-day\"]", "action": "select", "optional": true },
+          { "fieldType": "dobYear", "selector": "select[autocomplete=\"bday-year\"]", "action": "select", "optional": true },
+          { "fieldType": "consentCheckbox", "selector": "#leadid_tcpa_disclosure", "action": "click" }
+        ],
+        "navigation": {
+          "type": "button",
+          "selector": "button.sc-oTNDV.cLpMvl, button.sc-oTNDV"
+        }
+      }
+    ]
+  }
+}
