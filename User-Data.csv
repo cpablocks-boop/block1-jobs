@@ -1,0 +1,1001 @@
+firstName,lastName,email,phone,zipCode,address,apt,city,state,dob,timezone,latitude,longitude
+Jennifer,Romano,jenniferrom64@outlook.com,5169821130,14609,7722 Pine St,,Rochester,NY,04/24/1989,America/New_York,43.209358,-77.530428
+Salvatore,Russo,s.russo@protonmail.com,7184701636,14203,6102 Miller St,,Buffalo,NY,03/03/1971,America/New_York,42.876481,-78.86014
+Frank,Conti,frankc84@outlook.com,5852098901,10306,2319 Lincoln Rd,,Staten Island,NY,10/22/1984,America/New_York,40.573571,-74.135775
+Lisa,Greco,lisa847@protonmail.com,6466794651,11206,4863 Brown St,,Brooklyn,NY,03/16/1957,America/New_York,40.705923,-73.937585
+Joseph,Williams,josephwill@hotmail.com,6073031729,13206,4440 Third St,Apt 482,Syracuse,NY,09/23/1964,America/New_York,43.014904,-76.099868
+Michael,Williams,michaelwil72@protonmail.com,9178658284,10005,1211 Martin St,,New York,NY,02/03/1991,America/New_York,40.708141,-74.010269
+Joseph,Johnson,joseph897@gmail.com,9299008519,10010,502 Jefferson St,,New York,NY,04/13/1960,America/New_York,40.740517,-73.983247
+John,Marino,johnmari@hotmail.com,5859025258,14608,6296 Second St,,Rochester,NY,05/07/1994,America/New_York,43.122024,-77.54285
+Salvatore,Russo,salvatore.russo3@outlook.com,8454751673,10309,3114 Fourth St,Apt 660,Staten Island,NY,09/17/1953,America/New_York,40.523854,-74.206225
+Joseph,Wilson,joseph.wilson49@hotmail.com,9346033739,10013,1506 Smith Rd,Apt 812,New York,NY,07/17/1987,America/New_York,40.716423,-74.002725
+Vincent,Marino,vincent_marino@protonmail.com,9143182689,14201,4505 Davis Ave,,Buffalo,NY,09/08/1965,America/New_York,42.888915,-78.881572
+Anthony,Marino,anthony_marino21@protonmail.com,2125127183,12207,6519 Park Rd,Apt 925,Albany,NY,07/05/1970,America/New_York,42.655423,-73.784273
+Maria,Romano,mromano25@hotmail.com,7164627791,14201,4750 Cedar Ln,Apt 894,Buffalo,NY,10/09/1960,America/New_York,42.884307,-78.878527
+Catherine,Miller,catherine.miller@gmail.com,7168026103,10459,2080 Third St,,Bronx,NY,09/10/1991,America/New_York,40.823051,-73.895248
+Salvatore,Greco,salvatoregrec@protonmail.com,9146568285,11204,1076 Fifth St,,Brooklyn,NY,06/10/1973,America/New_York,40.617516,-73.982455
+Lisa,Greco,lisagreco38@outlook.com,9176832850,13210,3407 Anderson St,,Syracuse,NY,08/28/1983,America/New_York,42.996182,-76.058351
+Lisa,Miller,lisa.miller20@protonmail.com,9145997074,12208,3135 Franklin Ave,Apt 305,Albany,NY,11/23/2001,America/New_York,42.701453,-73.84451
+Donna,Conti,dconti58@yahoo.com,8456062535,10453,3460 Elm St,,Bronx,NY,04/04/1988,America/New_York,40.855419,-73.914481
+Joseph,Ricci,joseph_ricci17@yahoo.com,6077343195,11210,4070 Anderson St,Apt 776,Brooklyn,NY,06/13/1975,America/New_York,40.625219,-73.942855
+Donna,Conti,donnacont@hotmail.com,9177169960,13209,1778 Third St,Apt 656,Syracuse,NY,01/16/1959,America/New_York,43.085804,-76.070214
+Frank,Brown,fbrown68@gmail.com,6315128232,12206,3868 Jefferson St,,Albany,NY,11/28/1952,America/New_York,42.638807,-73.808756
+Maria,Esposito,mariaesp23@protonmail.com,2122036811,11207,5923 First St,,Brooklyn,NY,04/12/1967,America/New_York,40.668273,-73.890881
+Lisa,Romano,l.romano@protonmail.com,9346661253,11208,883 Thomas Rd,,Brooklyn,NY,06/23/1983,America/New_York,40.669845,-73.870782
+Anthony,Davis,a.davis@yahoo.com,9349667076,10001,6911 Jones St,,New York,NY,12/02/1964,America/New_York,40.746931,-73.996297
+Donna,Miller,donnam71@protonmail.com,5164752456,11209,6359 Williams Ave,,Brooklyn,NY,09/22/1971,America/New_York,40.624271,-74.024616
+Anthony,Davis,anthony.davis8@hotmail.com,3474209883,11209,6570 Anderson St,Apt 968,Brooklyn,NY,08/06/1950,America/New_York,40.626164,-74.02823
+Nicholas,Jones,nicholasjone@gmail.com,9348309734,14209,3455 Maple Ave,Apt 139,Buffalo,NY,08/06/1952,America/New_York,42.912243,-78.790399
+Nicholas,Smith,nicholas_smith17@protonmail.com,5164656204,14210,305 Moore Ave,,Buffalo,NY,05/11/1957,America/New_York,42.824725,-78.778225
+Vincent,Greco,vincent922@outlook.com,9294385435,10002,5245 Moore Ave,,New York,NY,02/04/1948,America/New_York,40.711549,-73.983532
+Salvatore,Russo,salvatore705@outlook.com,6316597816,14610,3424 Davis Ave,,Rochester,NY,12/23/1974,America/New_York,43.111724,-77.51927
+Frank,Romano,frankrom67@protonmail.com,6465105356,10453,7150 Washington Ave,,Bronx,NY,02/22/1984,America/New_York,40.856774,-73.911553
+Maria,Smith,mariasmit@hotmail.com,6318238941,11201,3019 Jefferson St,,Brooklyn,NY,04/02/1992,America/New_York,40.692757,-73.985834
+Salvatore,Ricci,salvatorericc@yahoo.com,6317249178,10302,6970 Johnson Rd,Apt 548,Staten Island,NY,05/09/1969,America/New_York,40.62914,-74.136951
+Joseph,Esposito,josephe50@gmail.com,9179828328,12203,9797 Taylor Ave,,Albany,NY,01/21/1950,America/New_York,42.647796,-73.827049
+Jennifer,Johnson,jjohnson34@yahoo.com,9297916045,10001,5224 Second St,Apt 758,New York,NY,07/12/1967,America/New_York,40.751026,-73.992251
+Nicholas,Esposito,nicholas_esposito63@hotmail.com,7183149637,10453,6256 First St,,Bronx,NY,05/02/2005,America/New_York,40.855514,-73.915889
+Jennifer,Williams,jwilliams94@hotmail.com,3474361007,10301,8766 Miller St,Apt 775,Staten Island,NY,11/06/1946,America/New_York,40.637089,-74.080906
+Joseph,Ferrari,josephfer59@protonmail.com,9172586193,10003,3612 Park Rd,,New York,NY,07/26/1960,America/New_York,40.733444,-73.99249
+Donna,Jones,donna.jones7@hotmail.com,9345931165,10009,3192 Moore Ave,,New York,NY,04/18/1990,America/New_York,40.722655,-73.982332
+John,Wilson,j.wilson@protonmail.com,8456453606,10454,4678 Jackson St,Apt 398,Bronx,NY,08/09/1945,America/New_York,40.803486,-73.920754
+Michael,Ferrari,michaelferr@yahoo.com,3153979323,14208,5014 Franklin Ave,Apt 263,Buffalo,NY,09/09/2001,America/New_York,42.832952,-78.79475
+Anthony,Conti,anthonyconti22@gmail.com,3157036274,14606,2230 Fourth St,,Rochester,NY,03/19/1949,America/New_York,43.139063,-77.559215
+John,Brown,johnbrown82@yahoo.com,6074153672,10006,9107 Elm St,Apt 596,New York,NY,03/28/1973,America/New_York,40.712336,-74.014839
+Michael,Miller,michaelmil20@protonmail.com,9346919124,10308,8898 Jefferson St,Apt 649,Staten Island,NY,08/19/1954,America/New_York,40.558646,-74.151243
+Maria,Jones,maria.jones99@protonmail.com,6463838187,10451,2463 Cedar Ln,,Bronx,NY,12/28/1999,America/New_York,40.817237,-73.922747
+Catherine,Johnson,cjohnson25@hotmail.com,2127349579,10012,4720 Second St,Apt 494,New York,NY,02/10/1998,America/New_York,40.720567,-73.997243
+Michael,Williams,michaelwill@gmail.com,6314037403,14203,1137 Brown St,,Buffalo,NY,11/25/1962,America/New_York,42.874588,-78.854577
+Catherine,Johnson,catherine_johnson@yahoo.com,5168999228,10310,3897 Thomas Rd,,Staten Island,NY,06/16/1945,America/New_York,40.626795,-74.116262
+Frank,Romano,fromano78@outlook.com,5183565606,10302,862 Taylor Ave,Apt 973,Staten Island,NY,04/11/1999,America/New_York,40.628312,-74.131654
+Catherine,Wilson,catherinewils@gmail.com,7186825043,13201,20 Wilson Rd,,Syracuse,NY,12/02/1972,America/New_York,43.050626,-76.14502
+Vincent,Romano,vincentr58@yahoo.com,9298468479,10017,3508 Oak Ave,,New York,NY,11/16/1958,America/New_York,40.756063,-73.975302
+Michael,Esposito,michael_esposito@protonmail.com,9175643627,12207,1302 Wilson Rd,Apt 276,Albany,NY,08/10/1979,America/New_York,42.656718,-73.787971
+Michelle,Romano,mromano39@outlook.com,9176667573,14607,8025 Jefferson St,,Rochester,NY,05/25/1945,America/New_York,43.191858,-77.55092
+Angela,Esposito,angela216@yahoo.com,6462766428,10307,5156 Second St,,Staten Island,NY,04/04/1995,America/New_York,40.504427,-74.243609
+Nicholas,Conti,nicholas311@hotmail.com,9176868063,11356,3204 Third St,,Queens,NY,07/23/1955,America/New_York,40.781611,-73.849423
+Angela,Davis,angeladavis92@outlook.com,5162074996,14604,5372 Johnson Rd,,Rochester,NY,10/23/1974,America/New_York,43.146128,-77.5836
+Frank,Smith,f.smith@outlook.com,6077752583,11102,6708 Washington Ave,,Queens,NY,03/26/1945,America/New_York,40.7653,-73.924514
+Frank,Wilson,fwilson24@yahoo.com,9176896190,10009,3441 Smith Rd,,New York,NY,06/25/1957,America/New_York,40.723574,-73.97909
+Michael,Davis,michael.davis26@outlook.com,9296569164,11210,2696 Lincoln Rd,,Brooklyn,NY,09/24/1951,America/New_York,40.628682,-73.946166
+Angela,Conti,angela.conti60@gmail.com,3472751554,14609,2771 Smith Rd,,Rochester,NY,01/27/1960,America/New_York,43.207414,-77.524207
+Maria,Brown,maria293@gmail.com,5188379961,13204,987 Second St,Apt 264,Syracuse,NY,04/17/1992,America/New_York,43.032511,-76.121734
+Michael,Williams,michael.williams4@protonmail.com,9345419784,13210,554 Smith Rd,,Syracuse,NY,03/06/1991,America/New_York,42.996503,-76.05615
+Frank,Williams,frank_williams@hotmail.com,9345235749,11358,160 Maple Ave,,Queens,NY,10/26/1979,America/New_York,40.761517,-73.790687
+Nicholas,Johnson,nicholas_johnson@protonmail.com,5858528358,10007,5989 Washington Ave,,New York,NY,05/28/2005,America/New_York,40.71604,-74.007145
+Michael,Romano,michael.romano68@hotmail.com,3158303557,14607,9712 Third St,Apt 759,Rochester,NY,05/03/1968,America/New_York,43.192878,-77.550115
+Nicholas,Conti,n.conti@hotmail.com,3159713923,12207,3220 Madison Ave,,Albany,NY,10/02/1962,America/New_York,42.656502,-73.787434
+Catherine,Jones,catherinej01@protonmail.com,9173165576,10305,9954 Johnson Rd,Apt 21,Staten Island,NY,08/01/2001,America/New_York,40.598608,-74.068346
+Frank,Smith,f.smith@protonmail.com,7184341367,10457,1919 Davis Ave,Apt 105,Bronx,NY,02/11/1964,America/New_York,40.851945,-73.900414
+Angela,Russo,angela.russo86@hotmail.com,7184164637,14610,8781 Main St,,Rochester,NY,02/27/1986,America/New_York,43.120477,-77.521668
+Frank,Smith,frank.smith7@protonmail.com,8459202098,10301,1871 Franklin Ave,,Staten Island,NY,04/20/1976,America/New_York,40.628969,-74.078932
+Catherine,Smith,catherinesmit@gmail.com,9172024546,10019,1751 Martin St,Apt 280,New York,NY,12/28/1963,America/New_York,40.763322,-73.989759
+Angela,Greco,angelag98@yahoo.com,6079326910,10001,694 Second St,Apt 360,New York,NY,11/23/1998,America/New_York,40.751747,-73.995023
+Angela,Ricci,angela.ricci@protonmail.com,7164872969,14610,637 Smith Rd,,Rochester,NY,08/27/1992,America/New_York,43.121596,-77.520062
+Joseph,Jones,j.jones@hotmail.com,6319656747,11207,5774 Elm St,,Brooklyn,NY,10/17/1980,America/New_York,40.673505,-73.898514
+Joseph,Ricci,josephricc@hotmail.com,6079193468,14208,1608 Park Rd,,Buffalo,NY,06/28/1969,America/New_York,42.838488,-78.794712
+Michael,Ferrari,michael.ferrari8@outlook.com,7164517103,13210,4925 Lincoln Rd,Apt 751,Syracuse,NY,09/04/1991,America/New_York,42.993767,-76.056322
+Frank,Marino,frankmarino95@gmail.com,9293299091,10005,9423 Moore Ave,,New York,NY,03/05/1961,America/New_York,40.71012,-74.009631
+Michael,Johnson,michael_johnson59@outlook.com,9179946694,11357,2669 Lincoln Rd,Apt 245,Queens,NY,09/24/1995,America/New_York,40.798302,-73.840868
+Nicholas,Conti,nicholas.conti85@outlook.com,9178412555,10003,4010 Martin St,,New York,NY,01/11/1985,America/New_York,40.735532,-73.993039
+Jennifer,Ricci,jennifer1032@yahoo.com,9144779363,10307,6901 Jones St,,Staten Island,NY,09/02/1953,America/New_York,40.502652,-74.242526
+Donna,Esposito,donna_esposito@outlook.com,3158078723,14205,3339 Williams Ave,Apt 649,Buffalo,NY,12/08/2001,America/New_York,42.901235,-78.836181
+Joseph,Russo,jrusso22@protonmail.com,9144459117,14609,5089 Oak Ave,,Rochester,NY,08/01/1991,America/New_York,43.20286,-77.524076
+John,Brown,johnbrown13@hotmail.com,5163388295,14604,6600 Washington Ave,,Rochester,NY,11/26/1971,America/New_York,43.14977,-77.574431
+Angela,Ferrari,angela.ferrari62@protonmail.com,9149582528,11205,4154 Pine St,,Brooklyn,NY,05/11/1962,America/New_York,40.698449,-73.968825
+Anthony,Wilson,anthonywilson50@hotmail.com,6467029300,10302,5674 Anderson St,Apt 201,Staten Island,NY,08/22/1987,America/New_York,40.625788,-74.13184
+Michelle,Ricci,micheller51@outlook.com,9174373165,10309,2382 Jefferson St,,Staten Island,NY,04/02/1951,America/New_York,40.518692,-74.211058
+Salvatore,Brown,salvatore1073@gmail.com,3157465672,14609,2168 Williams Ave,Apt 129,Rochester,NY,07/14/1989,America/New_York,43.207853,-77.524817
+Angela,Greco,angela_greco75@hotmail.com,3474088030,11206,8616 Maple Ave,,Brooklyn,NY,11/26/1999,America/New_York,40.704891,-73.943305
+Salvatore,Russo,salvatore_russo49@protonmail.com,8454143217,14205,5664 Smith Rd,,Buffalo,NY,11/18/1978,America/New_York,42.894607,-78.837394
+Anthony,Russo,anthony.russo8@outlook.com,6319418579,14609,6988 Washington Ave,Apt 446,Rochester,NY,11/11/1976,America/New_York,43.209432,-77.530541
+Frank,Davis,frankdavis97@protonmail.com,6073767593,10451,3353 Johnson Rd,,Bronx,NY,02/22/1970,America/New_York,40.824892,-73.929845
+Michelle,Jones,michelle484@outlook.com,2122796798,13206,5272 Smith Rd,Apt 782,Syracuse,NY,05/05/1960,America/New_York,43.021935,-76.097057
+Michael,Greco,michael_greco62@hotmail.com,8454146169,14609,3708 Main St,,Rochester,NY,08/15/1948,America/New_York,43.206632,-77.529676
+Joseph,Brown,josephb52@gmail.com,7166258585,14203,4237 Fifth St,Apt 229,Buffalo,NY,04/17/1952,America/New_York,42.872168,-78.8559
+Joseph,Smith,josephsmit@yahoo.com,6314301999,14608,4054 Miller St,,Rochester,NY,03/17/1950,America/New_York,43.131185,-77.534401
+Lisa,Greco,lisa531@outlook.com,6465233584,14604,9446 Maple Ave,,Rochester,NY,10/04/1993,America/New_York,43.151182,-77.576157
+Anthony,Johnson,a.johnson@yahoo.com,3159317604,12205,8256 Adams St,,Albany,NY,08/21/1950,America/New_York,42.70952,-73.813871
+Vincent,Williams,vincentwill@outlook.com,6072038408,11354,7985 Jefferson St,,Queens,NY,07/05/2000,America/New_York,40.77014,-73.840756
+Michelle,Miller,michelle.miller7@yahoo.com,9143135829,10306,4958 Williams Ave,Apt 149,Staten Island,NY,07/03/1971,America/New_York,40.573446,-74.139173
+Jennifer,Davis,jennifer.davis90@hotmail.com,6077296153,14609,5851 Thomas Rd,,Rochester,NY,10/26/1990,America/New_York,43.205536,-77.532283
+Donna,Ferrari,donna_ferrari45@yahoo.com,2124626089,14607,8567 Franklin Ave,,Rochester,NY,05/11/1998,America/New_York,43.201321,-77.549434
+Jennifer,Marino,jennifer.marino4@protonmail.com,6463888903,14606,9989 Maple Ave,,Rochester,NY,08/07/1994,America/New_York,43.133337,-77.562101
+Jennifer,Jones,jennifer1049@outlook.com,5166987494,10302,4576 Taylor Ave,,Staten Island,NY,07/12/1998,America/New_York,40.623828,-74.137688
+Joseph,Marino,joseph.marino10@outlook.com,6075629254,14605,2727 Anderson St,,Rochester,NY,12/17/1995,America/New_York,43.184407,-77.568162
+Donna,Conti,donnaconti15@gmail.com,5858705187,12207,3470 Jones St,,Albany,NY,11/14/2003,America/New_York,42.658453,-73.786798
+Lisa,Brown,lisa.brown1@outlook.com,6467202483,14209,7380 Pine St,,Buffalo,NY,09/28/1969,America/New_York,42.912961,-78.792323
+Anthony,Greco,anthony_greco@protonmail.com,9144006854,11203,6473 Adams St,,Brooklyn,NY,04/08/1972,America/New_York,40.649928,-73.927314
+Vincent,Miller,vincent.miller3@outlook.com,6463104398,10310,5566 Maple Ave,,Staten Island,NY,09/15/1994,America/New_York,40.631788,-74.118377
+Jennifer,Miller,jenniferm53@hotmail.com,3154191246,14203,3965 First St,,Buffalo,NY,05/28/1953,America/New_York,42.877209,-78.856985
+John,Brown,johnb80@hotmail.com,9148111125,14208,9630 Moore Ave,,Buffalo,NY,07/09/1980,America/New_York,42.831737,-78.799297
+Anthony,Wilson,a.wilson@yahoo.com,9344433946,10454,9262 Fifth St,Apt 681,Bronx,NY,05/22/1945,America/New_York,40.808041,-73.92242
+Anthony,Davis,anthonydav27@outlook.com,3477147643,12210,9251 Miller St,Apt 810,Albany,NY,12/24/1973,America/New_York,42.680726,-73.821396
+Lisa,Wilson,lisa.wilson52@outlook.com,5164542117,10002,9279 First St,,New York,NY,04/27/1952,America/New_York,40.719064,-73.987771
+Maria,Conti,maria.conti@outlook.com,7162232830,14610,7 Elm St,Apt 520,Rochester,NY,06/18/2000,America/New_York,43.112623,-77.521238
+Maria,Marino,maria927@hotmail.com,7162123528,11101,5006 Moore Ave,,Queens,NY,09/01/1949,America/New_York,40.749833,-73.944362
+Nicholas,Brown,nicholas_brown30@outlook.com,5859862033,10308,5496 First St,,Staten Island,NY,05/16/1993,America/New_York,40.554009,-74.151838
+Maria,Ricci,maria980@gmail.com,5855905981,11101,7052 First St,Apt 831,Queens,NY,08/20/2003,America/New_York,40.753305,-73.941997
+Joseph,Marino,josephmar44@yahoo.com,7184329468,13202,5752 Wilson Rd,,Syracuse,NY,01/21/1957,America/New_York,43.03358,-76.139668
+John,Conti,johnc82@hotmail.com,3476639130,10002,7607 Davis Ave,,New York,NY,05/27/1982,America/New_York,40.718226,-73.984184
+Frank,Romano,frank.romano8@gmail.com,6315025431,11358,1980 Williams Ave,Apt 284,Queens,NY,08/18/1967,America/New_York,40.764465,-73.79112
+Catherine,Miller,cmiller25@yahoo.com,6315918070,11201,5262 Washington Ave,,Brooklyn,NY,10/08/1984,America/New_York,40.690651,-73.987465
+Maria,Marino,maria371@yahoo.com,5165011810,12209,8166 Miller St,,Albany,NY,02/21/1974,America/New_York,42.632459,-73.869741
+Joseph,Brown,j.brown@yahoo.com,9298021382,10011,2848 Washington Ave,,New York,NY,06/17/1994,America/New_York,40.742363,-74.003742
+Catherine,Brown,cbrown97@yahoo.com,7165471069,11202,9500 Washington Ave,,Brooklyn,NY,07/26/1977,America/New_York,40.696213,-73.997238
+Nicholas,Jones,nicholas.jones@hotmail.com,9174261976,10018,4687 Williams Ave,,New York,NY,02/20/1971,America/New_York,40.757792,-73.994395
+Michelle,Smith,michelle_smith18@gmail.com,9143037553,10003,7265 Davis Ave,Apt 615,New York,NY,04/09/1979,America/New_York,40.733746,-73.986214
+Catherine,Miller,cmiller24@protonmail.com,6318144831,14202,5017 Elm St,,Buffalo,NY,09/14/1957,America/New_York,42.863868,-78.865276
+Angela,Jones,angela.jones8@hotmail.com,7182636036,11103,4916 Williams Ave,,Queens,NY,12/15/2002,America/New_York,40.766781,-73.914187
+Michelle,Johnson,michelle.johnson8@protonmail.com,6463074769,14209,5446 Miller St,,Buffalo,NY,10/28/1976,America/New_York,42.913558,-78.791881
+Vincent,Wilson,v.wilson@hotmail.com,5856085695,13204,5860 Miller St,Apt 709,Syracuse,NY,10/20/1997,America/New_York,43.025554,-76.114855
+Catherine,Wilson,catherine.wilson48@yahoo.com,6079244060,14209,163 Pine St,,Buffalo,NY,01/17/1948,America/New_York,42.921081,-78.785902
+John,Williams,johnwill@hotmail.com,9179329625,12209,1499 Third St,,Albany,NY,07/14/1960,America/New_York,42.630495,-73.870241
+Michelle,Esposito,michelle.esposito9@hotmail.com,3156229113,10016,1884 Third St,,New York,NY,05/15/2002,America/New_York,40.740593,-73.979929
+Vincent,Miller,vincentmill@yahoo.com,9298537463,12205,1303 Adams St,Apt 203,Albany,NY,01/06/1970,America/New_York,42.708829,-73.817336
+Salvatore,Greco,salvatore.greco68@protonmail.com,9172719330,10018,3281 Taylor Ave,,New York,NY,12/06/1968,America/New_York,40.756833,-73.990012
+Michelle,Marino,michellemari@gmail.com,9179145895,14209,4784 Martin St,Apt 403,Buffalo,NY,03/17/1953,America/New_York,42.920092,-78.787866
+Michael,Jones,michaelj04@gmail.com,7169298804,10008,9944 Park Rd,,New York,NY,01/21/2004,America/New_York,40.708808,-74.004219
+Joseph,Brown,josephbro22@yahoo.com,9147461461,12206,8211 Elm St,,Albany,NY,05/10/1962,America/New_York,42.645062,-73.80328
+Lisa,Davis,lisa.davis00@yahoo.com,5859323227,14202,2076 Washington Ave,,Buffalo,NY,12/15/2000,America/New_York,42.866751,-78.865631
+John,Smith,johnsmi35@hotmail.com,6315407407,14208,2283 Jones St,Apt 780,Buffalo,NY,12/19/1959,America/New_York,42.837755,-78.796698
+Donna,Davis,donnadavis51@outlook.com,9347781205,10310,7701 Park Rd,,Staten Island,NY,01/24/1957,America/New_York,40.633304,-74.119657
+John,Ricci,johnricc@hotmail.com,7169562915,11356,6100 Elm St,,Queens,NY,05/27/1983,America/New_York,40.782613,-73.844469
+Michelle,Jones,michelle.jones97@outlook.com,8459392793,11356,1779 Davis Ave,,Queens,NY,04/13/1997,America/New_York,40.785614,-73.842568
+Michelle,Ricci,michelle357@protonmail.com,8458743361,10303,1603 Smith Rd,,Staten Island,NY,04/27/1973,America/New_York,40.639453,-74.167364
+Lisa,Marino,lisamari@outlook.com,5858733220,13210,2052 Maple Ave,Apt 441,Syracuse,NY,06/05/1995,America/New_York,42.997486,-76.056621
+Salvatore,Wilson,salvatore.wilson86@gmail.com,7168687517,10013,2644 Brown St,Apt 65,New York,NY,05/22/1982,America/New_York,40.719557,-74.00654
+Catherine,Romano,catheriner90@hotmail.com,3475635752,12202,2048 Anderson St,Apt 991,Albany,NY,05/22/1990,America/New_York,42.676199,-73.83717
+Jennifer,Ricci,jennifer_ricci@protonmail.com,5165549512,12201,7325 Brown St,,Albany,NY,11/09/1986,America/New_York,42.694916,-73.832806
+Catherine,Davis,catherine.davis8@hotmail.com,6073534665,12206,2923 Maple Ave,,Albany,NY,11/19/1983,America/New_York,42.644599,-73.809011
+Vincent,Davis,vincentdav35@hotmail.com,7189374312,14602,4807 Wilson Rd,,Rochester,NY,08/05/1945,America/New_York,43.166985,-77.601289
+Frank,Esposito,f.esposito@outlook.com,7162615215,14201,2628 Taylor Ave,,Buffalo,NY,07/02/1971,America/New_York,42.885045,-78.875076
+Angela,Miller,angelamill@gmail.com,9295695931,10457,8365 Elm St,,Bronx,NY,01/17/1982,America/New_York,40.850242,-73.897204
+Jennifer,Russo,jennifer.russo56@gmail.com,9293944197,11205,7783 Elm St,,Brooklyn,NY,09/08/1983,America/New_York,40.696061,-73.968382
+Donna,Williams,donnawill@protonmail.com,9143512835,13205,5750 Davis Ave,Apt 678,Syracuse,NY,03/06/1997,America/New_York,43.066792,-76.103784
+Frank,Ferrari,frankfer62@yahoo.com,6466885167,14610,7939 Wilson Rd,Apt 393,Rochester,NY,12/27/1997,America/New_York,43.112128,-77.517505
+Salvatore,Esposito,sesposito92@gmail.com,3157709960,13206,7900 Madison Ave,Apt 596,Syracuse,NY,09/01/1973,America/New_York,43.023049,-76.100641
+Vincent,Miller,vincent.miller47@hotmail.com,9343209758,11206,4277 Wilson Rd,,Brooklyn,NY,05/02/1947,America/New_York,40.700044,-73.947018
+Angela,Ricci,angela.ricci4@gmail.com,6314907199,11355,6598 Washington Ave,Apt 397,Queens,NY,04/25/1997,America/New_York,40.754442,-73.819856
+John,Wilson,johnwilson49@gmail.com,9173817127,10455,7699 Jackson St,,Bronx,NY,12/18/1991,America/New_York,40.814334,-73.904149
+Jennifer,Ferrari,jferrari69@outlook.com,9148324913,11355,5533 Smith Rd,Apt 307,Queens,NY,11/25/1971,America/New_York,40.749819,-73.818044
+Maria,Ricci,mricci33@yahoo.com,6463406268,12204,9365 Cedar Ln,,Albany,NY,10/24/2006,America/New_York,42.665377,-73.854856
+Michelle,Smith,michelle_smith@protonmail.com,6469463308,13209,3247 Lincoln Rd,,Syracuse,NY,08/18/1997,America/New_York,43.089965,-76.068534
+Jennifer,Ferrari,jenniferferr@hotmail.com,6077668679,11210,4491 Elm St,Apt 132,Brooklyn,NY,08/18/1958,America/New_York,40.623855,-73.948681
+Salvatore,Smith,salvatore.smith7@protonmail.com,9342836306,13208,5209 Oak Ave,,Syracuse,NY,02/10/1997,America/New_York,43.01202,-76.076186
+Michael,Ferrari,michaelferrari37@hotmail.com,5182628125,10001,2152 Fourth St,,New York,NY,03/24/1984,America/New_York,40.745942,-73.992383
+Vincent,Ferrari,v.ferrari@outlook.com,6075184797,12208,3145 Third St,Apt 659,Albany,NY,03/27/1972,America/New_York,42.701762,-73.844716
+Christine,Greco,christinegre94@outlook.com,3157032992,14602,7765 Second St,,Rochester,NY,04/25/2003,America/New_York,43.170009,-77.59932
+Joseph,Wilson,joseph_wilson5@outlook.com,9348852775,11103,5348 Pine St,Apt 184,Queens,NY,02/21/1999,America/New_York,40.770567,-73.91052
+Michael,Ricci,michael.ricci5@hotmail.com,6462179116,10016,5367 Anderson St,,New York,NY,02/11/1991,America/New_York,40.746238,-73.975951
+Michelle,Greco,michelleg80@hotmail.com,5188927072,10006,9033 Jefferson St,,New York,NY,02/25/1980,America/New_York,40.711414,-74.010679
+Jennifer,Brown,jenniferbrown26@outlook.com,3474054275,10009,1620 Martin St,,New York,NY,12/18/1957,America/New_York,40.722008,-73.980663
+Michael,Johnson,mjohnson15@yahoo.com,9177218694,14608,9881 Moore Ave,Apt 952,Rochester,NY,10/12/1978,America/New_York,43.12609,-77.535577
+Joseph,Esposito,j.esposito@hotmail.com,7166501500,10001,715 Cedar Ln,Apt 654,New York,NY,04/10/1980,America/New_York,40.74782,-73.991739
+Joseph,Russo,joseph_russo@outlook.com,7165602815,14203,7690 Smith Rd,,Buffalo,NY,12/01/1959,America/New_York,42.881046,-78.863148
+John,Greco,john.greco9@gmail.com,9173067130,11206,5670 Martin St,Apt 156,Brooklyn,NY,08/04/1991,America/New_York,40.698061,-73.938477
+Michelle,Ferrari,michelle942@yahoo.com,9147034568,13210,3795 Third St,,Syracuse,NY,03/08/1947,America/New_York,42.999812,-76.053883
+Michelle,Ricci,michelle366@protonmail.com,5856432129,10010,6215 Main St,,New York,NY,12/15/1956,America/New_York,40.742781,-73.978579
+Salvatore,Conti,salvatoreconti60@gmail.com,9297857830,10006,6102 Pine St,,New York,NY,12/16/1983,America/New_York,40.711489,-74.016785
+Jennifer,Williams,jenniferwil65@yahoo.com,7182564399,10011,2390 Washington Ave,,New York,NY,10/24/1962,America/New_York,40.743918,-73.996908
+Maria,Wilson,mariawil90@protonmail.com,2125201596,10457,1164 Main St,,Bronx,NY,12/03/1953,America/New_York,40.843644,-73.900892
+Catherine,Esposito,catherine658@outlook.com,3476658219,12205,7759 Fourth St,,Albany,NY,07/06/1984,America/New_York,42.710314,-73.818711
+Anthony,Johnson,anthony.johnson8@protonmail.com,9175355491,11209,3878 First St,,Brooklyn,NY,01/26/1975,America/New_York,40.62061,-74.027027
+Maria,Romano,maria.romano72@outlook.com,5188869431,14201,1560 Wilson Rd,,Buffalo,NY,08/04/1960,America/New_York,42.885561,-78.875175
+Angela,Davis,angela_davis@yahoo.com,7165356257,13209,9627 Park Rd,,Syracuse,NY,01/16/1969,America/New_York,43.089623,-76.06764
+Jennifer,Miller,jennifermill@outlook.com,9342242655,10308,4874 Taylor Ave,,Staten Island,NY,02/05/1962,America/New_York,40.558503,-74.147925
+Nicholas,Ricci,nicholas.ricci4@hotmail.com,6074506279,10011,2186 Cedar Ln,,New York,NY,02/06/1951,America/New_York,40.741971,-74.001939
+Salvatore,Greco,sgreco34@outlook.com,6464374358,10451,7469 Brown St,,Bronx,NY,02/09/1970,America/New_York,40.81937,-73.923266
+Jennifer,Esposito,jennifer.esposito5@yahoo.com,5186992518,12210,7184 Martin St,,Albany,NY,11/03/1965,America/New_York,42.681041,-73.813918
+Anthony,Ferrari,anthony.ferrari2@hotmail.com,7167856874,11101,6805 Martin St,,Queens,NY,06/03/1998,America/New_York,40.747692,-73.939601
+Vincent,Russo,vincentrusso86@gmail.com,6076162268,10309,5861 Martin St,Apt 807,Staten Island,NY,03/15/2006,America/New_York,40.518536,-74.206299
+Salvatore,Williams,swilliams40@protonmail.com,8458595260,10008,2358 Jones St,,New York,NY,09/01/1993,America/New_York,40.70861,-74.005132
+Angela,Miller,angelamil53@gmail.com,7184316644,13204,5949 Second St,,Syracuse,NY,05/10/1961,America/New_York,43.026969,-76.116034
+Joseph,Wilson,josephw67@protonmail.com,3473236554,10453,4616 Moore Ave,,Bronx,NY,03/26/1967,America/New_York,40.853277,-73.914104
+Donna,Conti,d.conti@outlook.com,9294447066,14603,1900 Smith Rd,,Rochester,NY,04/19/1951,America/New_York,43.173368,-77.585676
+John,Davis,john_davis33@protonmail.com,6469255245,14602,6918 Pine St,Apt 107,Rochester,NY,06/21/1985,America/New_York,43.164347,-77.599742
+Michelle,Greco,michellegrec@protonmail.com,5856717094,11101,9061 Elm St,Apt 819,Queens,NY,02/01/1977,America/New_York,40.74573,-73.937766
+Joseph,Ferrari,joseph.ferrari56@gmail.com,8459023673,11356,2143 Thomas Rd,,Queens,NY,11/20/1965,America/New_York,40.789657,-73.847386
+Vincent,Romano,vincentr96@hotmail.com,8458668282,13205,4845 Thomas Rd,,Syracuse,NY,06/02/1996,America/New_York,43.070108,-76.111293
+Nicholas,Miller,nicholas_miller47@outlook.com,9148357911,14206,2428 Johnson Rd,,Buffalo,NY,08/12/1982,America/New_York,42.850486,-78.822745
+Salvatore,Smith,salvatore.smith81@gmail.com,7186367746,11207,1933 Elm St,,Brooklyn,NY,05/14/1975,America/New_York,40.669866,-73.890354
+Angela,Marino,a.marino@outlook.com,6077805304,11208,9091 Maple Ave,,Brooklyn,NY,05/07/1977,America/New_York,40.675953,-73.874219
+Donna,Ricci,donna.ricci@gmail.com,6318595491,14208,5090 Johnson Rd,Apt 589,Buffalo,NY,12/08/1993,America/New_York,42.840974,-78.802789
+Frank,Jones,frank.jones9@gmail.com,9142865658,10003,3587 Adams St,,New York,NY,12/07/2007,America/New_York,40.729308,-73.988627
+Jennifer,Marino,j.marino@gmail.com,2129291799,10308,9394 Davis Ave,Apt 909,Staten Island,NY,09/27/1947,America/New_York,40.55177,-74.148753
+Christine,Ferrari,christine_ferrari95@outlook.com,8452553647,10455,2093 Miller St,Apt 106,Bronx,NY,06/23/1994,America/New_York,40.810969,-73.902302
+Salvatore,Conti,salvatorecont@hotmail.com,9147611836,13208,6590 Wilson Rd,,Syracuse,NY,12/17/1946,America/New_York,43.005781,-76.081154
+Michelle,Romano,michelle.romano91@hotmail.com,6319248654,13205,9828 Fifth St,,Syracuse,NY,05/17/1977,America/New_York,43.070611,-76.103403
+Maria,Ricci,mariar72@outlook.com,6075248722,10018,9797 Martin St,,New York,NY,10/09/1972,America/New_York,40.757018,-73.989019
+Angela,Ricci,angela_ricci@protonmail.com,5854465093,11356,4837 Oak Ave,,Queens,NY,03/27/1993,America/New_York,40.785168,-73.845888
+Donna,Miller,donna.miller2@yahoo.com,9174451693,14603,8145 Brown St,,Rochester,NY,08/26/1975,America/New_York,43.17544,-77.592257
+Jennifer,Greco,jennifer.greco@hotmail.com,9173598194,11210,5766 Anderson St,Apt 434,Brooklyn,NY,09/06/1948,America/New_York,40.626013,-73.943558
+Angela,Russo,angelarusso64@gmail.com,9343081414,10451,3999 Thomas Rd,Apt 138,Bronx,NY,10/26/1945,America/New_York,40.815703,-73.920334
+John,Greco,john.greco58@hotmail.com,2123665308,12208,8998 Maple Ave,Apt 750,Albany,NY,02/03/1958,America/New_York,42.696038,-73.851487
+Salvatore,Russo,salvatore_russo@yahoo.com,8459205825,10010,1167 Johnson Rd,,New York,NY,10/23/1952,America/New_York,40.737051,-73.982507
+Jennifer,Romano,jenniferrom45@gmail.com,3157102326,12202,9936 Jackson St,Apt 94,Albany,NY,07/17/1946,America/New_York,42.67962,-73.840613
+Angela,Miller,angelamill@protonmail.com,9172693995,10006,6174 Pine St,Apt 446,New York,NY,06/23/1994,America/New_York,40.710678,-74.014564
+Vincent,Brown,vincentb85@yahoo.com,9298118796,14208,3014 Wilson Rd,,Buffalo,NY,07/09/1985,America/New_York,42.835376,-78.799559
+Maria,Greco,maria.greco60@gmail.com,6317039333,10451,7603 Washington Ave,Apt 968,Bronx,NY,07/11/1960,America/New_York,40.816058,-73.928054
+Angela,Romano,angela_romano@yahoo.com,5183077968,10451,4705 Brown St,,Bronx,NY,04/18/2000,America/New_York,40.817436,-73.922644
+Lisa,Russo,lrusso20@yahoo.com,7186094884,14205,5024 Jones St,,Buffalo,NY,03/02/1980,America/New_York,42.898528,-78.836093
+Donna,Smith,donna_smith@hotmail.com,6074007539,10009,9725 Park Rd,,New York,NY,09/04/1976,America/New_York,40.722278,-73.976266
+Michelle,Jones,michelle.jones9@yahoo.com,6074184299,11204,8253 Jefferson St,Apt 596,Brooklyn,NY,05/27/1963,America/New_York,40.61502,-73.984014
+Joseph,Williams,joseph.williams3@yahoo.com,2126448030,10301,9625 Pine St,,Staten Island,NY,02/07/2007,America/New_York,40.632959,-74.087001
+Salvatore,Johnson,salvatore.johnson21@yahoo.com,6463704654,11207,9384 Fourth St,,Brooklyn,NY,12/13/1959,America/New_York,40.674711,-73.893145
+Anthony,Jones,ajones50@outlook.com,9349438463,14609,9483 Anderson St,Apt 516,Rochester,NY,06/07/1958,America/New_York,43.20887,-77.528215
+Angela,Wilson,a.wilson@gmail.com,9293075731,10307,4460 Martin St,Apt 924,Staten Island,NY,12/27/1953,America/New_York,40.51174,-74.23968
+Maria,Ricci,maria_ricci56@outlook.com,2127672459,13207,2877 Martin St,,Syracuse,NY,10/13/1987,America/New_York,43.075767,-76.091376
+Michelle,Marino,michelle_marino@protonmail.com,6073443421,13208,9877 Second St,,Syracuse,NY,11/25/1947,America/New_York,43.005384,-76.078715
+Jennifer,Romano,jennifer_romano@hotmail.com,9142696800,12205,1718 Third St,,Albany,NY,05/18/1961,America/New_York,42.714928,-73.819292
+Donna,Romano,dromano54@hotmail.com,5167875771,14602,9534 First St,,Rochester,NY,03/04/1992,America/New_York,43.16425,-77.597262
+Angela,Smith,asmith87@hotmail.com,2124871006,13205,5245 Maple Ave,,Syracuse,NY,09/13/1948,America/New_York,43.067086,-76.107081
+Lisa,Brown,lisa_brown@yahoo.com,7167647051,12203,2242 Park Rd,,Albany,NY,02/04/1970,America/New_York,42.653858,-73.830666
+Michelle,Miller,michelle_miller@yahoo.com,7187285423,14210,5562 Fifth St,,Buffalo,NY,11/09/1963,America/New_York,42.827845,-78.776966
+Catherine,Romano,catherineroma@gmail.com,3476817196,10307,678 Davis Ave,,Staten Island,NY,02/22/1967,America/New_York,40.502345,-74.238366
+Frank,Romano,frankrom28@yahoo.com,3478404861,11206,1718 Oak Ave,Apt 792,Brooklyn,NY,05/16/1994,America/New_York,40.702627,-73.940411
+Salvatore,Smith,salvatore.smith66@outlook.com,8454423294,13201,4863 Fourth St,,Syracuse,NY,12/13/1948,America/New_York,43.046518,-76.15163
+Lisa,Esposito,lisaesp24@hotmail.com,3154074159,11357,3645 Jefferson St,,Queens,NY,10/08/1951,America/New_York,40.79548,-73.835824
+Michelle,Davis,mdavis80@outlook.com,3152256270,10012,3976 Fourth St,,New York,NY,02/03/1950,America/New_York,40.721229,-73.999902
+Salvatore,Russo,s.russo@hotmail.com,6076455214,12205,97 Johnson Rd,Apt 82,Albany,NY,01/03/1973,America/New_York,42.715169,-73.817861
+Donna,Wilson,donna928@gmail.com,6074183934,13204,7357 Franklin Ave,Apt 866,Syracuse,NY,07/05/1958,America/New_York,43.02477,-76.113833
+John,Ferrari,johnfer62@hotmail.com,9293466363,12210,7820 Davis Ave,,Albany,NY,03/26/1994,America/New_York,42.678109,-73.816555
+Salvatore,Conti,s.conti@gmail.com,6312816503,10014,6145 Main St,,New York,NY,06/07/1978,America/New_York,40.738934,-74.009994
+Lisa,Brown,l.brown@yahoo.com,5169116381,10301,1092 Brown St,,Staten Island,NY,05/06/1987,America/New_York,40.629115,-74.086902
+Michelle,Ferrari,michelle_ferrari2@yahoo.com,5852833191,10303,5728 Elm St,Apt 697,Staten Island,NY,04/03/1987,America/New_York,40.636424,-74.167983
+Angela,Greco,angelagrec@yahoo.com,5165558920,10301,8926 Washington Ave,,Staten Island,NY,04/20/1988,America/New_York,40.637561,-74.079295
+Anthony,Miller,anthony_miller@yahoo.com,5852446160,10308,7055 Fifth St,,Staten Island,NY,02/12/1981,America/New_York,40.555312,-74.147974
+Vincent,Esposito,vesposito69@outlook.com,3477015823,10019,3922 Taylor Ave,,New York,NY,05/01/1950,America/New_York,40.760911,-73.980917
+Joseph,Smith,joseph.smith@yahoo.com,7165714171,11204,4928 Washington Ave,,Brooklyn,NY,07/24/1959,America/New_York,40.620445,-73.981225
+John,Wilson,john.wilson17@outlook.com,7162176383,12205,8951 Fourth St,Apt 767,Albany,NY,04/18/1978,America/New_York,42.707133,-73.812588
+Catherine,Conti,catherineconti79@hotmail.com,9294766413,11206,1342 Davis Ave,,Brooklyn,NY,05/02/1991,America/New_York,40.70646,-73.944716
+John,Wilson,jwilson52@outlook.com,3159273076,13207,7937 Jones St,,Syracuse,NY,04/16/1979,America/New_York,43.076181,-76.086152
+Lisa,Greco,lisa_greco25@outlook.com,9144224534,13210,4636 Maple Ave,Apt 842,Syracuse,NY,12/03/1952,America/New_York,43.002043,-76.052721
+Michael,Esposito,michael.esposito3@yahoo.com,5185566854,14203,14 Oak Ave,,Buffalo,NY,09/17/1994,America/New_York,42.879196,-78.860509
+Jennifer,Conti,jconti46@protonmail.com,9147922453,11210,777 Jackson St,,Brooklyn,NY,12/09/1949,America/New_York,40.623168,-73.945949
+Donna,Brown,donna711@hotmail.com,3474181447,14609,7942 Moore Ave,,Rochester,NY,11/11/1949,America/New_York,43.204228,-77.5315
+Joseph,Jones,josephj49@protonmail.com,9172561229,11354,1830 Adams St,,Queens,NY,10/02/1949,America/New_York,40.772958,-73.835055
+Salvatore,Miller,salvatore_miller@hotmail.com,2124725385,12209,5851 Park Rd,,Albany,NY,05/21/1992,America/New_York,42.63006,-73.87008
+Lisa,Conti,lisa184@hotmail.com,3154638668,10455,4031 Main St,,Bronx,NY,07/22/1947,America/New_York,40.804901,-73.905549
+John,Jones,john_jones@protonmail.com,2129818703,10309,3288 Jefferson St,,Staten Island,NY,06/19/1967,America/New_York,40.517344,-74.21385
+Angela,Davis,angeladavi@protonmail.com,2122109282,10305,1409 Thomas Rd,,Staten Island,NY,03/18/1948,America/New_York,40.599361,-74.068795
+John,Davis,johndavi@protonmail.com,3154053952,14603,4664 Third St,,Rochester,NY,11/02/1992,America/New_York,43.180118,-77.590004
+Vincent,Smith,vincent.smith@outlook.com,9148692815,14210,8040 Wilson Rd,,Buffalo,NY,10/01/1977,America/New_York,42.826665,-78.77739
+Frank,Miller,frank.miller7@hotmail.com,7167139015,13201,1703 Jefferson St,,Syracuse,NY,06/08/1946,America/New_York,43.045554,-76.143867
+Jennifer,Williams,jennifer.williams2@yahoo.com,2124243349,12202,2658 Thomas Rd,,Albany,NY,12/06/1995,America/New_York,42.684139,-73.838645
+Lisa,Marino,lisa_marino88@protonmail.com,7163003696,10004,8156 Smith Rd,,New York,NY,05/21/1977,America/New_York,40.688493,-74.018047
+Catherine,Wilson,catherinewil96@gmail.com,9172676273,10302,2932 Adams St,Apt 398,Staten Island,NY,06/26/1953,America/New_York,40.632597,-74.13406
+Anthony,Williams,anthonywil13@gmail.com,5167558049,14602,6411 Thomas Rd,,Rochester,NY,03/25/1960,America/New_York,43.165095,-77.60115
+Anthony,Johnson,ajohnson42@outlook.com,5166922640,10303,7564 Taylor Ave,,Staten Island,NY,09/28/1966,America/New_York,40.629761,-74.169052
+Anthony,Davis,anthony_davis80@gmail.com,9292484815,11355,5869 Lincoln Rd,Apt 50,Queens,NY,05/13/1954,America/New_York,40.754552,-73.823007
+Catherine,Smith,catherine.smith3@yahoo.com,6074708392,14608,1982 Brown St,,Rochester,NY,10/15/2001,America/New_York,43.130756,-77.540863
+Maria,Greco,maria_greco58@protonmail.com,3156254160,13207,9997 Jefferson St,,Syracuse,NY,05/17/1949,America/New_York,43.076265,-76.085049
+Anthony,Ricci,anthony_ricci@hotmail.com,3158169023,14203,3577 First St,Apt 590,Buffalo,NY,05/15/1957,America/New_York,42.878729,-78.854246
+Frank,Williams,frank149@gmail.com,9146743453,11207,4368 Davis Ave,,Brooklyn,NY,09/28/1995,America/New_York,40.668948,-73.896097
+Donna,Smith,donna_smith@hotmail.com,9179705787,10301,9949 Park Rd,Apt 459,Staten Island,NY,02/10/1950,America/New_York,40.631072,-74.084544
+Jennifer,Conti,jennifer.conti51@outlook.com,3152984559,10305,789 Franklin Ave,Apt 243,Staten Island,NY,03/23/1951,America/New_York,40.602127,-74.07251
+Christine,Smith,christines02@gmail.com,9299369126,11206,7787 Maple Ave,,Brooklyn,NY,11/15/2002,America/New_York,40.701514,-73.946892
+Michael,Brown,michael_brown@outlook.com,5852494310,10013,2823 Main St,,New York,NY,08/18/2001,America/New_York,40.714797,-74.003819
+Jennifer,Romano,jennifer.romano47@hotmail.com,9344341292,11358,4460 Washington Ave,Apt 445,Queens,NY,09/25/1947,America/New_York,40.761719,-73.79656
+Jennifer,Greco,jennifer.greco57@outlook.com,7169777615,10014,2246 Franklin Ave,,New York,NY,06/15/1957,America/New_York,40.730476,-74.009065
+Jennifer,Jones,jenniferjon61@hotmail.com,6464662410,14205,6612 Fifth St,,Buffalo,NY,03/24/1950,America/New_York,42.900556,-78.836043
+Angela,Ferrari,aferrari88@outlook.com,6073613687,10304,8609 Lincoln Rd,,Staten Island,NY,04/24/1965,America/New_York,40.606949,-74.085706
+Angela,Miller,angela.miller67@outlook.com,3476079686,10009,8473 Madison Ave,,New York,NY,06/16/1983,America/New_York,40.722794,-73.976784
+Michelle,Miller,michellem74@yahoo.com,6462557164,14208,2273 Franklin Ave,,Buffalo,NY,10/17/1974,America/New_York,42.839182,-78.801497
+Donna,Jones,donna.jones93@outlook.com,5162054267,10302,7974 Taylor Ave,,Staten Island,NY,03/04/1996,America/New_York,40.62605,-74.139649
+Michelle,Marino,m.marino@outlook.com,5188221327,13208,9575 Pine St,,Syracuse,NY,04/10/1959,America/New_York,43.004362,-76.076736
+Anthony,Jones,anthony1082@outlook.com,9143329767,14210,3609 Elm St,,Buffalo,NY,04/10/2006,America/New_York,42.827087,-78.779251
+Michael,Jones,michael.jones@yahoo.com,6464487170,12206,8882 Smith Rd,,Albany,NY,03/20/2004,America/New_York,42.638697,-73.811361
+Michelle,Wilson,michelle_wilson94@protonmail.com,6073696607,13208,6481 Williams Ave,,Syracuse,NY,01/24/1987,America/New_York,43.005863,-76.077493
+Vincent,Wilson,vincent.wilson65@protonmail.com,9348083553,10460,4087 Jefferson St,,Bronx,NY,11/28/1949,America/New_York,40.845029,-73.881257
+Maria,Russo,mariarus75@hotmail.com,9346609918,11209,6379 Maple Ave,,Brooklyn,NY,07/17/1950,America/New_York,40.61748,-74.026155
+Nicholas,Brown,nicholasbrown33@yahoo.com,7182097240,14208,8280 Martin St,,Buffalo,NY,10/14/1947,America/New_York,42.838551,-78.80023
+Angela,Greco,agreco72@outlook.com,7187294741,10305,9307 Park Rd,,Staten Island,NY,03/04/1956,America/New_York,40.594706,-74.072012
+Donna,Davis,d.davis@protonmail.com,9172604903,10015,8480 Pine St,,New York,NY,02/21/1946,America/New_York,40.741678,-73.997293
+Nicholas,Brown,nicholas_brown@hotmail.com,9146713531,10310,332 Williams Ave,Apt 31,Staten Island,NY,09/25/1962,America/New_York,40.634236,-74.117538
+Vincent,Davis,vincent.davis7@protonmail.com,2122887283,10008,2374 First St,,New York,NY,06/25/1948,America/New_York,40.711602,-74.001186
+Lisa,Smith,lisa.smith4@outlook.com,5182306798,14604,4412 Adams St,Apt 139,Rochester,NY,06/22/1975,America/New_York,43.144254,-77.579512
+Vincent,Ferrari,vincent_ferrari@yahoo.com,8453438718,11210,1046 Madison Ave,Apt 819,Brooklyn,NY,02/15/1987,America/New_York,40.628142,-73.949858
+Angela,Ricci,angela713@protonmail.com,2124551556,10006,4 Adams St,Apt 605,New York,NY,07/25/1998,America/New_York,40.713872,-74.008597
+Frank,Conti,frankconti90@gmail.com,9296451957,14201,8894 Madison Ave,,Buffalo,NY,09/22/1951,America/New_York,42.887358,-78.875129
+Jennifer,Wilson,jenniferwil44@hotmail.com,5183657564,14205,3539 Fifth St,,Buffalo,NY,01/27/1978,America/New_York,42.893395,-78.839488
+Frank,Jones,frankj75@gmail.com,7167806377,11204,4674 Cedar Ln,,Brooklyn,NY,02/27/1975,America/New_York,40.615957,-73.983304
+Joseph,Esposito,joseph851@outlook.com,9295033798,14205,8832 Third St,Apt 28,Buffalo,NY,01/26/1978,America/New_York,42.893542,-78.841874
+Salvatore,Miller,salvatore_miller@protonmail.com,6076329992,11208,6413 Lincoln Rd,Apt 249,Brooklyn,NY,10/26/2007,America/New_York,40.669679,-73.870715
+Donna,Romano,donna997@protonmail.com,5853366446,11208,4465 Pine St,,Brooklyn,NY,06/18/1979,America/New_York,40.674968,-73.875699
+Michael,Ferrari,michael.ferrari38@gmail.com,7182237406,11201,1761 Anderson St,,Brooklyn,NY,08/16/1997,America/New_York,40.689445,-73.988678
+Lisa,Davis,l.davis@outlook.com,6076119274,12206,9209 Martin St,,Albany,NY,02/06/2002,America/New_York,42.64473,-73.807108
+Donna,Brown,dbrown42@yahoo.com,9297222118,10456,7089 Washington Ave,Apt 126,Bronx,NY,11/07/1969,America/New_York,40.827736,-73.914413
+Frank,Jones,frank.jones@protonmail.com,9174716220,14201,5084 Adams St,,Buffalo,NY,04/15/2002,America/New_York,42.890955,-78.877802
+Christine,Greco,christinegre89@hotmail.com,5185769071,10012,2558 Maple Ave,Apt 318,New York,NY,07/02/2002,America/New_York,40.729618,-73.995291
+Christine,Wilson,cwilson50@gmail.com,9148467866,13210,7806 Second St,,Syracuse,NY,05/28/1962,America/New_York,43.000879,-76.058202
+Joseph,Greco,josephg99@protonmail.com,3154345518,14607,9052 Jackson St,Apt 922,Rochester,NY,07/24/1999,America/New_York,43.192205,-77.549841
+Lisa,Jones,lisajones89@outlook.com,3477514117,13205,4918 Third St,,Syracuse,NY,11/04/1980,America/New_York,43.064141,-76.103302
+Salvatore,Williams,salvatorew53@yahoo.com,6319752787,14606,6494 Jackson St,,Rochester,NY,02/20/1953,America/New_York,43.139026,-77.562309
+Nicholas,Ferrari,nicholas.ferrari00@outlook.com,2126619827,10451,6936 Thomas Rd,Apt 707,Bronx,NY,10/25/2000,America/New_York,40.81548,-73.929331
+Donna,Greco,donna.greco8@gmail.com,6319874126,14604,9256 Franklin Ave,Apt 350,Rochester,NY,07/19/2003,America/New_York,43.143444,-77.58054
+Maria,Wilson,mariaw88@yahoo.com,9178931480,12203,4055 Fourth St,,Albany,NY,03/23/1988,America/New_York,42.654131,-73.829263
+Frank,Smith,franksmi35@outlook.com,9143967118,13204,8276 Jackson St,,Syracuse,NY,02/05/2000,America/New_York,43.030479,-76.115632
+Donna,Ferrari,d.ferrari@hotmail.com,8453444155,10011,6628 Smith Rd,,New York,NY,10/01/1966,America/New_York,40.741821,-74.001153
+John,Conti,john.conti@gmail.com,6462161238,14210,4350 Moore Ave,,Buffalo,NY,07/22/1991,America/New_York,42.822365,-78.779292
+Michael,Miller,mmiller97@protonmail.com,5162642575,10019,9991 Elm St,,New York,NY,07/19/1963,America/New_York,40.768272,-73.988998
+Nicholas,Greco,nicholas.greco3@outlook.com,5168188054,11207,9220 Miller St,,Brooklyn,NY,05/16/1975,America/New_York,40.667704,-73.898235
+Donna,Russo,donna.russo87@gmail.com,6316012153,11101,1231 Maple Ave,,Queens,NY,06/22/1987,America/New_York,40.752048,-73.942043
+Christine,Esposito,christineesp41@outlook.com,5185768880,12205,1708 Johnson Rd,,Albany,NY,08/24/1953,America/New_York,42.713511,-73.816346
+John,Esposito,johne60@hotmail.com,3158448898,10301,952 Fifth St,,Staten Island,NY,07/08/1960,America/New_York,40.634522,-74.079258
+Jennifer,Jones,jjones25@gmail.com,6316003925,10451,3672 Thomas Rd,Apt 309,Bronx,NY,08/17/1947,America/New_York,40.8158,-73.927711
+Joseph,Wilson,josephw64@yahoo.com,5856751916,10013,4518 Johnson Rd,Apt 573,New York,NY,10/17/1964,America/New_York,40.723245,-74.00458
+John,Esposito,john.esposito13@gmail.com,3156306243,10452,388 Elm St,Apt 229,Bronx,NY,12/19/2004,America/New_York,40.845641,-73.929426
+Michael,Wilson,mwilson58@gmail.com,9147359444,11101,259 Pine St,,Queens,NY,03/04/1984,America/New_York,40.754247,-73.942436
+Angela,Johnson,a.johnson@outlook.com,6078796665,10016,551 Washington Ave,,New York,NY,09/12/1997,America/New_York,40.749283,-73.980419
+Catherine,Marino,catherine.marino@outlook.com,9293614482,11205,8675 Pine St,,Brooklyn,NY,07/11/1993,America/New_York,40.697736,-73.965267
+Anthony,Miller,anthony1040@gmail.com,3154784505,11202,2780 First St,Apt 104,Brooklyn,NY,05/22/1947,America/New_York,40.703346,-73.994061
+Michelle,Wilson,michelle_wilson@yahoo.com,6316123073,11354,2555 Jackson St,,Queens,NY,03/10/1969,America/New_York,40.772545,-73.835194
+John,Esposito,johnesposito61@hotmail.com,7163832779,10457,542 Fourth St,,Bronx,NY,06/25/1959,America/New_York,40.851125,-73.899567
+Angela,Jones,a.jones@outlook.com,6464693228,10012,2176 Adams St,,New York,NY,05/05/1957,America/New_York,40.726265,-74.002128
+Salvatore,Smith,salvatoresmi89@protonmail.com,9347613978,14210,1835 Franklin Ave,Apt 784,Buffalo,NY,11/22/1979,America/New_York,42.824011,-78.78134
+Catherine,Brown,catherine.brown2@yahoo.com,9345342889,10459,9515 Park Rd,,Bronx,NY,01/19/1996,America/New_York,40.825017,-73.893263
+Nicholas,Marino,nicholas795@protonmail.com,9178893973,14201,2578 First St,Apt 465,Buffalo,NY,08/13/1994,America/New_York,42.881909,-78.873812
+Frank,Wilson,frankwils@yahoo.com,8454049103,11355,1705 Wilson Rd,,Queens,NY,01/18/1961,America/New_York,40.745344,-73.820447
+Vincent,Ricci,vincent.ricci85@gmail.com,7165521450,10007,5664 Miller St,,New York,NY,07/12/1985,America/New_York,40.716778,-74.008447
+Nicholas,Wilson,nicholaswils@hotmail.com,8459497954,10301,6637 Martin St,,Staten Island,NY,02/07/2002,America/New_York,40.631372,-74.082225
+Catherine,Davis,catherine.davis@yahoo.com,9297264901,13207,7006 Park Rd,,Syracuse,NY,02/18/1997,America/New_York,43.076123,-76.089671
+Salvatore,Jones,s.jones@gmail.com,8453947079,14203,621 Washington Ave,,Buffalo,NY,10/22/1994,America/New_York,42.879266,-78.862178
+Angela,Johnson,angela.johnson13@protonmail.com,6072605681,10017,3275 Jones St,Apt 761,New York,NY,11/08/1980,America/New_York,40.750089,-73.974028
+John,Russo,john.russo86@hotmail.com,8457331210,13201,9289 Jones St,Apt 454,Syracuse,NY,06/08/1986,America/New_York,43.046237,-76.147807
+Christine,Marino,cmarino10@yahoo.com,6312878470,11204,3336 Elm St,Apt 712,Brooklyn,NY,11/21/1989,America/New_York,40.619423,-73.987042
+Angela,Miller,amiller28@hotmail.com,9349326354,12203,405 Taylor Ave,Apt 684,Albany,NY,12/17/1979,America/New_York,42.646238,-73.826679
+Michael,Romano,michael.romano44@protonmail.com,9294448455,14208,6834 Washington Ave,,Buffalo,NY,04/08/1983,America/New_York,42.841273,-78.793552
+John,Marino,johnmarino61@hotmail.com,9176578114,10006,7258 Adams St,Apt 42,New York,NY,06/09/1949,America/New_York,40.708899,-74.010824
+Donna,Conti,donna_conti@hotmail.com,7186709638,10018,3722 Second St,,New York,NY,05/04/2006,America/New_York,40.754536,-73.99056
+Christine,Russo,christine_russo3@protonmail.com,5183231393,12205,5402 Williams Ave,,Albany,NY,10/27/2004,America/New_York,42.705309,-73.812514
+Michelle,Brown,michelle.brown@hotmail.com,2122528159,12203,5628 Fifth St,,Albany,NY,11/28/1971,America/New_York,42.646964,-73.831774
+Christine,Jones,christine.jones82@hotmail.com,5855987988,10010,8253 First St,,New York,NY,12/21/2004,America/New_York,40.738356,-73.979017
+Catherine,Miller,catherine.miller51@gmail.com,7183383984,10011,7614 Davis Ave,Apt 425,New York,NY,12/05/1951,America/New_York,40.737319,-74.002916
+Lisa,Brown,lisa.brown@outlook.com,3474416267,13204,2636 Fourth St,,Syracuse,NY,06/08/1968,America/New_York,43.032327,-76.118902
+Anthony,Conti,anthonyconti12@hotmail.com,6316581514,10016,5500 Jackson St,,New York,NY,02/16/1970,America/New_York,40.747673,-73.982188
+Anthony,Conti,aconti34@hotmail.com,7185875713,10451,8399 Pine St,,Bronx,NY,04/13/1964,America/New_York,40.820141,-73.926599
+Lisa,Ricci,lisa_ricci71@hotmail.com,2124706322,13201,3076 Anderson St,,Syracuse,NY,09/01/1954,America/New_York,43.050556,-76.152051
+Salvatore,Johnson,salvatore_johnson24@gmail.com,7165488235,10015,9469 Moore Ave,,New York,NY,12/17/1977,America/New_York,40.739073,-74.003495
+Lisa,Williams,l.williams@yahoo.com,7169524871,10303,7354 Pine St,,Staten Island,NY,11/05/1961,America/New_York,40.63071,-74.163422
+Nicholas,Jones,nicholas.jones96@gmail.com,7184004390,11356,6753 Fifth St,,Queens,NY,08/12/1996,America/New_York,40.784546,-73.842055
+Christine,Esposito,c.esposito@outlook.com,5185552134,11206,1906 Washington Ave,,Brooklyn,NY,11/03/1956,America/New_York,40.703019,-73.939583
+Lisa,Miller,lmiller67@protonmail.com,3159002913,14208,4550 Wilson Rd,,Buffalo,NY,12/06/1996,America/New_York,42.837242,-78.798399
+Jennifer,Marino,jennifer.marino37@outlook.com,5165584776,10457,5944 Thomas Rd,,Bronx,NY,03/06/1986,America/New_York,40.851139,-73.893948
+Vincent,Esposito,vincent_esposito78@outlook.com,8457384205,10304,3021 Oak Ave,,Staten Island,NY,11/17/2004,America/New_York,40.613323,-74.084772
+Angela,Romano,angelaromano20@yahoo.com,8456461069,11205,5079 Second St,,Brooklyn,NY,12/03/1980,America/New_York,40.694568,-73.964969
+Vincent,Wilson,vincentwilson91@hotmail.com,9147946964,10017,8954 Pine St,Apt 472,New York,NY,03/21/1952,America/New_York,40.757011,-73.97095
+Catherine,Smith,catherine.smith68@protonmail.com,9349676689,10004,7953 Main St,,New York,NY,02/14/1968,America/New_York,40.693608,-74.011528
+Michelle,Conti,michelle.conti@yahoo.com,8454523901,10009,2250 Johnson Rd,,New York,NY,07/17/1993,America/New_York,40.730049,-73.977797
+Angela,Conti,angela_conti6@gmail.com,3155216795,14602,2686 Madison Ave,,Rochester,NY,09/26/2002,America/New_York,43.163078,-77.603252
+Christine,Esposito,christine_esposito91@outlook.com,3474277709,11209,7527 Johnson Rd,,Brooklyn,NY,05/13/1976,America/New_York,40.625403,-74.032555
+Anthony,Wilson,anthony.wilson73@outlook.com,5169889268,11206,4888 Jones St,Apt 786,Brooklyn,NY,12/06/1949,America/New_York,40.697183,-73.942571
+Anthony,Miller,anthony626@protonmail.com,9172976157,10303,3859 Main St,,Staten Island,NY,04/21/1979,America/New_York,40.633949,-74.166304
+Michael,Williams,michaelwil67@outlook.com,6319878599,10457,7956 Oak Ave,,Bronx,NY,07/06/1947,America/New_York,40.848589,-73.902534
+Angela,Esposito,angela747@hotmail.com,9347448400,10003,1890 Smith Rd,,New York,NY,01/28/1982,America/New_York,40.727106,-73.9918
+Michelle,Brown,michelle_brown57@outlook.com,9299571159,10013,2023 Thomas Rd,,New York,NY,05/02/1954,America/New_York,40.721181,-74.00509
+Vincent,Williams,vincent.williams5@hotmail.com,9296711081,11358,3794 Park Rd,,Queens,NY,08/06/1952,America/New_York,40.759998,-73.796932
+Michelle,Davis,m.davis@hotmail.com,6073991991,12210,7778 Jackson St,Apt 982,Albany,NY,04/27/1949,America/New_York,42.68354,-73.82183
+Lisa,Miller,lisa.miller8@hotmail.com,9149216331,10454,4197 Oak Ave,Apt 313,Bronx,NY,02/17/1975,America/New_York,40.803814,-73.924002
+Donna,Esposito,donna.esposito76@gmail.com,9178851739,11206,3132 Wilson Rd,Apt 999,Brooklyn,NY,06/16/1976,America/New_York,40.699047,-73.942186
+Anthony,Ferrari,anthony.ferrari4@protonmail.com,9148748444,12202,7358 Martin St,Apt 141,Albany,NY,01/16/1994,America/New_York,42.679549,-73.839794
+Jennifer,Smith,j.smith@yahoo.com,7163063679,12208,2706 Brown St,,Albany,NY,11/27/1948,America/New_York,42.704231,-73.843629
+Frank,Williams,frankwill@hotmail.com,5184075448,11102,1843 Williams Ave,,Queens,NY,05/07/1995,America/New_York,40.762031,-73.925122
+Michael,Ferrari,michaelfer51@yahoo.com,9296429856,14205,9530 First St,,Buffalo,NY,07/10/1946,America/New_York,42.897624,-78.841972
+Donna,Esposito,donna940@yahoo.com,9298891618,11355,8001 Second St,Apt 346,Queens,NY,05/17/1990,America/New_York,40.750477,-73.823167
+Joseph,Johnson,josephjoh88@protonmail.com,7163396734,10016,4694 Davis Ave,,New York,NY,04/23/1962,America/New_York,40.74736,-73.974173
+Michelle,Wilson,michelle.wilson4@outlook.com,5186394914,11205,8053 Jackson St,,Brooklyn,NY,02/01/1988,America/New_York,40.693769,-73.971109
+Maria,Russo,m.russo@hotmail.com,5162409260,13201,277 Second St,Apt 991,Syracuse,NY,05/16/1958,America/New_York,43.046054,-76.150541
+John,Smith,johnsmith103@gmail.com,2124556220,13202,2624 Oak Ave,,Syracuse,NY,09/20/1952,America/New_York,43.033538,-76.138976
+Michelle,Wilson,michellewils@hotmail.com,6312494569,10010,682 Davis Ave,Apt 961,New York,NY,03/23/1961,America/New_York,40.739843,-73.985086
+Nicholas,Ricci,nricci57@hotmail.com,7168473144,11103,5134 Jackson St,Apt 740,Queens,NY,12/13/2001,America/New_York,40.763961,-73.913647
+Joseph,Esposito,jesposito26@protonmail.com,6463755975,10308,3918 Johnson Rd,,Staten Island,NY,10/05/1990,America/New_York,40.557626,-74.149216
+Anthony,Jones,anthonyjones13@protonmail.com,7184362076,12205,8221 Third St,Apt 367,Albany,NY,09/26/1945,America/New_York,42.714714,-73.81469
+John,Smith,johnsmith18@outlook.com,5163685076,14608,2164 Williams Ave,,Rochester,NY,05/07/1971,America/New_York,43.131189,-77.54004
+Catherine,Greco,catherine465@gmail.com,5162677183,11202,9723 Taylor Ave,Apt 279,Brooklyn,NY,03/28/1974,America/New_York,40.697802,-73.993101
+Frank,Conti,f.conti@outlook.com,3157119504,10005,675 Elm St,Apt 188,New York,NY,03/12/1945,America/New_York,40.703787,-74.007692
+Nicholas,Romano,n.romano@yahoo.com,3159837255,10304,6145 Thomas Rd,Apt 756,Staten Island,NY,01/17/1996,America/New_York,40.606878,-74.085478
+Donna,Russo,donna.russo3@yahoo.com,3155231685,11101,4049 Jackson St,,Queens,NY,06/08/2004,America/New_York,40.753031,-73.94471
+Vincent,Wilson,vincent.wilson51@hotmail.com,3156086107,14208,6139 Wilson Rd,Apt 685,Buffalo,NY,06/04/1951,America/New_York,42.838731,-78.801812
+Angela,Wilson,angela_wilson@hotmail.com,6319977470,14604,8113 Park Rd,,Rochester,NY,07/03/1953,America/New_York,43.142573,-77.577478
+Catherine,Esposito,catherine_esposito9@protonmail.com,5162964830,10001,829 Maple Ave,Apt 164,New York,NY,07/15/1977,America/New_York,40.748132,-73.996332
+Salvatore,Davis,salvatore_davis@yahoo.com,6072354522,10020,6903 Jefferson St,,New York,NY,12/05/1967,America/New_York,40.759249,-73.987653
+Frank,Esposito,f.esposito@protonmail.com,9349114653,11358,7477 Lincoln Rd,,Queens,NY,10/07/1968,America/New_York,40.764958,-73.793597
+Angela,Johnson,angela.johnson76@protonmail.com,6318312983,11208,1813 Madison Ave,Apt 713,Brooklyn,NY,03/19/1976,America/New_York,40.667699,-73.873051
+Nicholas,Brown,nicholas.brown02@hotmail.com,9349196144,10457,217 Williams Ave,Apt 240,Bronx,NY,03/07/2002,America/New_York,40.850191,-73.898558
+Joseph,Williams,joseph1004@gmail.com,5183929534,10010,6682 Miller St,,New York,NY,03/06/1994,America/New_York,40.742635,-73.9791
+Joseph,Jones,jjones85@protonmail.com,5185466786,10452,8321 Cedar Ln,,Bronx,NY,12/17/1958,America/New_York,40.839763,-73.924023
+Christine,Smith,csmith50@hotmail.com,5184894083,12206,5660 Lincoln Rd,,Albany,NY,08/17/1964,America/New_York,42.643958,-73.805727
+Nicholas,Miller,nmiller52@protonmail.com,5184832382,13208,4268 Johnson Rd,Apt 765,Syracuse,NY,12/03/2003,America/New_York,43.010056,-76.08112
+John,Ferrari,john.ferrari58@protonmail.com,3475499147,13210,4602 Davis Ave,,Syracuse,NY,04/12/1958,America/New_York,42.993361,-76.057021
+Maria,Greco,mariag04@outlook.com,6318526658,10012,2564 Miller St,,New York,NY,12/28/2004,America/New_York,40.723596,-73.997548
+Vincent,Conti,vincentc80@outlook.com,6469828601,14201,8725 Jones St,Apt 340,Buffalo,NY,11/20/1980,America/New_York,42.888459,-78.879204
+Anthony,Greco,anthonyg53@gmail.com,6466674481,10013,7892 Second St,,New York,NY,05/11/1953,America/New_York,40.715677,-74.005756
+Salvatore,Johnson,s.johnson@gmail.com,3152659109,10305,4261 Thomas Rd,,Staten Island,NY,08/12/1971,America/New_York,40.600657,-74.073159
+Christine,Greco,christinegrec@hotmail.com,9175363624,10308,8184 Jackson St,Apt 620,Staten Island,NY,03/11/2001,America/New_York,40.552215,-74.152688
+Donna,Esposito,desposito34@outlook.com,7169768421,10303,1616 Elm St,,Staten Island,NY,09/25/1948,America/New_York,40.638248,-74.169401
+Joseph,Wilson,joseph746@protonmail.com,3159366027,10012,7737 Thomas Rd,,New York,NY,03/23/1953,America/New_York,40.721076,-73.99714
+Nicholas,Williams,nicholas.williams2@outlook.com,6466759532,12202,7604 Cedar Ln,Apt 532,Albany,NY,04/26/1957,America/New_York,42.677336,-73.836471
+John,Williams,john191@hotmail.com,7183861315,10302,77 Adams St,Apt 841,Staten Island,NY,12/27/1988,America/New_York,40.627827,-74.138857
+Nicholas,Davis,n.davis@gmail.com,3473434627,10017,2858 Oak Ave,,New York,NY,03/25/1958,America/New_York,40.7502,-73.970427
+Maria,Ricci,maria.ricci1@hotmail.com,7182626117,10454,4397 First St,,Bronx,NY,10/16/1986,America/New_York,40.806397,-73.914673
+Vincent,Smith,vincent1070@hotmail.com,5167124210,10451,1306 Cedar Ln,,Bronx,NY,10/03/1946,America/New_York,40.822184,-73.929083
+Christine,Marino,christine.marino69@protonmail.com,9349469494,10309,2837 Wilson Rd,,Staten Island,NY,03/23/1969,America/New_York,40.522135,-74.208309
+Maria,Jones,m.jones@protonmail.com,8458854386,10014,4344 Fifth St,,New York,NY,12/11/1997,America/New_York,40.734508,-74.01101
+Christine,Esposito,christine.esposito@yahoo.com,3473575538,10013,4715 Elm St,,New York,NY,05/22/1964,America/New_York,40.718063,-74.009423
+Christine,Greco,christine_greco@yahoo.com,6073056956,12201,151 Lincoln Rd,,Albany,NY,07/06/1976,America/New_York,42.687468,-73.838601
+Michael,Esposito,michael.esposito8@protonmail.com,9342669687,11205,2721 Oak Ave,,Brooklyn,NY,11/06/1977,America/New_York,40.699474,-73.965739
+Donna,Williams,donna.williams@hotmail.com,9146514159,11204,8841 Fourth St,,Brooklyn,NY,05/07/1991,America/New_York,40.613635,-73.983151
+Donna,Jones,donna_jones78@outlook.com,6314236654,10452,6662 Oak Ave,Apt 403,Bronx,NY,01/18/1980,America/New_York,40.836427,-73.92148
+Anthony,Brown,anthony.brown1@hotmail.com,3154696476,12206,5160 Second St,,Albany,NY,12/10/1951,America/New_York,42.640553,-73.804215
+Salvatore,Miller,smiller25@gmail.com,6073311270,14203,2736 Wilson Rd,Apt 931,Buffalo,NY,10/23/1951,America/New_York,42.871401,-78.854293
+John,Greco,johng80@gmail.com,6079513132,10016,5233 Fourth St,Apt 619,New York,NY,08/09/1980,America/New_York,40.745814,-73.974268
+Anthony,Davis,anthonyd06@protonmail.com,6319823105,10457,7620 Taylor Ave,,Bronx,NY,12/26/2006,America/New_York,40.847411,-73.896555
+Lisa,Davis,lisa.davis45@gmail.com,3156077511,13204,816 Maple Ave,,Syracuse,NY,12/28/1979,America/New_York,43.02697,-76.115649
+Anthony,Williams,a.williams@hotmail.com,6078981171,10013,5267 Fourth St,Apt 490,New York,NY,05/12/1951,America/New_York,40.719493,-74.008115
+Joseph,Wilson,joseph.wilson87@hotmail.com,5853159899,10009,7036 Wilson Rd,,New York,NY,09/04/1987,America/New_York,40.722053,-73.979358
+Donna,Greco,donna.greco60@outlook.com,3152623139,10453,9598 Miller St,,Bronx,NY,06/23/1953,America/New_York,40.852748,-73.915964
+Donna,Romano,donna.romano24@hotmail.com,8455463031,14602,9452 Brown St,,Rochester,NY,06/11/1967,America/New_York,43.163042,-77.594327
+Donna,Greco,dgreco71@protonmail.com,5166496606,14602,3418 Adams St,,Rochester,NY,05/10/1979,America/New_York,43.170407,-77.602612
+Angela,Jones,angela.jones7@hotmail.com,9294115885,11206,4510 Pine St,,Brooklyn,NY,05/28/1986,America/New_York,40.70376,-73.94047
+Michael,Ricci,michael.ricci3@gmail.com,5166897767,10454,2831 Third St,,Bronx,NY,08/14/2007,America/New_York,40.80412,-73.914623
+John,Marino,john.marino@hotmail.com,6076501522,13204,636 Brown St,,Syracuse,NY,10/11/1987,America/New_York,43.03036,-76.121137
+Lisa,Romano,lisaroma@hotmail.com,9344053901,10452,7158 Moore Ave,,Bronx,NY,03/28/1963,America/New_York,40.838674,-73.922773
+Angela,Marino,angela.marino@yahoo.com,6318377777,12201,7226 Jefferson St,,Albany,NY,12/13/2005,America/New_York,42.691436,-73.841399
+John,Ricci,john_ricci8@yahoo.com,6318198875,10302,2096 Oak Ave,Apt 227,Staten Island,NY,09/09/1968,America/New_York,40.632306,-74.134031
+Maria,Davis,mdavis50@outlook.com,9343233708,11203,2384 Anderson St,,Brooklyn,NY,03/06/1969,America/New_York,40.647823,-73.923567
+Maria,Smith,mariasmi93@protonmail.com,5859882744,12207,2903 Jefferson St,,Albany,NY,05/18/2006,America/New_York,42.662838,-73.783409
+Frank,Wilson,frank.wilson55@gmail.com,6077632325,11209,5374 Williams Ave,,Brooklyn,NY,02/11/1955,America/New_York,40.621765,-74.033845
+John,Ferrari,johnferrari52@protonmail.com,6464805635,14204,1313 Moore Ave,,Buffalo,NY,08/04/1992,America/New_York,42.851901,-78.853136
+Lisa,Johnson,lisaj45@protonmail.com,5182097383,10308,6749 Thomas Rd,,Staten Island,NY,06/09/1945,America/New_York,40.555583,-74.151881
+Donna,Smith,donnasmit@protonmail.com,8459378655,10451,9745 Moore Ave,,Bronx,NY,12/14/1971,America/New_York,40.816863,-73.923677
+Anthony,Russo,anthonyr86@hotmail.com,9147063759,10009,1263 Wilson Rd,,New York,NY,03/04/1986,America/New_York,40.728617,-73.978826
+Joseph,Conti,joseph585@protonmail.com,8459013015,10019,8585 Miller St,,New York,NY,12/19/1948,America/New_York,40.769856,-73.981698
+Anthony,Ferrari,anthonyferrari99@gmail.com,2124768545,10006,9608 Anderson St,Apt 134,New York,NY,07/21/1963,America/New_York,40.705487,-74.012946
+Lisa,Marino,lisa.marino5@gmail.com,9297043330,12201,3685 Taylor Ave,,Albany,NY,06/23/1986,America/New_York,42.690169,-73.840846
+Michael,Wilson,michaelw81@hotmail.com,9343603710,14605,9177 Brown St,,Rochester,NY,07/03/1981,America/New_York,43.191469,-77.567951
+Jennifer,Ferrari,jennifer.ferrari66@yahoo.com,8458298434,10003,2647 Smith Rd,,New York,NY,05/06/1966,America/New_York,40.730419,-73.989253
+Michelle,Romano,michelle_romano36@outlook.com,5187998768,10015,2680 Davis Ave,Apt 775,New York,NY,02/04/1953,America/New_York,40.738748,-73.997559
+John,Marino,johnmarino12@hotmail.com,6469009178,10456,8057 Fourth St,,Bronx,NY,11/17/1994,America/New_York,40.833951,-73.913644
+Salvatore,Conti,salvatorecon79@protonmail.com,8459893585,10453,16 Lincoln Rd,,Bronx,NY,09/09/2005,America/New_York,40.849407,-73.912484
+Jennifer,Marino,jmarino12@yahoo.com,6073435846,14601,7071 Lincoln Rd,,Rochester,NY,08/25/2004,America/New_York,43.158284,-77.612908
+John,Ricci,john796@yahoo.com,6468739304,10017,5020 Maple Ave,Apt 459,New York,NY,05/03/1946,America/New_York,40.750864,-73.974757
+Frank,Johnson,frank.johnson@outlook.com,2126861201,10005,4816 Jones St,,New York,NY,10/04/1991,America/New_York,40.708443,-74.003862
+Salvatore,Marino,salvatore_marino@protonmail.com,2124104063,10017,6074 Fifth St,,New York,NY,01/12/1987,America/New_York,40.749051,-73.970261
+Christine,Ferrari,christine_ferrari95@outlook.com,6315267051,13202,903 Miller St,Apt 298,Syracuse,NY,05/23/1994,America/New_York,43.037169,-76.137575
+Maria,Miller,mariam55@protonmail.com,7183204783,11357,1480 Madison Ave,,Queens,NY,10/03/1955,America/New_York,40.795318,-73.832217
+Michael,Ferrari,michael.ferrari@outlook.com,7183379481,12201,2169 Pine St,,Albany,NY,11/06/1966,America/New_York,42.692801,-73.840844
+Catherine,Davis,catherinedavis89@yahoo.com,8458289582,13203,6550 Wilson Rd,,Syracuse,NY,09/28/2000,America/New_York,43.061534,-76.130874
+Vincent,Davis,vincent.davis93@protonmail.com,5163309397,10020,6361 Thomas Rd,,New York,NY,11/15/1999,America/New_York,40.759742,-73.979976
+Angela,Johnson,angelajohnson63@yahoo.com,6076972335,10017,1016 Smith Rd,,New York,NY,09/05/1948,America/New_York,40.756358,-73.970316
+Lisa,Russo,lisa151@hotmail.com,5858449529,11206,9095 Thomas Rd,,Brooklyn,NY,01/11/1947,America/New_York,40.701861,-73.945073
+Angela,Brown,angela_brown75@outlook.com,6314674962,10309,4928 Wilson Rd,,Staten Island,NY,11/18/1951,America/New_York,40.526247,-74.208627
+Christine,Ricci,christinericc@protonmail.com,5167725778,10454,4816 Washington Ave,,Bronx,NY,03/15/1952,America/New_York,40.809,-73.914694
+Vincent,Miller,vincent.miller68@yahoo.com,3477185979,14605,2199 Second St,,Rochester,NY,08/10/2001,America/New_York,43.184029,-77.569454
+Michael,Miller,michael602@gmail.com,3473132052,13201,1347 Smith Rd,,Syracuse,NY,02/06/1997,America/New_York,43.047696,-76.15078
+Nicholas,Jones,nicholas.jones62@yahoo.com,6075947136,14609,1548 First St,Apt 614,Rochester,NY,04/21/1962,America/New_York,43.209258,-77.530892
+Anthony,Marino,anthonymari@outlook.com,6312386861,10018,9594 Thomas Rd,,New York,NY,03/23/1951,America/New_York,40.752586,-73.98875
+Frank,Ferrari,frank_ferrari@outlook.com,5189692431,12202,7056 Martin St,,Albany,NY,08/04/1947,America/New_York,42.67777,-73.837848
+Jennifer,Williams,jennifer829@protonmail.com,7187577041,13202,8706 Lincoln Rd,,Syracuse,NY,07/17/1997,America/New_York,43.040255,-76.136367
+Jennifer,Wilson,jenniferwilson18@gmail.com,7184144795,12202,2832 Fourth St,,Albany,NY,09/01/1994,America/New_York,42.677051,-73.835191
+Joseph,Greco,josephgrec@gmail.com,7164057999,12208,963 Taylor Ave,Apt 76,Albany,NY,06/02/1965,America/New_York,42.699607,-73.849339
+Joseph,Williams,jwilliams48@outlook.com,5187899619,14607,967 Brown St,,Rochester,NY,06/08/2007,America/New_York,43.195125,-77.550653
+Angela,Ferrari,angelafer98@protonmail.com,7168727149,12207,3141 Fourth St,,Albany,NY,08/02/1976,America/New_York,42.663578,-73.791388
+Michelle,Greco,m.greco@yahoo.com,2126514175,10459,5114 Fifth St,,Bronx,NY,04/09/1980,America/New_York,40.825907,-73.897709
+Anthony,Brown,anthonybrow@gmail.com,9345778374,10305,9964 Moore Ave,,Staten Island,NY,09/12/1999,America/New_York,40.596844,-74.075026
+Michelle,Conti,michelleconti48@hotmail.com,3159312148,14205,9431 Johnson Rd,,Buffalo,NY,08/02/1982,America/New_York,42.896464,-78.834227
+Salvatore,Smith,salvatore.smith1@protonmail.com,8454804728,10307,8753 Washington Ave,,Staten Island,NY,06/18/1963,America/New_York,40.508483,-74.239108
+Catherine,Romano,catherinerom47@hotmail.com,6468091863,12201,2515 Taylor Ave,Apt 902,Albany,NY,01/10/2005,America/New_York,42.686453,-73.833754
+Jennifer,Davis,jennifer_davis66@hotmail.com,9347133458,13203,2079 Park Rd,Apt 393,Syracuse,NY,06/10/1969,America/New_York,43.06098,-76.127889
+Christine,Romano,christine.romano6@protonmail.com,7163635808,13208,8621 Second St,Apt 362,Syracuse,NY,01/05/1974,America/New_York,43.006235,-76.080319
+Maria,Greco,maria.greco24@hotmail.com,3153382002,11101,2825 Brown St,,Queens,NY,05/22/1945,America/New_York,40.753451,-73.93653
+Lisa,Ricci,lisaricc@yahoo.com,3476464849,13201,5260 Taylor Ave,,Syracuse,NY,07/16/1958,America/New_York,43.048045,-76.150735
+Salvatore,Davis,salvatore.davis1@outlook.com,6312615206,10002,4923 Fourth St,Apt 893,New York,NY,03/05/1994,America/New_York,40.714492,-73.983268
+Frank,Romano,frank.romano82@protonmail.com,9143165608,14209,2921 First St,,Buffalo,NY,11/16/1975,America/New_York,42.915753,-78.792292
+Salvatore,Williams,salvatorewilliams89@hotmail.com,9174611823,11355,1995 Anderson St,,Queens,NY,03/20/1971,America/New_York,40.748735,-73.822525
+Vincent,Ricci,vincent.ricci7@protonmail.com,6313607417,14603,9252 Johnson Rd,,Rochester,NY,05/07/1976,America/New_York,43.174519,-77.585054
+Michelle,Brown,mbrown20@yahoo.com,8459828733,10019,5679 First St,Apt 426,New York,NY,10/05/2007,America/New_York,40.769947,-73.987281
+Jennifer,Davis,jdavis49@protonmail.com,7188967199,10019,3047 Third St,,New York,NY,11/08/1984,America/New_York,40.761982,-73.989921
+Michelle,Ricci,michellericci24@protonmail.com,9142029408,10004,3914 Johnson Rd,Apt 250,New York,NY,10/08/1961,America/New_York,40.687037,-74.01256
+Michael,Jones,michaeljones58@yahoo.com,2127043705,10003,105 Oak Ave,Apt 294,New York,NY,03/03/1948,America/New_York,40.733176,-73.984389
+Donna,Davis,donna.davis@outlook.com,5163955402,10451,9115 Lincoln Rd,,Bronx,NY,09/13/1947,America/New_York,40.822796,-73.924998
+Michael,Conti,michael_conti@protonmail.com,9295198483,10005,1063 Franklin Ave,,New York,NY,05/11/1998,America/New_York,40.710224,-74.004147
+Michelle,Wilson,michellew57@gmail.com,6315875368,11202,304 Jefferson St,,Brooklyn,NY,02/23/1957,America/New_York,40.695352,-74.000333
+Christine,Conti,christine.conti8@hotmail.com,7168274944,10459,9497 Maple Ave,,Bronx,NY,03/12/2007,America/New_York,40.827116,-73.891877
+Vincent,Smith,vincent.smith5@gmail.com,7188289118,10307,8769 Anderson St,,Staten Island,NY,03/07/1997,America/New_York,40.509079,-74.239748
+Angela,Conti,angelacont@gmail.com,9142771234,13201,3033 Washington Ave,,Syracuse,NY,01/16/1949,America/New_York,43.050236,-76.145621
+Nicholas,Ferrari,nicholasfer98@yahoo.com,9342574848,10013,7720 Anderson St,,New York,NY,10/10/1983,America/New_York,40.723103,-74.010567
+Vincent,Greco,vincent_greco@hotmail.com,6074187239,11208,9045 Johnson Rd,,Brooklyn,NY,04/14/1976,America/New_York,40.667852,-73.871335
+Vincent,Conti,vincentc48@hotmail.com,8453744210,10306,9021 Jefferson St,,Staten Island,NY,04/26/1948,America/New_York,40.569202,-74.141095
+Nicholas,Wilson,n.wilson@gmail.com,5165614614,10018,8542 Fifth St,Apt 633,New York,NY,08/27/1951,America/New_York,40.757724,-73.988246
+Christine,Esposito,christineesposito10@gmail.com,6078428956,10001,3248 Park Rd,,New York,NY,12/04/1951,America/New_York,40.750957,-73.991756
+Anthony,Brown,anthonybrown89@outlook.com,5167874805,10456,7876 Elm St,,Bronx,NY,01/10/1977,America/New_York,40.834584,-73.910491
+Catherine,Miller,catherine274@yahoo.com,6074839826,12207,831 Pine St,Apt 466,Albany,NY,08/02/1948,America/New_York,42.660504,-73.790177
+Donna,Brown,donna384@yahoo.com,6074245733,10459,4269 Cedar Ln,,Bronx,NY,09/20/1964,America/New_York,40.825083,-73.891694
+Christine,Greco,christine_greco48@hotmail.com,6319119475,10016,1557 Johnson Rd,,New York,NY,08/27/1985,America/New_York,40.743176,-73.980571
+Maria,Davis,mariadavis56@gmail.com,2129476582,10451,4998 Jackson St,,Bronx,NY,05/13/1966,America/New_York,40.818385,-73.920639
+Jennifer,Russo,jennifer_russo93@outlook.com,7188222307,10017,1268 Martin St,,New York,NY,04/03/2000,America/New_York,40.752313,-73.970162
+Anthony,Brown,anthony.brown97@hotmail.com,5852398548,11203,3506 Maple Ave,Apt 734,Brooklyn,NY,07/26/1952,America/New_York,40.652519,-73.924121
+Christine,Ferrari,christinefer39@outlook.com,5165618639,11101,9708 Elm St,,Queens,NY,10/16/1990,America/New_York,40.747943,-73.936746
+Lisa,Jones,lisaj47@outlook.com,2122528084,12201,7849 Jefferson St,,Albany,NY,09/27/1947,America/New_York,42.686941,-73.837314
+Frank,Greco,frankg80@outlook.com,9296017221,14202,6687 Martin St,Apt 568,Buffalo,NY,10/15/1980,America/New_York,42.864142,-78.86354
+Joseph,Russo,josephr48@hotmail.com,2123425296,11208,7014 Smith Rd,,Brooklyn,NY,10/21/1948,America/New_York,40.673151,-73.87512
+Maria,Wilson,mariaw96@gmail.com,7165287796,11203,2038 Wilson Rd,Apt 406,Brooklyn,NY,07/22/1996,America/New_York,40.655238,-73.930083
+Michelle,Davis,michelle116@yahoo.com,6316439957,13203,7825 Jones St,,Syracuse,NY,12/14/1972,America/New_York,43.055563,-76.12667
+Salvatore,Romano,salvatore_romano@gmail.com,6074218888,10310,6168 Third St,Apt 421,Staten Island,NY,05/23/1945,America/New_York,40.631335,-74.112814
+Christine,Smith,christinesmi51@gmail.com,6313273995,10003,4767 Franklin Ave,Apt 554,New York,NY,01/16/1969,America/New_York,40.736339,-73.991106
+Maria,Miller,maria.miller7@gmail.com,5857699652,10306,8351 Elm St,,Staten Island,NY,02/08/2005,America/New_York,40.566204,-74.141735
+Joseph,Ricci,joseph_ricci@gmail.com,3478538123,11103,2617 Oak Ave,Apt 320,Queens,NY,04/25/1961,America/New_York,40.761278,-73.912799
+Catherine,Esposito,catherine.esposito45@gmail.com,5182258994,14202,5844 Fourth St,,Buffalo,NY,11/12/1945,America/New_York,42.865542,-78.86652
+Lisa,Greco,lisa157@yahoo.com,9292217767,10010,5505 Second St,,New York,NY,06/02/1976,America/New_York,40.736174,-73.979246
+Salvatore,Davis,salvatore_davis@yahoo.com,9143079997,14601,6726 Madison Ave,,Rochester,NY,05/22/2001,America/New_York,43.158354,-77.607548
+Maria,Esposito,mariaespo@outlook.com,2124029483,10011,7873 Brown St,,New York,NY,06/27/2007,America/New_York,40.742166,-74.004252
+Michelle,Ferrari,michellef64@gmail.com,9299753315,13202,4228 First St,,Syracuse,NY,02/01/1964,America/New_York,43.039918,-76.139963
+Angela,Davis,adavis52@yahoo.com,9299139635,11207,2274 Cedar Ln,,Brooklyn,NY,02/09/1961,America/New_York,40.675625,-73.89116
+Joseph,Marino,joseph.marino67@hotmail.com,9293191721,14210,8678 Third St,Apt 64,Buffalo,NY,04/22/1967,America/New_York,42.830092,-78.780483
+Donna,Esposito,donnaesp63@gmail.com,3479313420,13206,7191 Park Rd,,Syracuse,NY,08/10/2000,America/New_York,43.016074,-76.094445
+Nicholas,Johnson,nicholas_johnson@gmail.com,6076146758,10301,7271 Adams St,,Staten Island,NY,07/22/1994,America/New_York,40.637653,-74.083509
+Anthony,Smith,anthony_smith79@gmail.com,9346104712,10310,37 Third St,,Staten Island,NY,06/17/1997,America/New_York,40.631331,-74.110787
+Catherine,Wilson,catherine_wilson@gmail.com,9298305000,14201,9905 Jones St,,Buffalo,NY,07/05/1951,America/New_York,42.886664,-78.875915
+Joseph,Williams,josephwill@yahoo.com,9143945125,11203,6662 Park Rd,,Brooklyn,NY,09/24/2002,America/New_York,40.653576,-73.924324
+Michael,Greco,michael.greco22@outlook.com,5183156000,14609,4809 Martin St,Apt 299,Rochester,NY,10/23/1998,America/New_York,43.204459,-77.527841
+Anthony,Greco,anthony340@gmail.com,9299188282,13204,2853 Martin St,,Syracuse,NY,12/26/1955,America/New_York,43.032756,-76.116606
+Maria,Williams,maria_williams@outlook.com,5852402917,11355,1875 Madison Ave,,Queens,NY,08/09/2000,America/New_York,40.745002,-73.815907
+Jennifer,Wilson,jennifer.wilson2@outlook.com,7186672157,11102,757 Wilson Rd,,Queens,NY,02/04/1955,America/New_York,40.762874,-73.925892
+Joseph,Brown,joseph.brown@hotmail.com,7163023031,14203,2330 Thomas Rd,,Buffalo,NY,11/01/1985,America/New_York,42.88058,-78.854338
+Angela,Romano,angela_romano61@gmail.com,9345761257,10010,3083 Moore Ave,,New York,NY,05/03/1961,America/New_York,40.742654,-73.984813
+Angela,Romano,angela.romano@gmail.com,5166416201,10013,8586 Maple Ave,,New York,NY,07/18/1999,America/New_York,40.716462,-74.005918
+Angela,Conti,angelacon98@outlook.com,3157524486,11356,5017 Anderson St,Apt 608,Queens,NY,11/14/1954,America/New_York,40.783522,-73.850252
+Donna,Brown,dbrown49@outlook.com,5162889801,10457,8611 First St,Apt 208,Bronx,NY,07/17/1947,America/New_York,40.849206,-73.89514
+John,Miller,j.miller@yahoo.com,2122684634,11358,6582 Jackson St,,Queens,NY,01/16/1999,America/New_York,40.760884,-73.793068
+Michael,Ferrari,michaelferr@gmail.com,7185596113,12201,1893 Taylor Ave,Apt 3,Albany,NY,10/23/1956,America/New_York,42.691469,-73.837399
+Michael,Davis,michael438@yahoo.com,6076304386,10455,1973 Park Rd,,Bronx,NY,08/16/1979,America/New_York,40.80645,-73.909572
+Vincent,Romano,vincent.romano@protonmail.com,9344779925,11207,1868 Brown St,Apt 994,Brooklyn,NY,03/06/1950,America/New_York,40.668454,-73.889571
+Maria,Romano,maria_romano47@hotmail.com,9144471569,10460,1371 Third St,Apt 484,Bronx,NY,02/20/1969,America/New_York,40.8431,-73.875615
+Joseph,Romano,joseph_romano74@hotmail.com,9292982927,13210,8777 Lincoln Rd,,Syracuse,NY,08/07/1953,America/New_York,42.994755,-76.061295
+Angela,Romano,angela.romano36@hotmail.com,8452332466,13202,9908 Taylor Ave,,Syracuse,NY,02/08/1946,America/New_York,43.038901,-76.140291
+Vincent,Wilson,vwilson34@outlook.com,8457035225,13208,3209 Jones St,Apt 962,Syracuse,NY,04/28/1974,America/New_York,43.003542,-76.073963
+John,Johnson,johnj07@gmail.com,5168755604,11205,8340 Williams Ave,Apt 694,Brooklyn,NY,11/15/2007,America/New_York,40.696662,-73.970749
+Vincent,Johnson,vincent_johnson@gmail.com,5189779750,11354,8084 Brown St,Apt 828,Queens,NY,08/18/1956,America/New_York,40.770898,-73.840865
+Christine,Brown,christine.brown@outlook.com,3473972892,10018,5983 Martin St,Apt 604,New York,NY,10/05/1959,America/New_York,40.753959,-73.996805
+Nicholas,Conti,n.conti@outlook.com,5183077639,12206,8647 Davis Ave,Apt 561,Albany,NY,07/03/1966,America/New_York,42.637127,-73.808051
+Donna,Conti,donna.conti5@hotmail.com,5164518338,11357,4741 Smith Rd,,Queens,NY,10/25/2004,America/New_York,40.78981,-73.837745
+Nicholas,Ferrari,nicholasf52@outlook.com,8452557738,14202,1365 Brown St,Apt 222,Buffalo,NY,10/01/1952,America/New_York,42.863213,-78.86573
+Jennifer,Smith,jennifer871@protonmail.com,9299664618,14607,8367 Thomas Rd,,Rochester,NY,02/20/1984,America/New_York,43.198362,-77.546763
+Joseph,Russo,joseph.russo@hotmail.com,5852045724,14209,8485 Jefferson St,,Buffalo,NY,10/28/1962,America/New_York,42.920159,-78.783705
+Christine,Jones,christine_jones4@yahoo.com,7183207718,11356,240 Washington Ave,,Queens,NY,08/07/1978,America/New_York,40.783543,-73.850647
+Frank,Brown,frank.brown18@gmail.com,5165962540,10309,5956 Washington Ave,Apt 693,Staten Island,NY,10/11/1968,America/New_York,40.518339,-74.21446
+Angela,Williams,angelawill@gmail.com,8458973956,10301,6380 Cedar Ln,,Staten Island,NY,03/04/1993,America/New_York,40.632059,-74.087888
+Michael,Miller,michael.miller8@protonmail.com,2125989064,14205,4911 Cedar Ln,Apt 818,Buffalo,NY,08/08/1988,America/New_York,42.9011,-78.837358
+John,Conti,johnconti55@gmail.com,9349125008,14601,2719 First St,,Rochester,NY,11/15/1975,America/New_York,43.157102,-77.606214
+Michelle,Conti,michelle.conti@yahoo.com,9295651197,14610,388 Moore Ave,,Rochester,NY,05/16/1997,America/New_York,43.114316,-77.516104
+John,Brown,johnbrown77@gmail.com,8454845381,10451,8740 Brown St,,Bronx,NY,06/01/1947,America/New_York,40.82477,-73.924386
+Christine,Williams,christine.williams53@gmail.com,6463526290,13209,4374 Davis Ave,Apt 192,Syracuse,NY,11/27/1989,America/New_York,43.085311,-76.069894
+Salvatore,Romano,salvatore_romano@yahoo.com,9177258497,10460,8311 Miller St,,Bronx,NY,02/15/1999,America/New_York,40.845506,-73.882543
+Lisa,Esposito,lisa.esposito71@outlook.com,9342264918,13201,8265 Anderson St,,Syracuse,NY,07/22/2002,America/New_York,43.05182,-76.143533
+Salvatore,Greco,salvatoregrec@protonmail.com,3479824028,14609,9327 Smith Rd,,Rochester,NY,05/27/2003,America/New_York,43.20469,-77.533106
+Catherine,Ricci,catherine.ricci52@hotmail.com,3477799407,11203,4399 Brown St,,Brooklyn,NY,04/23/1952,America/New_York,40.648596,-73.926855
+Michael,Russo,michael.russo93@outlook.com,3472023355,14205,297 Miller St,,Buffalo,NY,05/18/1993,America/New_York,42.89146,-78.833767
+Lisa,Miller,lisa.miller85@gmail.com,9173716101,10010,6555 Pine St,,New York,NY,06/17/1985,America/New_York,40.742112,-73.983483
+Jennifer,Marino,jenniferm05@protonmail.com,3156218589,12209,9125 Park Rd,,Albany,NY,11/13/2005,America/New_York,42.625826,-73.86301
+Michael,Jones,michaelj92@hotmail.com,9172699871,14207,2604 Maple Ave,Apt 26,Buffalo,NY,09/18/1992,America/New_York,42.903027,-78.811322
+Donna,Esposito,donna_esposito@protonmail.com,7169998819,10002,6031 Main St,Apt 631,New York,NY,10/17/1965,America/New_York,40.716796,-73.983893
+Nicholas,Ricci,n.ricci@yahoo.com,5163977759,10304,8786 Washington Ave,,Staten Island,NY,06/25/1989,America/New_York,40.614164,-74.08961
+Anthony,Marino,anthony_marino@gmail.com,5857119031,11103,7055 Jackson St,,Queens,NY,07/14/1983,America/New_York,40.7625,-73.91489
+Joseph,Marino,joseph.marino79@yahoo.com,9149616814,14603,1468 First St,,Rochester,NY,10/27/1979,America/New_York,43.178675,-77.593666
+Frank,Miller,frank.miller4@gmail.com,7166279833,10452,5212 Park Rd,Apt 888,Bronx,NY,07/11/1966,America/New_York,40.836961,-73.92517
+Christine,Greco,christine.greco37@gmail.com,6316124653,14203,158 Lincoln Rd,,Buffalo,NY,07/09/1990,America/New_York,42.880079,-78.855074
+Anthony,Brown,anthony.brown@yahoo.com,5852139209,14205,1747 Fourth St,Apt 734,Buffalo,NY,04/19/1953,America/New_York,42.897201,-78.837415
+Catherine,Williams,catherinew81@hotmail.com,5182775123,10308,4856 Franklin Ave,Apt 825,Staten Island,NY,05/14/1981,America/New_York,40.553404,-74.150986
+Jennifer,Esposito,jennifer.esposito86@outlook.com,3472253021,13210,6559 Pine St,,Syracuse,NY,12/05/1968,America/New_York,42.998416,-76.052439
+Jennifer,Williams,jenniferwill@gmail.com,6466546975,14206,1459 Madison Ave,Apt 253,Buffalo,NY,11/22/1969,America/New_York,42.843841,-78.820213
+Nicholas,Johnson,nicholas.johnson@hotmail.com,8453669510,11355,3794 Brown St,Apt 694,Queens,NY,11/24/1948,America/New_York,40.751631,-73.820816
+Donna,Smith,donna_smith@outlook.com,2123847351,11205,8086 Cedar Ln,,Brooklyn,NY,02/04/1971,America/New_York,40.699338,-73.965297
+Maria,Marino,mmarino45@hotmail.com,2125382038,11201,4037 Davis Ave,Apt 598,Brooklyn,NY,05/21/2001,America/New_York,40.695415,-73.993851
+Frank,Conti,frankcon85@outlook.com,9146496299,14209,5477 Johnson Rd,Apt 251,Buffalo,NY,08/15/1948,America/New_York,42.916448,-78.790596
+Vincent,Brown,vincent.brown46@protonmail.com,8456962182,11206,3616 Moore Ave,,Brooklyn,NY,06/03/1946,America/New_York,40.705641,-73.945509
+Jennifer,Ricci,jennifer.ricci73@hotmail.com,9292459612,11203,1552 Fourth St,,Brooklyn,NY,06/20/1973,America/New_York,40.652109,-73.92474
+Angela,Williams,angela_williams78@gmail.com,9346236422,10006,4704 Moore Ave,,New York,NY,05/03/1971,America/New_York,40.705558,-74.009248
+Angela,Greco,angela_greco9@hotmail.com,9295338995,10018,4889 Williams Ave,,New York,NY,04/08/1953,America/New_York,40.753023,-73.987517
+Catherine,Williams,catherine_williams93@outlook.com,9292922623,11357,6675 Anderson St,Apt 512,Queens,NY,10/25/1988,America/New_York,40.78933,-73.840155
+Donna,Conti,d.conti@yahoo.com,6462646754,14210,2078 Anderson St,Apt 410,Buffalo,NY,03/13/2000,America/New_York,42.829656,-78.781062
+Anthony,Esposito,anthonyespo@gmail.com,6318946006,11208,1428 Third St,Apt 3,Brooklyn,NY,06/10/1978,America/New_York,40.674385,-73.872245
+Vincent,Greco,vgreco40@protonmail.com,6466492946,11103,419 Martin St,Apt 330,Queens,NY,09/10/1983,America/New_York,40.770482,-73.916264
+Christine,Johnson,c.johnson@outlook.com,6314701271,11208,4534 Fourth St,Apt 315,Brooklyn,NY,01/10/2002,America/New_York,40.67418,-73.87269
+Catherine,Marino,catherinem84@hotmail.com,8459879034,13202,6071 Smith Rd,,Syracuse,NY,07/01/1984,America/New_York,43.040393,-76.132776
+Angela,Jones,angelaj95@outlook.com,2129195235,10306,875 Smith Rd,,Staten Island,NY,11/07/1995,America/New_York,40.566608,-74.132042
+Michelle,Ferrari,michelle.ferrari2@hotmail.com,7164757668,12203,1684 Franklin Ave,,Albany,NY,09/06/1985,America/New_York,42.650669,-73.830365
+Joseph,Conti,josephconti10@hotmail.com,5169952743,13204,60 Taylor Ave,,Syracuse,NY,12/15/1992,America/New_York,43.024339,-76.121293
+Donna,Davis,donna.davis15@gmail.com,7168634292,14205,1822 Johnson Rd,,Buffalo,NY,02/07/1997,America/New_York,42.900375,-78.839045
+Jennifer,Miller,jennifer.miller@yahoo.com,6464252876,10307,7556 Pine St,Apt 235,Staten Island,NY,05/10/1997,America/New_York,40.504451,-74.239466
+Anthony,Russo,anthony.russo63@gmail.com,5163151678,10460,1350 Lincoln Rd,,Bronx,NY,07/03/1963,America/New_York,40.844566,-73.875006
+Salvatore,Davis,salvatore.davis@protonmail.com,5164243512,10302,1367 Pine St,,Staten Island,NY,07/05/1972,America/New_York,40.626555,-74.129937
+Salvatore,Jones,salvatore567@outlook.com,9349305845,14603,479 Anderson St,Apt 694,Rochester,NY,01/07/1980,America/New_York,43.174665,-77.585706
+Anthony,Conti,anthonyconti86@yahoo.com,9146733987,13208,9766 Jefferson St,Apt 439,Syracuse,NY,04/08/1967,America/New_York,43.005126,-76.081961
+Maria,Brown,maria.brown94@hotmail.com,5853866963,14210,7579 Pine St,,Buffalo,NY,03/13/1994,America/New_York,42.825592,-78.7762
+Lisa,Marino,l.marino@gmail.com,6074663958,12204,1114 Smith Rd,,Albany,NY,11/27/1996,America/New_York,42.670067,-73.852135
+Nicholas,Ricci,nicholasricci28@gmail.com,7168686616,13208,8101 Fourth St,,Syracuse,NY,10/15/1987,America/New_York,43.012235,-76.078395
+Michael,Brown,michael.brown1@gmail.com,9295243428,12202,5199 Taylor Ave,,Albany,NY,07/15/1956,America/New_York,42.677647,-73.83623
+Joseph,Johnson,joseph.johnson9@hotmail.com,8456644316,10307,1954 Lincoln Rd,Apt 306,Staten Island,NY,10/07/1967,America/New_York,40.503137,-74.242741
+Michelle,Esposito,michelleesposito108@protonmail.com,7189816383,14609,4734 Williams Ave,,Rochester,NY,09/05/1960,America/New_York,43.208613,-77.529807
+Catherine,Russo,catherine_russo@hotmail.com,9349836830,14605,5275 Miller St,,Rochester,NY,04/02/1957,America/New_York,43.191115,-77.569792
+Joseph,Ricci,josephric42@hotmail.com,3476659633,14602,868 Wilson Rd,,Rochester,NY,11/18/1996,America/New_York,43.16808,-77.600488
+Angela,Miller,angela.miller44@protonmail.com,9175827014,13210,8634 Jefferson St,,Syracuse,NY,02/13/1947,America/New_York,42.998098,-76.054969
+Maria,Conti,maria.conti03@yahoo.com,9142103740,12204,6826 Fifth St,,Albany,NY,12/01/2003,America/New_York,42.669686,-73.861161
+Vincent,Brown,vincent_brown@outlook.com,6469265393,10309,5806 Miller St,,Staten Island,NY,06/11/1996,America/New_York,40.518681,-74.206367
+Christine,Esposito,christine.esposito@protonmail.com,3472204335,11354,8475 Oak Ave,,Queens,NY,11/27/2001,America/New_York,40.772195,-73.8322
+Lisa,Brown,lisa509@hotmail.com,2124564088,13208,3490 Johnson Rd,,Syracuse,NY,06/19/1991,America/New_York,43.004759,-76.078395
+Michael,Romano,michael1072@yahoo.com,5185862192,10013,8665 Johnson Rd,Apt 147,New York,NY,07/05/2006,America/New_York,40.717622,-74.010779
+Michelle,Jones,michelle_jones55@yahoo.com,6079215213,11102,2908 Third St,,Queens,NY,02/02/1974,America/New_York,40.765896,-73.922264
+Christine,Williams,christine_williams@gmail.com,9297321046,10011,4375 Moore Ave,,New York,NY,04/10/1997,America/New_York,40.742951,-73.997774
+Vincent,Williams,v.williams@hotmail.com,3475672196,10001,8377 Thomas Rd,Apt 10,New York,NY,07/20/1981,America/New_York,40.752903,-73.99515
+Michael,Ferrari,mferrari48@gmail.com,9142035079,10460,3999 Miller St,,Bronx,NY,10/18/1951,America/New_York,40.83816,-73.877635
+Joseph,Esposito,joseph.esposito8@yahoo.com,3472758304,11355,2352 Second St,,Queens,NY,02/27/1985,America/New_York,40.7532,-73.815632
+Frank,Davis,frank_davis@hotmail.com,3157197760,14205,4408 Anderson St,Apt 25,Buffalo,NY,05/05/2002,America/New_York,42.894213,-78.838475
+Michael,Jones,michael.jones@protonmail.com,3476383508,10453,5104 Pine St,Apt 750,Bronx,NY,11/07/2001,America/New_York,40.847556,-73.910407
+Nicholas,Ferrari,nicholas_ferrari55@hotmail.com,7189818562,13203,5739 Jones St,Apt 125,Syracuse,NY,05/25/1990,America/New_York,43.056707,-76.130119
+Michelle,Esposito,michelleesp20@hotmail.com,5186354773,14205,4702 Taylor Ave,,Buffalo,NY,11/14/1969,America/New_York,42.89942,-78.843285
+Michelle,Brown,michelle_brown@yahoo.com,3154669438,12206,1215 Martin St,Apt 540,Albany,NY,06/13/1987,America/New_York,42.637606,-73.805117
+Michael,Greco,mgreco21@yahoo.com,2129863819,11203,8301 Taylor Ave,,Brooklyn,NY,01/21/1979,America/New_York,40.652261,-73.929975
+Maria,Wilson,m.wilson@outlook.com,8459471055,10305,5801 Martin St,,Staten Island,NY,07/20/1977,America/New_York,40.597284,-74.067695
+Salvatore,Russo,salvatore.russo77@gmail.com,3474974279,14201,7822 Taylor Ave,,Buffalo,NY,02/12/1977,America/New_York,42.884243,-78.882655
+Nicholas,Russo,n.russo@hotmail.com,2126832198,10006,141 Lincoln Rd,,New York,NY,01/23/1985,America/New_York,40.713148,-74.016609
+Michael,Wilson,michael386@outlook.com,3474509440,10007,9451 Wilson Rd,,New York,NY,03/26/1974,America/New_York,40.711201,-74.009842
+Vincent,Johnson,vincent631@protonmail.com,5163199782,11202,8127 Taylor Ave,,Brooklyn,NY,10/09/2004,America/New_York,40.702783,-73.99647
+Vincent,Ferrari,vincentferr@outlook.com,3479942976,14609,5260 Thomas Rd,,Rochester,NY,01/11/1955,America/New_York,43.209591,-77.524967
+Lisa,Romano,lisa_romano@yahoo.com,3158661974,11209,7380 Miller St,Apt 434,Brooklyn,NY,05/06/1949,America/New_York,40.621418,-74.033334
+Angela,Smith,asmith89@hotmail.com,3477243497,14207,7595 Adams St,,Buffalo,NY,03/22/2007,America/New_York,42.909949,-78.81267
+Salvatore,Ricci,salvatore.ricci81@outlook.com,2129052389,11209,6632 Second St,Apt 505,Brooklyn,NY,04/21/1979,America/New_York,40.624757,-74.028633
+Jennifer,Smith,jennifersmith13@yahoo.com,6317741632,10015,8385 Miller St,Apt 405,New York,NY,05/09/2004,America/New_York,40.735769,-74.000607
+Vincent,Romano,vincent_romano@protonmail.com,3472788158,11102,9679 Thomas Rd,,Queens,NY,04/23/1997,America/New_York,40.763754,-73.927195
+Lisa,Ricci,lisa_ricci84@hotmail.com,5856593733,11209,4854 Taylor Ave,,Brooklyn,NY,12/04/1981,America/New_York,40.618546,-74.0257
+Michelle,Ricci,m.ricci@outlook.com,5187596017,10455,9273 First St,Apt 145,Bronx,NY,06/15/1977,America/New_York,40.812936,-73.906494
+Christine,Williams,c.williams@outlook.com,6318266376,11204,4326 Fourth St,,Brooklyn,NY,04/18/1954,America/New_York,40.621618,-73.982932
+John,Smith,jsmith43@protonmail.com,8454308082,13209,5945 Johnson Rd,,Syracuse,NY,12/15/1964,America/New_York,43.083861,-76.065061
+Catherine,Johnson,catherinejohnson28@hotmail.com,7185699556,14603,1843 Lincoln Rd,,Rochester,NY,04/20/1973,America/New_York,43.174138,-77.59227
+Christine,Miller,c.miller@outlook.com,5169152506,10012,158 Maple Ave,,New York,NY,12/25/1979,America/New_York,40.727043,-73.996736
+Lisa,Conti,lisa.conti7@hotmail.com,3479405829,10007,3710 Park Rd,,New York,NY,10/02/1963,America/New_York,40.709408,-74.006869
+Catherine,Jones,catherine.jones8@hotmail.com,8456746895,14206,622 Wilson Rd,Apt 487,Buffalo,NY,02/06/1992,America/New_York,42.8456,-78.817653
+Jennifer,Ricci,jenniferr88@protonmail.com,6314002495,12204,1775 Maple Ave,,Albany,NY,02/04/1988,America/New_York,42.667356,-73.858568
+Lisa,Ricci,lisa.ricci25@outlook.com,9179584602,14210,5603 Oak Ave,Apt 789,Buffalo,NY,02/14/1970,America/New_York,42.82388,-78.774457
+Anthony,Jones,anthony.jones9@gmail.com,8459456694,11354,9899 Franklin Ave,Apt 436,Queens,NY,08/03/1966,America/New_York,40.766834,-73.840218
+Vincent,Wilson,vincent.wilson75@gmail.com,5163949130,10009,2840 Elm St,Apt 898,New York,NY,06/21/1951,America/New_York,40.726607,-73.977253
+Anthony,Greco,a.greco@hotmail.com,6075369935,12207,7370 Johnson Rd,,Albany,NY,08/18/2007,America/New_York,42.660172,-73.786514
+Nicholas,Johnson,nicholasjohn@protonmail.com,7169335438,10006,2986 Brown St,,New York,NY,04/05/1992,America/New_York,40.711055,-74.011906
+Michelle,Conti,michellecont@gmail.com,5854368374,10017,1842 Franklin Ave,,New York,NY,05/23/1978,America/New_York,40.754772,-73.974348
+Christine,Wilson,christine.wilson47@protonmail.com,9149406584,13210,6993 Madison Ave,,Syracuse,NY,03/17/1952,America/New_York,43.002733,-76.053814
+Frank,Romano,frankrom58@hotmail.com,2128371035,14207,2623 Anderson St,,Buffalo,NY,02/11/1978,America/New_York,42.90196,-78.807323
+Joseph,Ferrari,joseph1013@hotmail.com,6316504715,10002,5069 Second St,,New York,NY,07/10/2004,America/New_York,40.713359,-73.983941
+Lisa,Brown,lisa144@outlook.com,5186643530,12207,7314 Miller St,,Albany,NY,10/14/1986,America/New_York,42.658476,-73.786767
+Salvatore,Greco,salvatore.greco@outlook.com,6467771949,12202,8259 Jefferson St,,Albany,NY,05/28/1950,America/New_York,42.676109,-73.839639
+Joseph,Davis,josephdavis66@yahoo.com,9143779556,14607,974 Martin St,Apt 847,Rochester,NY,02/02/1964,America/New_York,43.194063,-77.551051
+Lisa,Wilson,lisa.wilson06@hotmail.com,5857386038,12202,7563 Davis Ave,Apt 491,Albany,NY,12/13/2006,America/New_York,42.684752,-73.841376
+Maria,Esposito,maria305@protonmail.com,8454412884,14606,3564 Franklin Ave,,Rochester,NY,02/08/1972,America/New_York,43.140777,-77.559889
+Angela,Esposito,angelaesposito94@outlook.com,3475117519,14602,6111 Fifth St,,Rochester,NY,07/17/1972,America/New_York,43.171223,-77.603484
+Vincent,Smith,vincent.smith84@gmail.com,3478627740,13206,8928 Maple Ave,Apt 389,Syracuse,NY,09/11/1979,America/New_York,43.020849,-76.095914
+Lisa,Brown,l.brown@protonmail.com,9148323761,10015,917 Anderson St,Apt 453,New York,NY,12/01/1989,America/New_York,40.741458,-74.000525
+Michelle,Conti,michellecon83@outlook.com,5166565247,13202,9639 Martin St,,Syracuse,NY,06/07/1999,America/New_York,43.042561,-76.141755
+Frank,Smith,franksmit@gmail.com,6073902304,13203,4050 Miller St,Apt 130,Syracuse,NY,12/07/1963,America/New_York,43.057947,-76.128716
+Michelle,Ricci,michelle.ricci7@yahoo.com,5188361646,12202,3444 Martin St,,Albany,NY,05/28/1948,America/New_York,42.681307,-73.840137
+Jennifer,Russo,j.russo@gmail.com,9179549325,13201,4878 Adams St,,Syracuse,NY,06/26/1956,America/New_York,43.049738,-76.147092
+Catherine,Smith,catherine_smith@outlook.com,9348911777,14207,8560 Wilson Rd,Apt 561,Buffalo,NY,08/12/1948,America/New_York,42.903047,-78.813009
+Lisa,Brown,lisa_brown804@hotmail.com,2124326685,10008,3169 Adams St,,New York,NY,07/05/2006,America/New_York,40.713248,-74.00791
+Christine,Ricci,christine.ricci74@outlook.com,9179593465,13205,6895 Johnson Rd,,Syracuse,NY,05/06/1974,America/New_York,43.066742,-76.111809
+Christine,Miller,cmiller35@protonmail.com,9179018570,10452,1641 First St,,Bronx,NY,06/21/1954,America/New_York,40.843322,-73.921761
+Nicholas,Greco,nicholasg94@outlook.com,7166307570,14610,5942 Williams Ave,Apt 124,Rochester,NY,06/11/1994,America/New_York,43.117825,-77.516806
+Catherine,Marino,catherine_marino@gmail.com,9174541125,11208,9388 Martin St,,Brooklyn,NY,07/15/1979,America/New_York,40.672378,-73.869785
+Michael,Conti,michael_conti42@yahoo.com,6464996090,10459,1428 Adams St,,Bronx,NY,02/25/1999,America/New_York,40.826949,-73.893025
+Nicholas,Brown,nbrown38@yahoo.com,5163327883,14609,3234 Anderson St,,Rochester,NY,05/18/1958,America/New_York,43.203131,-77.526205
+Christine,Miller,cmiller63@yahoo.com,9342093279,11356,5830 Jefferson St,Apt 34,Queens,NY,12/28/1976,America/New_York,40.786987,-73.84447
+Vincent,Russo,vincent.russo68@yahoo.com,3479314176,10459,2977 Williams Ave,,Bronx,NY,11/19/1968,America/New_York,40.830858,-73.896948
+Michelle,Miller,michelle.miller64@hotmail.com,7166187260,10001,5117 Oak Ave,,New York,NY,12/20/1964,America/New_York,40.749582,-73.993133
+Frank,Wilson,f.wilson@protonmail.com,9177781919,11358,2764 Second St,,Queens,NY,07/18/1981,America/New_York,40.758239,-73.798639
+Michael,Marino,michael_marino65@gmail.com,9178521910,12209,2882 Moore Ave,,Albany,NY,11/03/1972,America/New_York,42.631679,-73.865204
+Donna,Ferrari,donna_ferrari@outlook.com,9295197361,11207,2474 Moore Ave,,Brooklyn,NY,12/27/1975,America/New_York,40.667983,-73.892263
+Catherine,Miller,catherinemil16@yahoo.com,2126522573,13206,4944 Smith Rd,,Syracuse,NY,04/19/2004,America/New_York,43.013666,-76.101713
+Donna,Miller,donna721@outlook.com,9296741122,12205,7909 Cedar Ln,,Albany,NY,06/07/1954,America/New_York,42.706297,-73.817125
+John,Wilson,johnw87@protonmail.com,5855662813,14201,8257 Fourth St,Apt 827,Buffalo,NY,03/25/1987,America/New_York,42.881701,-78.876381
+Michael,Ferrari,michael.ferrari48@outlook.com,9179682542,14209,2958 Main St,Apt 55,Buffalo,NY,03/03/1948,America/New_York,42.914697,-78.791948
+Christine,Wilson,christinewilson89@hotmail.com,2124818086,14609,4324 Park Rd,,Rochester,NY,06/01/1961,America/New_York,43.202031,-77.529001
+Jennifer,Wilson,j.wilson@protonmail.com,9177778468,11201,771 Smith Rd,,Brooklyn,NY,08/06/1972,America/New_York,40.688296,-73.985914
+Lisa,Williams,lisa.williams91@gmail.com,7167468254,10306,1264 Main St,,Staten Island,NY,10/15/1976,America/New_York,40.564124,-74.132438
+Angela,Russo,a.russo@hotmail.com,9295019887,11356,7504 Taylor Ave,Apt 678,Queens,NY,02/12/1995,America/New_York,40.787303,-73.849914
+Jennifer,Ricci,jennifer_ricci45@protonmail.com,9297195986,11209,1792 First St,,Brooklyn,NY,04/10/1969,America/New_York,40.62643,-74.031146
+Salvatore,Marino,smarino47@gmail.com,5855609482,10302,9877 Cedar Ln,,Staten Island,NY,12/07/1996,America/New_York,40.625554,-74.130633
+Nicholas,Davis,nicholas.davis37@outlook.com,9143677382,10004,1662 Jones St,,New York,NY,05/15/1966,America/New_York,40.690136,-74.018337
+Angela,Jones,angela_jones16@protonmail.com,2124432406,10456,4994 Franklin Ave,Apt 669,Bronx,NY,07/17/1980,America/New_York,40.833544,-73.906308
+Nicholas,Russo,nicholasruss@yahoo.com,9345283853,11102,6982 Thomas Rd,Apt 471,Queens,NY,08/03/1958,America/New_York,40.768422,-73.928714
+Jennifer,Brown,jennifer_brown@yahoo.com,9172295546,10012,9035 Main St,,New York,NY,04/02/2000,America/New_York,40.728881,-74.002276
+Anthony,Russo,arusso76@gmail.com,2124342448,13204,5459 Elm St,Apt 100,Syracuse,NY,01/11/1997,America/New_York,43.025498,-76.120131
+Christine,Miller,c.miller@outlook.com,9293527524,13201,4238 Moore Ave,,Syracuse,NY,09/06/2007,America/New_York,43.052877,-76.144992
+Salvatore,Russo,salvatorerus35@protonmail.com,5852725923,10018,4317 Williams Ave,,New York,NY,12/27/1949,America/New_York,40.754284,-73.993021
+Anthony,Brown,abrown68@yahoo.com,2125679563,10307,7164 Wilson Rd,,Staten Island,NY,02/12/1951,America/New_York,40.505853,-74.238078
+Christine,Miller,christine_miller@protonmail.com,5184852673,10020,6616 Jackson St,,New York,NY,12/11/1990,America/New_York,40.75768,-73.980034
+Nicholas,Conti,nicholascon83@yahoo.com,9144656427,10453,1635 Wilson Rd,,Bronx,NY,05/15/1974,America/New_York,40.849401,-73.908232
+John,Smith,john.smith3@yahoo.com,6079373614,11209,5201 Elm St,,Brooklyn,NY,12/22/1975,America/New_York,40.625499,-74.033584
+Lisa,Davis,lisa_davis73@protonmail.com,8454241183,14607,6409 Fourth St,Apt 294,Rochester,NY,11/18/1957,America/New_York,43.201473,-77.548599
+Jennifer,Ferrari,jennifer317@gmail.com,2127004958,13209,809 Brown St,,Syracuse,NY,08/25/1955,America/New_York,43.084693,-76.070481
+Salvatore,Romano,s.romano@hotmail.com,8453577024,10015,535 Williams Ave,Apt 778,New York,NY,12/11/1999,America/New_York,40.736271,-73.999645
+Salvatore,Brown,s.brown@outlook.com,9343873450,13210,5463 Elm St,Apt 719,Syracuse,NY,05/26/1980,America/New_York,42.994786,-76.057085
+Lisa,Brown,lisabrow@outlook.com,8454479582,10018,3674 Lincoln Rd,Apt 177,New York,NY,02/25/1981,America/New_York,40.757887,-73.98898
+Catherine,Wilson,c.wilson@outlook.com,5165168168,10011,5739 Main St,,New York,NY,05/14/1996,America/New_York,40.743256,-74.0031
+Michelle,Ferrari,michelle.ferrari87@outlook.com,9179089757,10007,8626 Pine St,,New York,NY,06/14/2001,America/New_York,40.716306,-74.006131
+Michael,Marino,michael.marino52@protonmail.com,3477937774,13210,5000 Fourth St,,Syracuse,NY,08/17/1977,America/New_York,42.997222,-76.052828
+Donna,Wilson,donnawilson45@outlook.com,6319439289,11210,9964 Franklin Ave,,Brooklyn,NY,06/25/1947,America/New_York,40.624552,-73.950258
+Salvatore,Marino,salvatoremar64@hotmail.com,8456232300,13203,6459 Adams St,,Syracuse,NY,08/06/1946,America/New_York,43.061015,-76.129325
+Nicholas,Jones,nicholas179@yahoo.com,7187354315,12208,2686 Davis Ave,,Albany,NY,03/14/1970,America/New_York,42.703489,-73.845055
+Nicholas,Greco,nicholasg84@protonmail.com,6072332102,10456,3604 Anderson St,,Bronx,NY,11/12/1984,America/New_York,40.834297,-73.910596
+Angela,Esposito,angela.esposito7@gmail.com,6316822921,14606,2122 Smith Rd,,Rochester,NY,03/12/2005,America/New_York,43.133927,-77.561385
+Christine,Esposito,christine.esposito@yahoo.com,9292045733,13204,7702 Jackson St,,Syracuse,NY,12/19/1968,America/New_York,43.028723,-76.112905
+Jennifer,Wilson,jennifer895@yahoo.com,9344813122,10012,2291 Second St,,New York,NY,12/27/1972,America/New_York,40.72944,-73.996975
+Nicholas,Smith,nicholas.smith5@gmail.com,9144781167,10454,1892 Wilson Rd,,Bronx,NY,11/11/1977,America/New_York,40.810475,-73.91787
+Salvatore,Russo,salvatorer71@gmail.com,7166121615,10453,6811 Fifth St,,Bronx,NY,06/17/1971,America/New_York,40.847204,-73.90822
+Lisa,Esposito,lisa_esposito@hotmail.com,9148585511,14206,1243 Davis Ave,Apt 333,Buffalo,NY,08/10/1984,America/New_York,42.842754,-78.823032
+Salvatore,Greco,salvatore879@yahoo.com,7189387342,14205,29 Smith Rd,,Buffalo,NY,12/26/1957,America/New_York,42.893003,-78.838607
+Lisa,Davis,ldavis90@gmail.com,7184912229,14604,2263 Fifth St,Apt 962,Rochester,NY,07/14/1965,America/New_York,43.142542,-77.575191
+Michelle,Ricci,michelle.ricci73@hotmail.com,9147656312,10457,6786 Park Rd,,Bronx,NY,02/06/1973,America/New_York,40.845018,-73.897733
+Salvatore,Esposito,salvatoreesposito77@outlook.com,2127748657,10016,4909 Wilson Rd,,New York,NY,06/19/1966,America/New_York,40.745989,-73.978798
+Nicholas,Russo,nicholas_russo7@gmail.com,5183022747,10303,180 Park Rd,,Staten Island,NY,05/02/1994,America/New_York,40.630543,-74.163709
+Frank,Jones,frank.jones@outlook.com,7162924750,14606,2062 Pine St,,Rochester,NY,04/06/1983,America/New_York,43.134568,-77.554606
+Catherine,Williams,cwilliams12@hotmail.com,8452424943,14610,6969 Park Rd,,Rochester,NY,07/26/1994,America/New_York,43.113156,-77.521291
+Nicholas,Miller,nicholas.miller45@gmail.com,6468404036,13207,3204 Park Rd,,Syracuse,NY,09/15/1976,America/New_York,43.073362,-76.08952
+Maria,Ricci,mariar86@protonmail.com,9297433787,10008,570 Anderson St,Apt 404,New York,NY,04/27/1986,America/New_York,40.711564,-74.004962
+Michelle,Greco,michelle230@outlook.com,9297828197,14605,5909 Jackson St,,Rochester,NY,03/16/1998,America/New_York,43.19119,-77.571587
+Michelle,Esposito,michelle_esposito@outlook.com,8459779443,14608,1894 Second St,,Rochester,NY,08/20/1976,America/New_York,43.12296,-77.541424
+John,Marino,john.marino65@yahoo.com,5189801072,11205,5494 Williams Ave,Apt 283,Brooklyn,NY,08/02/1965,America/New_York,40.691219,-73.965303
+Angela,Ferrari,angela.ferrari97@hotmail.com,5164344553,12204,9889 Oak Ave,,Albany,NY,01/22/1974,America/New_York,42.673105,-73.858182
+Nicholas,Ricci,nicholas.ricci83@outlook.com,7188303839,10460,523 Jones St,Apt 24,Bronx,NY,01/16/1983,America/New_York,40.8471,-73.880872
+Maria,Ferrari,mariaferr@outlook.com,5167745442,10011,1649 Williams Ave,,New York,NY,04/06/1976,America/New_York,40.744584,-74.003428
+Lisa,Russo,lisar74@yahoo.com,2127045081,12207,698 Jefferson St,,Albany,NY,02/11/1974,America/New_York,42.657124,-73.790432
+Angela,Johnson,a.johnson@hotmail.com,9343085212,13206,6714 Second St,Apt 821,Syracuse,NY,11/22/1972,America/New_York,43.013779,-76.098161
+Michael,Esposito,michael_esposito@gmail.com,9178572535,10452,6517 Jefferson St,,Bronx,NY,09/24/1975,America/New_York,40.844078,-73.923872
+Salvatore,Miller,smiller27@protonmail.com,2128683496,10460,4428 Cedar Ln,Apt 939,Bronx,NY,08/10/1984,America/New_York,40.845025,-73.879336
+Donna,Russo,donnaruss@outlook.com,6076554583,10309,7618 Madison Ave,,Staten Island,NY,01/12/1968,America/New_York,40.521781,-74.214156
+Vincent,Brown,vincentb92@hotmail.com,6074086406,11208,3419 Washington Ave,,Brooklyn,NY,11/21/1992,America/New_York,40.67025,-73.868044
+Joseph,Esposito,jesposito27@yahoo.com,3159445255,12204,9993 Martin St,,Albany,NY,09/13/2000,America/New_York,42.666606,-73.85952
+Christine,Davis,christinedavis78@gmail.com,5856568460,10016,7918 Third St,,New York,NY,05/21/1987,America/New_York,40.743088,-73.974914
+Salvatore,Jones,salvatorejon18@gmail.com,5852631704,14205,3709 Adams St,,Buffalo,NY,04/08/1964,America/New_York,42.898709,-78.838326
+Jennifer,Marino,jenniferm61@protonmail.com,9176601099,12208,9100 Fourth St,Apt 720,Albany,NY,01/06/1961,America/New_York,42.700051,-73.84721
+Lisa,Jones,lisa838@protonmail.com,6076795035,10010,6053 Main St,,New York,NY,02/13/1983,America/New_York,40.735093,-73.987089
+Jennifer,Jones,jennifer.jones@gmail.com,6462452336,10019,4344 Moore Ave,Apt 13,New York,NY,06/26/2000,America/New_York,40.764404,-73.987729
+Jennifer,Miller,jennifer.miller81@protonmail.com,5185228441,10456,4487 Fifth St,Apt 837,Bronx,NY,10/11/1981,America/New_York,40.827651,-73.915172
+Jennifer,Davis,jennifer.davis20@protonmail.com,6462011346,10304,6222 Cedar Ln,,Staten Island,NY,02/15/1976,America/New_York,40.60568,-74.083181
+Michael,Romano,michaelr86@hotmail.com,5855687646,14609,8231 Anderson St,Apt 920,Rochester,NY,01/07/1986,America/New_York,43.208403,-77.529712
+Joseph,Brown,joseph_brown26@hotmail.com,8453103357,10002,2155 Thomas Rd,,New York,NY,12/12/1999,America/New_York,40.719432,-73.984173
+Christine,Johnson,christine.johnson59@outlook.com,6313383192,10302,2810 Thomas Rd,,Staten Island,NY,03/16/1959,America/New_York,40.631635,-74.136968
+Nicholas,Johnson,nicholas_johnson21@outlook.com,6465137237,14603,1207 Miller St,Apt 813,Rochester,NY,02/13/1972,America/New_York,43.179786,-77.589255
+Salvatore,Brown,s.brown@gmail.com,9144373483,11358,9146 Lincoln Rd,,Queens,NY,12/03/1963,America/New_York,40.762402,-73.799217
+Salvatore,Miller,salvatorem92@protonmail.com,9294018703,10310,7486 Jackson St,Apt 642,Staten Island,NY,10/05/1992,America/New_York,40.629353,-74.115875
+Salvatore,Miller,salvatoremiller39@gmail.com,7162209644,13203,1646 Oak Ave,,Syracuse,NY,04/12/1959,America/New_York,43.059703,-76.123935
+John,Davis,j.davis@protonmail.com,3474418013,11354,5455 Jones St,,Queens,NY,10/23/1960,America/New_York,40.771699,-73.833505
+Angela,Smith,angela_smith@yahoo.com,3473158436,11207,3812 Thomas Rd,Apt 575,Brooklyn,NY,05/19/2006,America/New_York,40.669224,-73.890968
+Catherine,Brown,catherinebro22@hotmail.com,3472811987,10007,6579 Jackson St,,New York,NY,06/26/1998,America/New_York,40.711247,-74.009094
+Michael,Williams,michael_williams@yahoo.com,6073072887,10453,1335 Fifth St,,Bronx,NY,03/26/1989,America/New_York,40.849451,-73.912669
+Michael,Greco,michael.greco7@gmail.com,3476688191,12204,4474 Fourth St,Apt 299,Albany,NY,01/07/2000,America/New_York,42.668738,-73.855224
+Nicholas,Marino,n.marino@outlook.com,9172905672,10009,2558 Elm St,,New York,NY,09/11/1983,America/New_York,40.726704,-73.976822
+Angela,Williams,angela.williams45@gmail.com,6469798474,11205,6447 Miller St,,Brooklyn,NY,03/19/1945,America/New_York,40.692732,-73.966736
+Nicholas,Johnson,nicholas.johnson79@outlook.com,6467455685,14201,1977 Williams Ave,,Buffalo,NY,05/18/1983,America/New_York,42.886355,-78.877553
+Catherine,Miller,catherinemill@gmail.com,7186109724,14205,5282 Washington Ave,,Buffalo,NY,04/04/1957,America/New_York,42.899825,-78.836931
+Christine,Esposito,christine.esposito70@yahoo.com,7182064353,10301,205 Jones St,,Staten Island,NY,10/02/1970,America/New_York,40.634479,-74.081566
+Maria,Davis,maria.davis@yahoo.com,7163479466,14210,7559 Wilson Rd,Apt 711,Buffalo,NY,03/10/2007,America/New_York,42.829848,-78.777295
+Jennifer,Russo,jrusso73@protonmail.com,6075987835,10306,8309 Jackson St,,Staten Island,NY,01/22/1989,America/New_York,40.565661,-74.13496
+Angela,Smith,angela640@yahoo.com,9348068865,14209,6135 Jackson St,,Buffalo,NY,02/09/2001,America/New_York,42.917328,-78.786437
+John,Romano,johnroma@hotmail.com,6314879468,14205,6520 Jackson St,,Buffalo,NY,10/24/2006,America/New_York,42.891549,-78.839268
+Michael,Greco,michael_greco95@hotmail.com,9177778236,10007,1456 Fourth St,,New York,NY,12/10/2006,America/New_York,40.710968,-74.002617
+Michelle,Jones,michelle_jones@hotmail.com,9149127048,13205,176 Maple Ave,,Syracuse,NY,07/21/1949,America/New_York,43.072915,-76.111769
+John,Russo,john.russo@yahoo.com,8453642470,10451,9947 Johnson Rd,,Bronx,NY,11/24/1952,America/New_York,40.820636,-73.921833
+Joseph,Williams,jwilliams98@gmail.com,8454361298,11201,5071 Johnson Rd,,Brooklyn,NY,06/25/2000,America/New_York,40.692501,-73.994937
+Joseph,Marino,josephmarino35@gmail.com,5188579311,10302,7116 Madison Ave,,Staten Island,NY,12/02/1993,America/New_York,40.626979,-74.137346
+Joseph,Smith,josephsmit@gmail.com,7186269472,14208,7265 Madison Ave,,Buffalo,NY,02/23/1955,America/New_York,42.832347,-78.802964
+Michelle,Wilson,michelle.wilson88@yahoo.com,3154188295,10457,6263 Maple Ave,Apt 100,Bronx,NY,11/23/1956,America/New_York,40.848197,-73.900014
+Michelle,Marino,m.marino@yahoo.com,6462298140,10458,6785 Martin St,,Bronx,NY,08/11/1949,America/New_York,40.861643,-73.892618
+Donna,Jones,donnajones29@protonmail.com,7184372419,11209,298 Davis Ave,,Brooklyn,NY,03/17/1983,America/New_York,40.620951,-74.029068
+Lisa,Russo,lisa_russo@gmail.com,3475999912,10308,2012 Park Rd,,Staten Island,NY,07/23/1957,America/New_York,40.556095,-74.155769
+Michael,Smith,michaelsmith56@gmail.com,3155546063,14208,3165 Oak Ave,,Buffalo,NY,09/19/1970,America/New_York,42.840059,-78.795338
+Michael,Miller,michaelmiller12@yahoo.com,6314623247,10453,1968 Main St,Apt 267,Bronx,NY,02/21/1999,America/New_York,40.847921,-73.910597
+Jennifer,Wilson,jenniferwilson76@gmail.com,3154152352,14603,711 Second St,,Rochester,NY,10/10/1964,America/New_York,43.179195,-77.592883
+Lisa,Marino,lisamari@outlook.com,3159396871,10014,5333 Cedar Ln,Apt 763,New York,NY,01/22/1996,America/New_York,40.731024,-74.002401
+John,Miller,j.miller@gmail.com,7167831599,10452,9771 Madison Ave,,Bronx,NY,08/09/2005,America/New_York,40.837767,-73.922899
+Nicholas,Williams,nicholaswil15@yahoo.com,9143767358,10306,6705 Miller St,,Staten Island,NY,01/07/1994,America/New_York,40.564885,-74.135497
+Lisa,Greco,lisa.greco95@hotmail.com,5186117851,13205,9795 Madison Ave,,Syracuse,NY,02/16/1995,America/New_York,43.067791,-76.10328
+Donna,Jones,donna_jones@outlook.com,5854504992,13209,6151 Jones St,,Syracuse,NY,11/02/1958,America/New_York,43.092291,-76.068356
+Nicholas,Romano,nicholas.romano5@hotmail.com,6078484044,11207,517 Second St,,Brooklyn,NY,09/03/1996,America/New_York,40.670802,-73.894075
+Donna,Marino,donna_marino48@yahoo.com,5189424886,11206,2621 Wilson Rd,,Brooklyn,NY,01/06/1947,America/New_York,40.697208,-73.946111
+Salvatore,Williams,salvatore_williams90@gmail.com,5182924563,14209,3671 Third St,,Buffalo,NY,11/16/1966,America/New_York,42.912196,-78.788809
+Angela,Russo,angelarus28@protonmail.com,9179245406,11101,8836 First St,,Queens,NY,10/14/1990,America/New_York,40.751294,-73.936454
+Donna,Marino,donna.marino4@hotmail.com,9145354497,10003,6384 Lincoln Rd,Apt 814,New York,NY,07/26/1967,America/New_York,40.727628,-73.993819
+Angela,Russo,angela940@outlook.com,5856857764,11207,7421 Jackson St,,Brooklyn,NY,03/16/1947,America/New_York,40.671384,-73.898487
+Vincent,Jones,vincent.jones@protonmail.com,3473357240,10006,1923 Cedar Ln,Apt 138,New York,NY,06/18/1997,America/New_York,40.709957,-74.016995
+Anthony,Ricci,anthony_ricci@yahoo.com,7162358697,14205,9766 Martin St,Apt 267,Buffalo,NY,02/01/1962,America/New_York,42.901337,-78.840751
+Salvatore,Williams,salvatorewil94@gmail.com,9344999611,10012,7920 Fifth St,,New York,NY,09/24/1946,America/New_York,40.720695,-74.000224
+John,Jones,john.jones6@protonmail.com,7186291206,14205,2213 Brown St,,Buffalo,NY,07/05/1971,America/New_York,42.895171,-78.834809
+Donna,Williams,donnawill@protonmail.com,6464594786,12209,3009 Williams Ave,,Albany,NY,09/12/1994,America/New_York,42.631516,-73.862253
+Nicholas,Jones,nicholasjon51@hotmail.com,2126934765,11355,2967 Brown St,,Queens,NY,09/23/1986,America/New_York,40.745372,-73.817512
+Michelle,Miller,m.miller@outlook.com,5852147581,12201,3860 Main St,,Albany,NY,09/21/1996,America/New_York,42.688998,-73.832194
+Lisa,Greco,lisag94@yahoo.com,6312142707,13204,8004 Oak Ave,,Syracuse,NY,08/09/1994,America/New_York,43.031189,-76.119097
+Vincent,Esposito,vincent.esposito1@protonmail.com,9174576098,10459,4845 Anderson St,,Bronx,NY,09/01/1962,America/New_York,40.827023,-73.890529
+Catherine,Miller,catherine.miller43@gmail.com,2124826900,10004,2518 Lincoln Rd,Apt 518,New York,NY,08/07/1971,America/New_York,40.694077,-74.016046
+Frank,Romano,frank635@outlook.com,9174109461,14210,5499 Lincoln Rd,,Buffalo,NY,07/13/1946,America/New_York,42.830742,-78.77907
+Joseph,Jones,josephj47@yahoo.com,7168754542,10006,8127 Anderson St,Apt 804,New York,NY,12/26/1947,America/New_York,40.707246,-74.011068
+Angela,Russo,angelarus32@outlook.com,5184192000,10017,2331 Smith Rd,,New York,NY,12/21/2004,America/New_York,40.753746,-73.974267
+Frank,Ferrari,fferrari45@outlook.com,5187629567,11202,5370 Thomas Rd,,Brooklyn,NY,05/10/1981,America/New_York,40.703403,-73.997124
+Vincent,Williams,vwilliams88@protonmail.com,7188543284,10003,6229 Franklin Ave,Apt 87,New York,NY,01/24/1960,America/New_York,40.730107,-73.984611
+Joseph,Jones,josephjon30@yahoo.com,9295062857,14604,9919 Miller St,,Rochester,NY,01/07/1979,America/New_York,43.146319,-77.582147
+Lisa,Johnson,lisaj76@protonmail.com,2125326273,12207,2050 Maple Ave,,Albany,NY,03/08/1976,America/New_York,42.662553,-73.789826
+Angela,Williams,angela596@hotmail.com,7184078815,10305,4810 Pine St,,Staten Island,NY,12/01/1952,America/New_York,40.601688,-74.074891
+Donna,Conti,d.conti@protonmail.com,6073236297,13206,2370 Thomas Rd,,Syracuse,NY,08/02/1969,America/New_York,43.020164,-76.101863
+Salvatore,Russo,salvatoreruss@gmail.com,3475769339,12205,7372 Jefferson St,,Albany,NY,09/08/2007,America/New_York,42.714097,-73.814204
+Jennifer,Ricci,jenniferricc@yahoo.com,2127184669,12202,92 Martin St,,Albany,NY,04/14/1993,America/New_York,42.683633,-73.841429
+Maria,Williams,mariawill@gmail.com,5162322665,10452,1531 Jefferson St,,Bronx,NY,12/17/1973,America/New_York,40.838052,-73.920601
+Angela,Ferrari,angela721@yahoo.com,5165119886,10309,496 Taylor Ave,,Staten Island,NY,01/21/1949,America/New_York,40.518743,-74.207885
+Angela,Russo,angela.russo3@gmail.com,5164308686,14608,4194 Washington Ave,,Rochester,NY,01/25/1953,America/New_York,43.12317,-77.537171
+Lisa,Johnson,lisajohnson52@outlook.com,9298789624,10451,734 Smith Rd,,Bronx,NY,02/21/1995,America/New_York,40.819875,-73.923665
+Christine,Johnson,christinejohnson27@gmail.com,6077148735,11209,9047 Madison Ave,,Brooklyn,NY,01/13/1989,America/New_York,40.61875,-74.024906
+Frank,Ferrari,frankf45@hotmail.com,2123935337,10301,3368 Martin St,,Staten Island,NY,11/27/1945,America/New_York,40.630664,-74.087232
+Salvatore,Esposito,salvatore.esposito88@outlook.com,6314838818,14610,3992 Cedar Ln,,Rochester,NY,04/20/2004,America/New_York,43.112177,-77.514899
+Nicholas,Johnson,nicholas.johnson@outlook.com,9179743264,10455,8884 Davis Ave,Apt 438,Bronx,NY,05/20/2002,America/New_York,40.81037,-73.906452
+Christine,Marino,christine.marino@yahoo.com,9299066962,11356,9262 Pine St,Apt 514,Queens,NY,09/15/1975,America/New_York,40.788982,-73.849428
+Frank,Jones,frankjones56@protonmail.com,5182383052,12207,9567 Miller St,,Albany,NY,02/21/1968,America/New_York,42.659317,-73.784972
+Nicholas,Romano,nicholasromano46@yahoo.com,5169196149,13204,9641 Franklin Ave,,Syracuse,NY,12/05/1996,America/New_York,43.0285,-76.115203
+Michelle,Conti,michelleconti20@yahoo.com,5167283264,12208,891 Thomas Rd,,Albany,NY,10/09/1996,America/New_York,42.702819,-73.850934
+Angela,Russo,angela.russo11@outlook.com,7187603558,13207,2491 Maple Ave,,Syracuse,NY,07/11/1952,America/New_York,43.082176,-76.085475
+Frank,Miller,frank_miller@hotmail.com,7168106700,14209,6072 Williams Ave,,Buffalo,NY,02/13/1965,America/New_York,42.920907,-78.784559
+Donna,Marino,donna410@yahoo.com,3158364894,11210,2097 Taylor Ave,,Brooklyn,NY,08/18/1997,America/New_York,40.624766,-73.95121
+Jennifer,Miller,jennifer.miller5@hotmail.com,6462191910,14606,8288 Martin St,Apt 963,Rochester,NY,11/26/1979,America/New_York,43.135512,-77.561032
+Michelle,Wilson,michellewilson99@yahoo.com,5166845803,10019,1474 Cedar Ln,,New York,NY,09/28/1963,America/New_York,40.76781,-73.981211
+John,Jones,john.jones17@outlook.com,8458058596,11201,76 Taylor Ave,,Brooklyn,NY,10/21/1973,America/New_York,40.696857,-73.990339
+Anthony,Miller,anthonymill@outlook.com,9177813412,11204,9491 Brown St,,Brooklyn,NY,02/21/1992,America/New_York,40.621979,-73.980823
+Anthony,Smith,anthony.smith66@outlook.com,5858035121,10307,566 Miller St,,Staten Island,NY,08/21/1966,America/New_York,40.506201,-74.243268
+Maria,Brown,maria.brown@gmail.com,9174566285,14205,5798 Elm St,,Buffalo,NY,11/02/1999,America/New_York,42.896613,-78.837012
+Michael,Williams,michael.williams40@outlook.com,8456936532,11206,6397 Jefferson St,,Brooklyn,NY,01/12/1956,America/New_York,40.701506,-73.939165
+Nicholas,Jones,nicholas.jones@yahoo.com,9296326773,11205,4577 Fourth St,Apt 356,Brooklyn,NY,12/04/1954,America/New_York,40.691877,-73.96162
+John,Ferrari,johnf48@gmail.com,6319653043,14209,5227 Thomas Rd,,Buffalo,NY,07/15/1948,America/New_York,42.91449,-78.787947
+Christine,Ricci,christine.ricci45@yahoo.com,6469097491,12206,6981 Smith Rd,,Albany,NY,08/14/1945,America/New_York,42.637589,-73.809152
+John,Miller,john.miller67@outlook.com,8457226049,12209,2950 Washington Ave,,Albany,NY,10/05/2006,America/New_York,42.630243,-73.870692
+Catherine,Smith,catherinesmi75@protonmail.com,9347851631,11206,6340 Anderson St,,Brooklyn,NY,01/18/1968,America/New_York,40.704215,-73.944065
+John,Marino,john_marino@protonmail.com,6315963583,11354,187 Johnson Rd,Apt 417,Queens,NY,06/20/2000,America/New_York,40.770954,-73.837735
+Michelle,Russo,michelle576@outlook.com,5854493262,11204,4263 Jefferson St,,Brooklyn,NY,05/13/1985,America/New_York,40.614864,-73.983591
+Frank,Ferrari,frankfer34@outlook.com,8459181056,14202,2739 Smith Rd,Apt 524,Buffalo,NY,03/21/1983,America/New_York,42.868723,-78.866738
+Vincent,Davis,v.davis@yahoo.com,9149233032,14608,5068 Park Rd,,Rochester,NY,05/09/1955,America/New_York,43.125504,-77.538497
+Anthony,Greco,anthony953@protonmail.com,3153074208,14203,790 Jackson St,,Buffalo,NY,06/23/1954,America/New_York,42.878677,-78.862156
+Maria,Davis,maria852@hotmail.com,6079757851,10001,3041 Elm St,Apt 438,New York,NY,10/24/1998,America/New_York,40.747998,-73.991882
+Nicholas,Davis,nicholas.davis17@outlook.com,9292858813,11358,891 Jefferson St,,Queens,NY,01/05/1963,America/New_York,40.756079,-73.797302
+Lisa,Romano,lisaroma@hotmail.com,3158712674,10454,9772 Madison Ave,,Bronx,NY,04/08/1950,America/New_York,40.80107,-73.915252
+Christine,Williams,christine.williams97@outlook.com,3479793612,10310,1909 Washington Ave,,Staten Island,NY,07/01/1997,America/New_York,40.626637,-74.114003
+Salvatore,Smith,salvatoresmi69@outlook.com,2128267173,10002,3863 Jones St,,New York,NY,08/09/1945,America/New_York,40.71155,-73.983721
+Frank,Wilson,frank.wilson@gmail.com,5859103695,14602,4329 First St,,Rochester,NY,12/15/1998,America/New_York,43.16328,-77.600766
+John,Williams,johnw92@yahoo.com,5855247626,14203,3921 Johnson Rd,Apt 837,Buffalo,NY,11/21/1992,America/New_York,42.876617,-78.860884
+Michael,Esposito,michaelespo@hotmail.com,6465571071,11356,7907 Third St,,Queens,NY,04/08/1972,America/New_York,40.785905,-73.845982
+Michelle,Conti,michelle.conti@outlook.com,9343904833,11207,5882 Madison Ave,,Brooklyn,NY,07/23/1970,America/New_York,40.671905,-73.89438
+Nicholas,Brown,nicholasbrown106@protonmail.com,9145574220,13206,4769 Brown St,,Syracuse,NY,06/11/1974,America/New_York,43.015861,-76.094543
+Christine,Esposito,christineespo@outlook.com,9144833129,10015,9968 Martin St,,New York,NY,08/25/2001,America/New_York,40.741604,-73.996647
+Joseph,Davis,j.davis@outlook.com,3476144019,13203,4978 Second St,Apt 396,Syracuse,NY,08/25/1963,America/New_York,43.058699,-76.129972
+Salvatore,Ricci,salvatoreric11@protonmail.com,9342763574,12207,2311 Maple Ave,,Albany,NY,08/12/1960,America/New_York,42.657507,-73.783227
+Maria,Johnson,maria930@hotmail.com,7162752548,10001,954 Miller St,Apt 776,New York,NY,02/23/1975,America/New_York,40.754577,-73.996402
+Lisa,Conti,lisacont@outlook.com,2123977345,12206,4358 Elm St,,Albany,NY,01/05/2001,America/New_York,42.642469,-73.808903
+Michael,Esposito,michael884@protonmail.com,9297976864,13203,2956 Cedar Ln,Apt 931,Syracuse,NY,06/26/2000,America/New_York,43.061999,-76.125978
+Maria,Miller,mariamiller106@hotmail.com,6315354491,10002,3549 Fifth St,,New York,NY,06/01/1966,America/New_York,40.718985,-73.990821
+Anthony,Williams,anthony479@gmail.com,8454595384,10453,5615 Martin St,,Bronx,NY,06/20/1949,America/New_York,40.851382,-73.914486
+Jennifer,Esposito,j.esposito@hotmail.com,2128118029,11102,3829 Third St,,Queens,NY,07/23/1958,America/New_York,40.770213,-73.929463
+Lisa,Davis,lisa_davis43@yahoo.com,5163369978,10456,449 Madison Ave,,Bronx,NY,01/11/1973,America/New_York,40.830853,-73.908374
+John,Esposito,johne58@yahoo.com,6073123616,10011,2382 Adams St,Apt 733,New York,NY,03/08/1958,America/New_York,40.743321,-74.002286
+Michael,Marino,michael.marino6@hotmail.com,9147431304,10308,3245 Lincoln Rd,,Staten Island,NY,01/22/1963,America/New_York,40.553372,-74.151862
+Michelle,Miller,michellemill@outlook.com,3153656147,10302,7392 Taylor Ave,,Staten Island,NY,05/23/2006,America/New_York,40.631717,-74.130382
+Salvatore,Greco,salvatore.greco8@yahoo.com,3158423833,10455,1860 Jefferson St,,Bronx,NY,10/27/1974,America/New_York,40.805777,-73.903684
+Frank,Russo,frankr93@outlook.com,7166979579,10009,9946 Moore Ave,,New York,NY,05/27/1993,America/New_York,40.729521,-73.982466
+Anthony,Smith,anthony_smith@outlook.com,2124233609,13208,1216 Lincoln Rd,,Syracuse,NY,01/10/1963,America/New_York,43.012911,-76.082074
+Vincent,Ricci,vincent.ricci71@gmail.com,8455358044,11210,2810 Fifth St,,Brooklyn,NY,05/19/1993,America/New_York,40.626783,-73.947944
+Angela,Brown,angela.brown9@outlook.com,5168271775,10310,7047 Fifth St,,Staten Island,NY,11/15/1989,America/New_York,40.630492,-74.111037
+Angela,Miller,angelam47@protonmail.com,9178018757,10309,5578 Adams St,,Staten Island,NY,03/05/1947,America/New_York,40.523322,-74.208727
+Donna,Esposito,donnaesposito90@outlook.com,8452543058,14609,7319 Moore Ave,,Rochester,NY,02/10/1994,America/New_York,43.201821,-77.527766
+Vincent,Smith,vincent.smith6@outlook.com,9172245127,11207,3960 Madison Ave,,Brooklyn,NY,12/04/2007,America/New_York,40.675921,-73.897841
+Nicholas,Marino,nmarino17@yahoo.com,6319786524,10306,6278 Thomas Rd,Apt 2,Staten Island,NY,07/24/2000,America/New_York,40.569787,-74.139161
+Michael,Jones,michael730@gmail.com,3156499185,11207,2391 Cedar Ln,,Brooklyn,NY,04/01/1963,America/New_York,40.670352,-73.896194
+Angela,Wilson,angela_wilson14@gmail.com,9345505755,10003,2315 Jones St,Apt 507,New York,NY,12/11/1950,America/New_York,40.728402,-73.992184
+Maria,Marino,maria.marino@yahoo.com,5162238601,10452,7750 Fourth St,,Bronx,NY,03/02/1988,America/New_York,40.837142,-73.924092
+Michelle,Smith,michellesmi80@protonmail.com,2127879434,10459,8721 Moore Ave,Apt 292,Bronx,NY,11/12/1996,America/New_York,40.828007,-73.889766
+Michelle,Smith,michellesmi42@yahoo.com,5187192928,10020,3446 Wilson Rd,,New York,NY,07/25/1995,America/New_York,40.758487,-73.983187
+Angela,Davis,angelad02@yahoo.com,8454855408,10452,3181 Oak Ave,,Bronx,NY,01/10/2002,America/New_York,40.844579,-73.929366
+Jennifer,Davis,jennifer451@hotmail.com,9146097332,12206,5410 Davis Ave,,Albany,NY,08/12/1963,America/New_York,42.643781,-73.806833
+Nicholas,Wilson,nicholas.wilson78@outlook.com,5163547381,10018,3999 Taylor Ave,,New York,NY,02/08/2001,America/New_York,40.756099,-73.996685
+Anthony,Russo,arusso37@gmail.com,9177895608,12204,7220 Madison Ave,,Albany,NY,06/01/1992,America/New_York,42.673608,-73.856022
+Vincent,Marino,vincent_marino43@hotmail.com,7184493146,14605,4533 Fifth St,,Rochester,NY,10/06/1972,America/New_York,43.188665,-77.570621
+Nicholas,Greco,nicholasgre93@protonmail.com,5186098889,13206,2372 Maple Ave,,Syracuse,NY,03/22/1965,America/New_York,43.013442,-76.094246
+Anthony,Davis,anthonydavis15@protonmail.com,8458127137,13203,9970 Brown St,Apt 807,Syracuse,NY,01/22/1951,America/New_York,43.053162,-76.129524
+Vincent,Romano,vincent_romano@yahoo.com,9143708743,10458,4689 Adams St,Apt 64,Bronx,NY,10/08/1974,America/New_York,40.861325,-73.890024
+John,Johnson,john1040@protonmail.com,5859119790,11103,1240 Park Rd,,Queens,NY,10/11/1982,America/New_York,40.764863,-73.913286
+Nicholas,Greco,nicholas.greco@yahoo.com,5169036358,11101,6189 Davis Ave,,Queens,NY,08/09/1995,America/New_York,40.749554,-73.944711
+Angela,Johnson,angelajohnson93@outlook.com,9298257149,10016,7028 Maple Ave,,New York,NY,04/16/1964,America/New_York,40.740481,-73.983086
+Salvatore,Ricci,salvatore.ricci03@protonmail.com,5857531628,10452,61 Williams Ave,,Bronx,NY,05/15/2003,America/New_York,40.839469,-73.927023
+Michelle,Johnson,michelle.johnson26@gmail.com,3159463923,14207,1560 Brown St,,Buffalo,NY,02/24/1962,America/New_York,42.909228,-78.810199
+Christine,Romano,christinerom20@hotmail.com,9347224541,10460,2973 Jones St,Apt 508,Bronx,NY,06/20/1953,America/New_York,40.840905,-73.879137
+Michael,Johnson,michael.johnson@outlook.com,5163254068,10458,4996 Anderson St,Apt 488,Bronx,NY,01/06/1973,America/New_York,40.862738,-73.888849
+Lisa,Brown,lisa.brown@outlook.com,7168875905,13201,5641 Jefferson St,,Syracuse,NY,03/07/1949,America/New_York,43.049969,-76.149256
+Maria,Johnson,maria_johnson6@outlook.com,6319782631,10013,2708 Davis Ave,,New York,NY,01/01/1982,America/New_York,40.724581,-74.001305
+Michael,Ferrari,michaelf04@yahoo.com,6312822366,10007,2786 Fourth St,,New York,NY,08/12/2004,America/New_York,40.712261,-74.00376
+Michelle,Jones,m.jones@hotmail.com,6464038304,11357,4318 Third St,,Queens,NY,06/27/1969,America/New_York,40.79142,-73.832196
+Angela,Johnson,angelajohn@protonmail.com,3157923878,10019,1308 Smith Rd,,New York,NY,10/17/1956,America/New_York,40.770517,-73.984903
+Angela,Ricci,angela.ricci00@gmail.com,3478915405,13206,9184 Fifth St,Apt 457,Syracuse,NY,07/12/2000,America/New_York,43.015694,-76.098281
+Catherine,Davis,cdavis13@gmail.com,6076511346,10002,8553 Jones St,,New York,NY,07/28/1949,America/New_York,40.718075,-73.990843
+Nicholas,Esposito,nicholasesp64@protonmail.com,7189274442,11103,8257 Thomas Rd,Apt 834,Queens,NY,03/13/1955,America/New_York,40.767356,-73.9115
+Nicholas,Davis,nicholas_davis@protonmail.com,6315274884,13205,3451 Jefferson St,,Syracuse,NY,09/21/2007,America/New_York,43.06793,-76.106217
+Salvatore,Ricci,salvatore_ricci@outlook.com,9148722189,10454,5715 Brown St,,Bronx,NY,01/15/1987,America/New_York,40.804278,-73.916702
+Joseph,Wilson,j.wilson@outlook.com,6075184075,14605,1000 Taylor Ave,,Rochester,NY,11/27/1950,America/New_York,43.183415,-77.565804
+Anthony,Romano,aromano36@gmail.com,3158195410,10457,6694 Oak Ave,Apt 744,Bronx,NY,06/21/2001,America/New_York,40.851143,-73.897091
+Anthony,Ricci,anthonyricc@hotmail.com,6315012164,11206,2219 Elm St,,Brooklyn,NY,11/19/1961,America/New_York,40.704556,-73.937588
+Vincent,Miller,v.miller@outlook.com,6468858162,14203,5726 Lincoln Rd,,Buffalo,NY,04/01/1949,America/New_York,42.875977,-78.855464
+Lisa,Ferrari,lisafer77@outlook.com,7162873668,10308,3512 Thomas Rd,,Staten Island,NY,09/08/1950,America/New_York,40.557345,-74.152064
+Maria,Ricci,mricci62@yahoo.com,6468206258,10458,2383 Cedar Ln,,Bronx,NY,09/22/1969,America/New_York,40.86304,-73.891682
+Maria,Davis,maria.davis39@outlook.com,8455754268,10012,7765 Wilson Rd,,New York,NY,08/03/1969,America/New_York,40.722355,-73.996393
+Angela,Romano,angela.romano@outlook.com,7185416186,10020,1670 Davis Ave,Apt 362,New York,NY,06/01/1954,America/New_York,40.761502,-73.983298
+Michael,Conti,mconti29@hotmail.com,5186124309,13206,392 Elm St,,Syracuse,NY,06/03/1967,America/New_York,43.022568,-76.099368
+Frank,Marino,frank_marino@yahoo.com,9142008423,14202,4967 Washington Ave,Apt 945,Buffalo,NY,01/12/1950,America/New_York,42.868428,-78.873077
+Donna,Russo,donnarusso88@outlook.com,9172306394,10004,7437 Pine St,Apt 260,New York,NY,01/09/1959,America/New_York,40.68737,-74.021418
+Michelle,Esposito,michelleespo@hotmail.com,5189506755,14208,1357 Cedar Ln,,Buffalo,NY,10/26/1982,America/New_York,42.838761,-78.8024
+Salvatore,Jones,salvatore546@yahoo.com,7164528210,10001,9652 Jackson St,,New York,NY,08/22/1970,America/New_York,40.747293,-73.995186
+Frank,Brown,frankbrow@gmail.com,2128427406,14610,3251 Johnson Rd,,Rochester,NY,04/07/1959,America/New_York,43.111984,-77.520306
+Joseph,Davis,joseph_davis@hotmail.com,6468826599,12208,567 Moore Ave,,Albany,NY,01/12/1948,America/New_York,42.700222,-73.842593
+Donna,Davis,donnadavis79@yahoo.com,7169572371,14202,3725 Second St,,Buffalo,NY,01/03/1957,America/New_York,42.868196,-78.863817
+Vincent,Marino,vincent890@protonmail.com,5168528482,10006,1534 Maple Ave,Apt 596,New York,NY,04/08/1987,America/New_York,40.706939,-74.013502
+Michael,Ricci,michael.ricci@hotmail.com,6313115824,10308,1755 Second St,,Staten Island,NY,05/22/1981,America/New_York,40.554428,-74.150102
+Maria,Russo,m.russo@hotmail.com,3478178723,11102,2839 Jackson St,,Queens,NY,03/21/2006,America/New_York,40.767692,-73.924437
+Catherine,Williams,cwilliams88@gmail.com,5187533735,10305,7509 Martin St,,Staten Island,NY,11/01/1971,America/New_York,40.598019,-74.068361
+Michael,Marino,michael.marino57@protonmail.com,9147337280,11356,5964 Davis Ave,Apt 943,Queens,NY,03/01/1994,America/New_York,40.787864,-73.845699
+Frank,Wilson,frank_wilson@yahoo.com,6074424153,12206,5082 Fifth St,,Albany,NY,07/17/1987,America/New_York,42.639384,-73.804768
+Michelle,Ricci,michelle.ricci49@outlook.com,9343135190,13206,6186 Second St,,Syracuse,NY,04/04/1986,America/New_York,43.01973,-76.102114
+Donna,Davis,donnadav56@outlook.com,6315244322,11356,9892 Smith Rd,,Queens,NY,12/20/1995,America/New_York,40.78108,-73.846601
+Donna,Ferrari,donnaf51@outlook.com,5162391441,11101,8043 Anderson St,Apt 229,Queens,NY,09/27/1951,America/New_York,40.754571,-73.941266
+Anthony,Greco,anthonyg47@protonmail.com,6467715268,11202,1155 Park Rd,,Brooklyn,NY,06/26/1947,America/New_York,40.701426,-73.998127
+Michelle,Brown,michellebro22@hotmail.com,3156798756,14201,8120 Third St,,Buffalo,NY,07/08/2005,America/New_York,42.891078,-78.880329
+Jennifer,Davis,jennifer649@gmail.com,9144819186,10457,9762 Miller St,,Bronx,NY,04/26/1963,America/New_York,40.844102,-73.901683
+Lisa,Miller,lmiller60@hotmail.com,9292097769,11103,9603 Jones St,,Queens,NY,12/03/1947,America/New_York,40.764504,-73.913627
+Frank,Miller,frank.miller71@yahoo.com,6079471637,14609,7675 Smith Rd,,Rochester,NY,11/07/1990,America/New_York,43.202952,-77.524259
+Michael,Greco,michael.greco9@hotmail.com,9343419809,10019,2838 Moore Ave,,New York,NY,12/24/1950,America/New_York,40.770366,-73.983179
+Catherine,Ricci,catherine.ricci1@outlook.com,2126422344,11102,7926 Miller St,,Queens,NY,06/02/1979,America/New_York,40.7628,-73.930807
+Frank,Marino,frank.marino27@protonmail.com,2129409807,10451,6643 Cedar Ln,,Bronx,NY,05/13/1963,America/New_York,40.816095,-73.922954
+Anthony,Brown,anthonybrow@outlook.com,7164438609,13203,2770 Main St,,Syracuse,NY,08/25/1986,America/New_York,43.061035,-76.13143
+Angela,Ricci,angela.ricci@outlook.com,2129024267,10017,7305 Wilson Rd,,New York,NY,07/04/1965,America/New_York,40.748309,-73.970431
+Salvatore,Johnson,salvatorejoh80@hotmail.com,3157171492,11208,6543 Franklin Ave,,Brooklyn,NY,11/18/1994,America/New_York,40.674083,-73.875411
+Lisa,Davis,lisadavi@hotmail.com,8458718680,12202,9812 Fourth St,,Albany,NY,07/12/1990,America/New_York,42.6817,-73.834772
+Michael,Wilson,michaelwils@outlook.com,5856337549,10006,9964 Maple Ave,Apt 184,New York,NY,03/10/1972,America/New_York,40.70632,-74.013165
+Joseph,Ferrari,josephferr@hotmail.com,9173135399,10019,600 Pine St,,New York,NY,01/01/1981,America/New_York,40.769543,-73.98286
+Jennifer,Jones,jenniferjones49@outlook.com,7163398846,13206,6024 Jefferson St,,Syracuse,NY,07/05/1972,America/New_York,43.018641,-76.097872
+Nicholas,Brown,nbrown19@yahoo.com,6077862859,13207,8263 Fifth St,,Syracuse,NY,03/28/1949,America/New_York,43.081653,-76.088252
+Lisa,Esposito,lisa.esposito@protonmail.com,9344488582,10020,7765 Johnson Rd,,New York,NY,06/18/1991,America/New_York,40.757403,-73.984999
+Maria,Ricci,mariaricc@gmail.com,9344093541,10452,5239 Davis Ave,,Bronx,NY,03/19/1990,America/New_York,40.83837,-73.925124
+Catherine,Romano,catherinerom23@yahoo.com,3156365990,10302,5411 Taylor Ave,,Staten Island,NY,07/03/1972,America/New_York,40.632136,-74.139571
+Vincent,Ferrari,vincent_ferrari99@hotmail.com,6312078758,14609,6620 Third St,,Rochester,NY,02/03/1967,America/New_York,43.209453,-77.530436
+Joseph,Greco,joseph_greco28@yahoo.com,9345213949,10459,9265 Taylor Ave,,Bronx,NY,11/18/1951,America/New_York,40.823129,-73.892224
+Christine,Esposito,christine.esposito51@gmail.com,9172047789,12210,4545 Johnson Rd,Apt 54,Albany,NY,12/07/1955,America/New_York,42.678599,-73.821379
+Frank,Miller,frankmill@gmail.com,9346453935,10019,1301 Jefferson St,,New York,NY,07/08/1970,America/New_York,40.767578,-73.981122
+Donna,Marino,donna.marino03@hotmail.com,7189389600,11208,2708 Adams St,Apt 796,Brooklyn,NY,01/10/2003,America/New_York,40.677048,-73.870952
+John,Ferrari,johnfer14@hotmail.com,6465199951,10454,2225 Franklin Ave,Apt 331,Bronx,NY,12/06/1947,America/New_York,40.810055,-73.91972
+Lisa,Johnson,lisajohn@gmail.com,3472057733,10309,1861 Washington Ave,,Staten Island,NY,06/10/1995,America/New_York,40.522015,-74.211044
+Joseph,Marino,joseph.marino85@hotmail.com,5853857146,10457,2249 Jefferson St,,Bronx,NY,06/04/1986,America/New_York,40.847445,-73.894535
+Salvatore,Wilson,salvatore.wilson1@outlook.com,9342502123,10004,4880 Johnson Rd,,New York,NY,12/23/1990,America/New_York,40.686869,-74.013403
+Vincent,Brown,vincent.brown@outlook.com,9145594902,11203,5298 Fourth St,,Brooklyn,NY,11/02/1973,America/New_York,40.655461,-73.922842
+Joseph,Greco,joseph380@hotmail.com,5189454968,11356,5018 Jones St,,Queens,NY,01/23/1989,America/New_York,40.785665,-73.842851
+Michelle,Smith,msmith93@gmail.com,5853819520,11203,2455 Miller St,Apt 705,Brooklyn,NY,12/11/1978,America/New_York,40.647327,-73.925075
+Angela,Ferrari,aferrari19@hotmail.com,6466358420,10303,9380 Anderson St,,Staten Island,NY,06/20/1960,America/New_York,40.635408,-74.167865
+Joseph,Williams,joseph_williams3@gmail.com,8452746689,11102,2865 Brown St,,Queens,NY,04/28/1952,America/New_York,40.765154,-73.928347
+Salvatore,Ricci,salvatore.ricci70@yahoo.com,5169303556,10456,6642 Fifth St,,Bronx,NY,10/24/1971,America/New_York,40.827556,-73.9131
+Salvatore,Ricci,salvatore_ricci@protonmail.com,2123254158,10007,6828 Moore Ave,Apt 342,New York,NY,05/07/1984,America/New_York,40.714462,-74.004032
+Maria,Brown,maria.brown5@hotmail.com,3478316101,11102,7263 Jones St,,Queens,NY,10/03/1963,America/New_York,40.765248,-73.926531
+Vincent,Johnson,vincent.johnson50@protonmail.com,7167606795,14610,6996 Thomas Rd,Apt 953,Rochester,NY,11/22/2007,America/New_York,43.112598,-77.520672
+Angela,Russo,angela_russo87@outlook.com,9299345381,10455,1452 Cedar Ln,Apt 422,Bronx,NY,06/21/1998,America/New_York,40.812725,-73.905273
+Frank,Miller,frankm64@protonmail.com,2122363781,13209,7238 Lincoln Rd,,Syracuse,NY,01/23/1964,America/New_York,43.08347,-76.071119
+Angela,Conti,angela_conti@outlook.com,5189447271,10306,6216 Johnson Rd,,Staten Island,NY,09/06/2006,America/New_York,40.565328,-74.139719
+Vincent,Miller,vincentmill@hotmail.com,9296583675,10303,4657 Moore Ave,,Staten Island,NY,08/19/1991,America/New_York,40.637537,-74.163569
+Lisa,Davis,lisa.davis9@outlook.com,7166903103,10307,8694 Davis Ave,Apt 63,Staten Island,NY,12/16/1975,America/New_York,40.505481,-74.240263
+Nicholas,Russo,nicholasruss@protonmail.com,5186816513,10010,8400 Wilson Rd,,New York,NY,01/22/1976,America/New_York,40.738608,-73.980558
+Anthony,Greco,anthony.greco@protonmail.com,9295773021,12202,7124 Williams Ave,,Albany,NY,04/14/1953,America/New_York,42.682781,-73.841697
+John,Marino,john_marino23@yahoo.com,7164199301,10008,5057 Main St,Apt 288,New York,NY,10/21/1957,America/New_York,40.709558,-74.004087
+Donna,Brown,donna.brown@outlook.com,3477985901,10003,9107 Washington Ave,,New York,NY,02/28/1992,America/New_York,40.732793,-73.991624
+Angela,Williams,angela.williams57@yahoo.com,3472875118,10309,7074 Third St,,Staten Island,NY,11/13/1957,America/New_York,40.526689,-74.205521
+Christine,Esposito,christinee65@gmail.com,3478595142,11101,7793 Maple Ave,,Queens,NY,05/07/1965,America/New_York,40.74803,-73.94127
+John,Jones,johnj84@outlook.com,2122684068,10009,5490 Pine St,,New York,NY,08/12/1984,America/New_York,40.724278,-73.976201
+Michelle,Wilson,michelle.wilson@protonmail.com,6079492147,14205,3884 Fourth St,,Buffalo,NY,01/13/2002,America/New_York,42.897436,-78.837083
+Joseph,Greco,josephgreco94@gmail.com,3475118792,14610,7878 Adams St,,Rochester,NY,02/10/1981,America/New_York,43.121119,-77.522307
+Maria,Romano,mromano44@gmail.com,8452847157,10018,6352 Moore Ave,,New York,NY,02/27/1951,America/New_York,40.758881,-73.989656
+Frank,Jones,frank_jones53@hotmail.com,6074712970,11357,4547 Davis Ave,,Queens,NY,07/26/2003,America/New_York,40.795581,-73.841115
+Anthony,Greco,anthony.greco@gmail.com,7163589403,11358,8173 Madison Ave,,Queens,NY,09/13/1967,America/New_York,40.762448,-73.792197
