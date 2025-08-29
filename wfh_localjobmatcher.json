@@ -2,11 +2,10 @@
   "metadata": {
     "offerName": "Work From Home - LocalJobMatcher",
     "offerCreator": "localjobsmatcher.com",
-    "version": "6.2",
-    "description": "Fixed flow: Direct to landing page or improved Facebook handling",
+    "version": "6.3",
+    "description": "Facebook-only flow: Facebook post -> offer link -> funnel (improved redirect handling)",
     "entryPoint": {
-      "startUrl": "https://www.opph3hftrk.com/HMLWQ96/261TC5C/",
-      "fallbackUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
+      "startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
     }
   },
   "funnel": {
@@ -19,7 +18,7 @@
         },
         "fields": [],
         "navigation": { 
-          "type": "conditional", 
+          "type": "link", 
           "selectors": [
             "a[href*='opph3hftrk.com/HMLWQ96/261TC5C']",
             "a[href*='opph3hftrk.com']",
@@ -27,11 +26,10 @@
             "a[href*='261TC5C']"
           ],
           "waitAfterClick": 5000,
-          "waitForUrlChange": true,
+          "waitForUrlChange": false,
           "retryIfNoNavigation": true,
-          "maxWaitTime": 30000,
-          "expectNewTab": true,
-          "skipIfDirectLanding": true
+          "maxWaitTime": 45000,
+          "expectNewTab": true
         }
       },
       {
