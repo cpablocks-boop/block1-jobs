@@ -2,8 +2,8 @@
   "metadata": {
     "offerName": "Work From Home - LocalJobMatcher",
     "offerCreator": "localjobsmatcher.com",
-    "version": "5.0",
-    "description": "Enhanced navigation with retry",
+    "version": "6.0",
+    "description": "Fixed flow: Facebook post -> offer link -> funnel",
     "entryPoint": {
       "startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
     }
@@ -11,33 +11,122 @@
   "funnel": {
     "pages": [
       {
+        "pageNumber": 0,
+        "pageName": "Facebook Post - Click Offer Link",
+        "pageDetection": {
+          "checkForElement": "a[href*='opph3hftrk.com'], a[href*='HMLWQ96'], [href*='opph3hftrk.com']"
+        },
+        "fields": [],
+        "navigation": { 
+          "type": "link", 
+          "selectors": [
+            "a[href*='opph3hftrk.com/HMLWQ96/261TC5C']",
+            "a[href*='opph3hftrk.com']",
+            "a[href*='HMLWQ96']",
+            "a[href*='261TC5C']"
+          ],
+          "waitAfterClick": 5000,
+          "waitForUrlChange": true,
+          "retryIfNoNavigation": true
+        }
+      },
+      {
         "pageNumber": 1,
         "pageName": "ZIP Code Entry",
+        "pageDetection": {
+          "checkForElement": "input[name*='zip'], input[placeholder*='ZIP'], input[placeholder*='zip'], input[type='text']"
+        },
         "fields": [
           { 
             "fieldType": "zipCode", 
-            "selector": "[name=\"l-input\"]", 
+            "selectors": [
+              "input[name*='zip']",
+              "input[placeholder*='ZIP']", 
+              "input[placeholder*='zip']",
+              "input[name='postal_code']",
+              "input[name='zipcode']",
+              "input[name='zip_code']",
+              "#zip",
+              ".zip-input",
+              "input[type='text']:first-of-type"
+            ], 
             "action": "clear_and_type" 
           }
         ],
         "navigation": { 
           "type": "button", 
-          "selector": "[data-testid=\"viewJobsButton\"]",
+          "selectors": [
+            "button[type='submit']",
+            "input[type='submit']",
+            "button:contains('View Jobs')",
+            "button:contains('Continue')",
+            "button:contains('Next')",
+            "button:contains('Submit')",
+            ".submit-button",
+            ".continue-button",
+            "button.btn-primary",
+            "button:not([type='reset'])"
+          ],
           "waitAfterClick": 5000,
-          "waitForUrlChange": true
+          "waitForUrlChange": true,
+          "retryIfNoNavigation": true
         }
       },
       {
         "pageNumber": 2,
         "pageName": "Personal Info",
+        "pageDetection": {
+          "checkForElement": "input[placeholder*='First'], input[name*='first'], input[placeholder*='Name']"
+        },
         "fields": [
-          { "fieldType": "firstName", "selector": "input[placeholder=\"First Name\"]", "action": "type" },
-          { "fieldType": "lastName", "selector": "input[placeholder=\"Last Name\"]", "action": "type" },
-          { "fieldType": "email", "selector": "input[placeholder=\"Email\"]", "action": "type" }
+          { 
+            "fieldType": "firstName", 
+            "selectors": [
+              "input[placeholder*='First Name']",
+              "input[name*='first']",
+              "input[name='firstName']",
+              "input[name='first_name']",
+              "#first_name",
+              "#firstName"
+            ], 
+            "action": "type" 
+          },
+          { 
+            "fieldType": "lastName", 
+            "selectors": [
+              "input[placeholder*='Last Name']",
+              "input[name*='last']",
+              "input[name='lastName']",
+              "input[name='last_name']",
+              "#last_name",
+              "#lastName"
+            ], 
+            "action": "type" 
+          },
+          { 
+            "fieldType": "email", 
+            "selectors": [
+              "input[placeholder*='Email']",
+              "input[type='email']",
+              "input[name='email']",
+              "#email"
+            ], 
+            "action": "type" 
+          }
         ],
         "navigation": { 
           "type": "button", 
-          "selector": "button.sc-oTNDV.gyhzwv, button.sc-oTNDV",
+          "selectors": [
+            "button[type='submit']",
+            "input[type='submit']",
+            "button:contains('Continue')",
+            "button:contains('Next')",
+            "button:contains('Submit')",
+            ".submit-button",
+            ".continue-button",
+            "button.btn-primary",
+            "button:not([type='reset'])"
+          ],
           "waitAfterClick": 5000,
           "waitForUrlChange": true,
           "retryIfNoNavigation": true
@@ -45,22 +134,93 @@
       },
       {
         "pageNumber": 3,
-        "pageName": "Phone and Consent",
+        "pageName": "Phone and Additional Info",
         "pageDetection": {
-          "checkForElement": "input[name=\"phone\"]"
+          "checkForElement": "input[name*='phone'], input[type='tel'], input[placeholder*='Phone']"
         },
         "fields": [
-          { "fieldType": "phone", "selector": "input[name=\"phone\"]", "action": "type" },
-          { "fieldType": "dobMonth", "selector": "select[autocomplete=\"bday-month\"]", "action": "select", "optional": true },
-          { "fieldType": "dobDay", "selector": "select[autocomplete=\"bday-day\"]", "action": "select", "optional": true },
-          { "fieldType": "dobYear", "selector": "select[autocomplete=\"bday-year\"]", "action": "select", "optional": true },
-          { "fieldType": "consentCheckbox", "selector": "#leadid_tcpa_disclosure", "action": "click" }
+          { 
+            "fieldType": "phone", 
+            "selectors": [
+              "input[name='phone']",
+              "input[type='tel']",
+              "input[placeholder*='Phone']",
+              "input[name='phoneNumber']",
+              "input[name='phone_number']",
+              "#phone"
+            ], 
+            "action": "type" 
+          },
+          { 
+            "fieldType": "dobMonth", 
+            "selectors": [
+              "select[autocomplete='bday-month']",
+              "select[name*='month']",
+              "select[name='birth_month']",
+              "#birth_month"
+            ], 
+            "action": "select", 
+            "optional": true 
+          },
+          { 
+            "fieldType": "dobDay", 
+            "selectors": [
+              "select[autocomplete='bday-day']",
+              "select[name*='day']",
+              "select[name='birth_day']",
+              "#birth_day"
+            ], 
+            "action": "select", 
+            "optional": true 
+          },
+          { 
+            "fieldType": "dobYear", 
+            "selectors": [
+              "select[autocomplete='bday-year']",
+              "select[name*='year']",
+              "select[name='birth_year']",
+              "#birth_year"
+            ], 
+            "action": "select", 
+            "optional": true 
+          },
+          { 
+            "fieldType": "consentCheckbox", 
+            "selectors": [
+              "#leadid_tcpa_disclosure",
+              "input[type='checkbox']",
+              "input[name*='consent']",
+              "input[name*='agree']",
+              "input[name*='terms']"
+            ], 
+            "action": "click",
+            "optional": true
+          }
         ],
         "navigation": {
           "type": "button",
-          "selector": "button.sc-oTNDV.cLpMvl, button.sc-oTNDV"
+          "selectors": [
+            "button[type='submit']",
+            "input[type='submit']",
+            "button:contains('Continue')",
+            "button:contains('Next')",
+            "button:contains('Submit')",
+            ".submit-button",
+            ".continue-button",
+            "button.btn-primary",
+            "button:not([type='reset'])"
+          ],
+          "waitAfterClick": 5000,
+          "waitForUrlChange": true,
+          "retryIfNoNavigation": true
         }
       }
     ]
+  },
+  "settings": {
+    "delays": {
+      "betweenFields": [800, 2000],
+      "pageLoad": 3000
+    }
   }
 }
