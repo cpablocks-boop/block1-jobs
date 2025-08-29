@@ -30,10 +30,40 @@ class CPAFunnelTester {
     try {
       const csvData = await fs.readFile(this.deviceProfilePath, 'utf8');
       const lines = csvData.split('\n').filter(line => line.trim());
-      const headers = lines[0].split(',').map(h => h.replace(/"/g, '').trim());
+      
+      // Improved CSV line parser that handles quoted fields with commas
+      const parseCsvLine = (line) => {
+        const values = [];
+        let current = '';
+        let inQuotes = false;
+        
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (char === '"' && !inQuotes) {
+            inQuotes = true;
+          } else if (char === '"' && inQuotes) {
+            if (i + 1 < line.length && line[i + 1] === '"') {
+              // Escaped quote (though not present in your CSV, handling for robustness)
+              current += '"';
+              i++;
+            } else {
+              inQuotes = false;
+            }
+          } else if (char === ',' && !inQuotes) {
+            values.push(current);
+            current = '';
+          } else {
+            current += char;
+          }
+        }
+        values.push(current);
+        return values.map(v => v.replace(/^"/, '').replace(/"$/, '').trim());
+      };
+      
+      const headers = parseCsvLine(lines[0]);
       
       for (let i = 1; i < lines.length; i++) {
-        const values = lines[i].split(',').map(v => v.replace(/"/g, '').trim());
+        const values = parseCsvLine(lines[i]);
         if (values.length === headers.length) {
           const profile = {};
           headers.forEach((header, index) => {
@@ -43,12 +73,17 @@ class CPAFunnelTester {
         }
       }
       
+      if (this.deviceProfiles.length === 0) {
+        throw new Error('No valid profiles parsed from CSV');
+      }
+      
       // Select random profile
       this.selectedProfile = this.deviceProfiles[Math.floor(Math.random() * this.deviceProfiles.length)];
-      console.log(`📱 Selected device: ${this.selectedProfile?.device_name || 'Default'}`);
-      this.testResults.deviceProfile = this.selectedProfile?.profile_id || null;
+      console.log(`📱 Selected device: ${this.selectedProfile.device_name} (${this.selectedProfile.profile_id})`);
+      this.testResults.deviceProfile = this.selectedProfile.profile_id;
     } catch (error) {
       console.log(`⚠️ Could not load device profiles: ${error.message}`);
+      this.selectedProfile = null;
     }
   }
 
@@ -203,339 +238,179 @@ class CPAFunnelTester {
     return null;
   }
 
-  // Enhanced Facebook redirect handling
-  async handleFacebookRedirect(targetUrl) {
-    console.log(`🔄 Handling Facebook redirect...`);
+  async handleFacebookRedirect() {
+    console.log(`🔄 Handling Facebook redirect via click-through only...`);
     
-    // Extract the actual URL from Facebook's redirect
-    let actualUrl = targetUrl;
-    const urlMatch = targetUrl.match(/[?&]u=([^&]+)/);
-    if (urlMatch) {
-      actualUrl = decodeURIComponent(urlMatch[1]);
-      console.log(`🎯 Extracted target URL: ${actualUrl}`);
-    }
-
-    // Method 1: Direct navigation
+    // Since we're now clicking the original link in navigateToNextPage,
+    // we should already be on or navigating to the redirect page after click.
+    // Wait for potential redirect page to load
     try {
-      console.log(`🚀 Attempting direct navigation to: ${actualUrl}`);
-      await this.page.goto(actualUrl, { 
-        waitUntil: 'domcontentloaded',
-        timeout: 30000 
-      });
-      
+      await this.page.waitForLoadState('domcontentloaded', { timeout: 15000 });
       await this.page.waitForTimeout(3000);
-      
-      const currentUrl = this.page.url();
-      if (!currentUrl.includes('facebook.com')) {
-        console.log(`✅ Successfully navigated to: ${currentUrl}`);
-        return true;
-      }
     } catch (error) {
-      console.log(`⚠️ Direct navigation failed: ${error.message}`);
+      console.log(`⚠️ Waiting for redirect page: ${error.message}`);
     }
-
-    // Method 2: Click through Facebook's redirect page
-    try {
-      // Wait for Facebook's redirect page to load
-      await this.page.waitForTimeout(2000);
+    
+    // Check if we're on a Facebook redirect/confirmation page
+    if (this.page.url().includes('facebook.com')) {
+      console.log('📱 On Facebook redirect page - looking for continue/proceed elements...');
       
-      // Look for any continue/proceed buttons or links
       const continueSelectors = [
         'a:has-text("Continue")',
         'button:has-text("Continue")',
         'a:has-text("Proceed")',
         'a[href*="opph3hftrk.com"]',
-        'a:visible'
+        'a[href*="HMLWQ96"]',
+        'a:visible'  // Fallback, but be cautious as it might click wrong
       ];
       
       for (const selector of continueSelectors) {
-        try {
-          const element = await this.page.$(selector);
-          if (element) {
-            console.log(`🖱️ Clicking redirect element: ${selector}`);
-            await element.click();
+        const foundSelector = await this.waitForElement(selector, 10000);
+        if (foundSelector) {
+          try {
+            console.log(`🖱️ Clicking redirect element: ${foundSelector}`);
+            await this.page.click(foundSelector);
             await this.page.waitForTimeout(5000);
             
-            if (!this.page.url().includes('facebook.com')) {
-              console.log(`✅ Successfully redirected to: ${this.page.url()}`);
-              return true;
-            }
+            // Wait for navigation away from Facebook
+            await this.page.waitForURL(url => !url.includes('facebook.com'), { timeout: 15000 });
+            
+            console.log(`✅ Successfully redirected to: ${this.page.url()}`);
+            return true;
+          } catch (clickError) {
+            console.log(`⚠️ Click failed for ${selector}: ${clickError.message}`);
           }
-        } catch (clickError) {
-          // Continue trying other selectors
         }
       }
-    } catch (error) {
-      console.log(`⚠️ Click-through method failed: ${error.message}`);
-    }
-
-    // Method 3: JavaScript redirect
-    try {
-      console.log(`🔧 Attempting JavaScript redirect...`);
-      await this.page.evaluate((url) => {
-        window.location.href = url;
-      }, actualUrl);
       
-      await this.page.waitForTimeout(5000);
-      
-      if (!this.page.url().includes('facebook.com')) {
-        console.log(`✅ JavaScript redirect successful: ${this.page.url()}`);
-        return true;
-      }
-    } catch (error) {
-      console.log(`⚠️ JavaScript redirect failed: ${error.message}`);
+      throw new Error('Failed to find and click continue element on Facebook redirect page');
+    } else {
+      console.log(`✅ Already navigated away from Facebook: ${this.page.url()}`);
+      return true;
     }
-
-    return false;
   }
 
-  // Enhanced navigation for Facebook pages
   async navigateToNextPage(navigation, pageNumber) {
-    const { selector, selectors, waitAfterClick = 2000, waitForUrlChange = false, retryIfNoNavigation = false, expectNewTab = false, maxWaitTime = 45000 } = navigation;
+    console.log(`🔄 Navigating from page ${pageNumber}...`);
+    console.log(`📍 Current URL: ${this.page.url()}`);
+    
+    const foundSelector = await this.waitForElement(navigation.selectors);
+    if (!foundSelector) {
+      throw new Error('Navigation element not found');
+    }
     
     try {
-      const currentUrl = this.page.url();
-      console.log(`🔄 Navigating from page ${pageNumber}...`);
-      console.log(`📍 Current URL: ${currentUrl}`);
+      // Always click the element directly
+      console.log(`🖱️ Clicking navigation element: ${foundSelector}`);
+      await this.page.click(foundSelector);
       
-      // Handle both old and new selector formats
-      const selectorsToTry = selectors || [selector];
-      const foundSelector = await this.waitForElement(selectorsToTry, 15000);
-      
-      if (!foundSelector) {
-        throw new Error(`Navigation element not found`);
+      // Wait for potential new tab if expected
+      if (navigation.expectNewTab) {
+        const [newPage] = await Promise.all([
+          this.browser.contexts()[0].waitForEvent('page', { timeout: 15000 }),
+          this.page.waitForTimeout(1000)  // Small delay
+        ]);
+        this.page = newPage;
+        await this.page.bringToFront();
+        console.log(`🔄 Switched to new tab: ${this.page.url()}`);
       }
       
-      // Get element
-      const element = await this.page.locator(foundSelector).first();
+      // Wait for navigation
+      await this.page.waitForTimeout(navigation.waitAfterClick || 5000);
       
-      // Special handling for Facebook links
-      if (currentUrl.includes('facebook.com')) {
-        console.log('📱 Facebook detected - using special navigation handling...');
-        
-        // Get the href
-        const href = await element.getAttribute('href');
-        console.log(`🔗 Target link: ${href}`);
-        
-        // If it's a Facebook redirect link, handle it specially
-        if (href && href.includes('l.facebook.com')) {
-          const success = await this.handleFacebookRedirect(href);
-          if (success) {
-            return true;
-          }
-        }
-        
-        // Try regular click with new tab handling
-        if (expectNewTab) {
-          const newPagePromise = this.page.context().waitForEvent('page');
-          await element.click();
-          
-          try {
-            const newPage = await Promise.race([
-              newPagePromise,
-              new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 10000))
-            ]);
-            
-            this.page = newPage;
-            
-            // Handle redirect on new page
-            if (this.page.url().includes('facebook.com')) {
-              await this.handleFacebookRedirect(this.page.url());
-            }
-            
-            return true;
-          } catch (error) {
-            console.log(`⚠️ New tab handling failed: ${error.message}`);
-          }
-        }
+      if (navigation.waitForUrlChange) {
+        await this.page.waitForURL(url => url !== this.page.url(), { timeout: 15000 });
       }
       
-      // Regular click for non-Facebook pages
-      await element.click();
+      // Now handle any Facebook redirect page if we land on one
+      await this.handleFacebookRedirect();  // No need for targetUrl anymore
       
-      if (waitAfterClick) {
-        await this.page.waitForTimeout(waitAfterClick);
-      }
-      
-      if (waitForUrlChange) {
-        const newUrl = this.page.url();
-        if (newUrl === currentUrl && retryIfNoNavigation) {
-          console.log(`⚠️ No URL change detected, retrying...`);
-          await element.click();
-          await this.page.waitForTimeout(waitAfterClick);
-        }
-      }
-      
-      return true;
+      console.log(`✅ Navigated successfully to: ${this.page.url()}`);
     } catch (error) {
-      console.log(`❌ Navigation failed: ${error.message}`);
-      throw error;
+      if (navigation.retryIfNoNavigation) {
+        console.log('⚠️ Retry navigation...');
+        // You could add retry logic here if needed
+      }
+      throw new Error(`Navigation failed: ${error.message}`);
     }
   }
 
   async fillField(field, testData) {
-    const { fieldType, selector, selectors, action, optional = false, required = true } = field;
-    const actuallyRequired = required && !optional;
-    
-    try {
-      // Handle both old and new selector formats
-      const selectorsToTry = selectors || [selector];
-      const foundSelector = await this.waitForElement(selectorsToTry, actuallyRequired ? 10000 : 3000);
-      
-      if (!foundSelector) {
-        if (actuallyRequired) {
-          throw new Error(`Required field not found: ${fieldType}`);
-        } else {
-          console.log(`⭐ Optional field skipped: ${fieldType}`);
-          return true;
-        }
-      }
-
-      const element = await this.page.locator(foundSelector).first();
-      
-      // Get the correct test data value
-      let dataValue = testData[fieldType];
-      
-      switch (action) {
-        case 'clear_and_type':
-          await element.clear();
-          await element.fill(dataValue);
-          break;
-        case 'type':
-          await element.fill(dataValue);
-          break;
-        case 'select':
-          await element.selectOption(dataValue);
-          break;
-        case 'click':
-          await element.click();
-          break;
-        default:
-          throw new Error(`Unknown action: ${action}`);
-      }
-      
-      console.log(`✅ ${fieldType}: ${dataValue || 'clicked'}`);
-      
-      // Brief delay to mimic human behavior
-      const delay = this.config.settings?.delays?.betweenFields || [500, 1500];
-      const randomDelay = Array.isArray(delay) 
-        ? delay[0] + Math.random() * (delay[1] - delay[0])
-        : delay;
-      await this.page.waitForTimeout(randomDelay);
-      
-      return true;
-    } catch (error) {
-      console.log(`❌ Failed to fill ${fieldType}: ${error.message}`);
-      if (actuallyRequired) throw error;
-      return false;
+    const foundSelector = await this.waitForElement(field.selectors);
+    if (!foundSelector) {
+      throw new Error(`Field not found: ${field.fieldType}`);
     }
+
+    const value = testData[field.fieldType];
+    if (!value && !field.optional) {
+      throw new Error(`No test data for required field: ${field.fieldType}`);
+    }
+
+    if (field.optional && !value) return false;
+
+    switch (field.action) {
+      case 'clear_and_type':
+        await this.page.fill(foundSelector, '');
+        await this.page.type(foundSelector, value, { delay: 100 });
+        break;
+      case 'type':
+        await this.page.type(foundSelector, value, { delay: 100 });
+        break;
+      case 'select':
+        await this.page.selectOption(foundSelector, value);
+        break;
+      case 'click':
+        await this.page.click(foundSelector);
+        break;
+      default:
+        await this.page.fill(foundSelector, value);
+    }
+
+    await this.page.waitForTimeout(Math.random() * (this.config.settings.delays.betweenFields[1] - this.config.settings.delays.betweenFields[0]) + this.config.settings.delays.betweenFields[0]);
+    return true;
   }
 
-  async inspectPageForAlternatives(originalSelector) {
+  async inspectPageForAlternatives(expectedSelector) {
     try {
-      console.log(`🔍 Inspecting page for alternatives to: ${originalSelector}`);
+      const forms = await this.page.$$('form');
+      const inputs = await this.page.$$('input');
+      const buttons = await this.page.$$('button');
       
-      // Get page title and URL for context
-      const title = await this.page.title();
-      const url = this.page.url();
-      console.log(`📄 Current page: "${title}" at ${url}`);
-      
-      // Check if we're still on Facebook (redirect failed)
-      if (url.includes('facebook.com')) {
-        console.log(`🚨 WARNING: Still on Facebook page - redirect may have failed`);
-        
-        // Try to find and click any external links again
-        const externalLinks = await this.page.$$eval('a[href*="opph3hftrk.com"], a[href*="HMLWQ96"]', links => 
-          links.map(link => ({
-            href: link.href,
-            text: link.textContent?.trim(),
-            visible: !link.hidden && link.offsetParent !== null
-          }))
-        );
-        
-        if (externalLinks.length > 0) {
-          console.log(`🔗 Found ${externalLinks.length} potential external links:`);
-          externalLinks.forEach((link, i) => {
-            console.log(`  ${i + 1}. ${link.href} - "${link.text}" (visible: ${link.visible})`);
-          });
-        }
-        
-        return { inputs: [], buttons: [], externalLinks, onFacebook: true };
-      }
-      
-      // Try to find input elements
-      const inputs = await this.page.$$eval('input', elements => 
-        elements.map(el => ({
-          type: el.type,
-          name: el.name,
-          id: el.id,
-          placeholder: el.placeholder,
-          class: el.className,
-          tagName: el.tagName,
-          visible: !el.hidden && el.offsetParent !== null
-        }))
-      );
-      
-      if (inputs.length > 0) {
-        console.log(`🔍 Found ${inputs.length} input elements:`);
-        inputs.forEach((input, i) => {
-          const visibility = input.visible ? '✅' : '❌';
-          console.log(`  ${i + 1}. ${visibility} ${input.tagName} - type: ${input.type}, name: "${input.name}", id: "${input.id}", placeholder: "${input.placeholder}"`);
-        });
-      }
-      
-      // Try to find button elements
-      const buttons = await this.page.$$eval('button, input[type="submit"], a[role="button"]', elements => 
-        elements.map(el => ({
-          text: el.textContent?.trim(),
-          type: el.type,
-          id: el.id,
-          class: el.className,
-          tagName: el.tagName,
-          role: el.getAttribute('role'),
-          visible: !el.hidden && el.offsetParent !== null
-        }))
-      );
-      
-      if (buttons.length > 0) {
-        console.log(`🔍 Found ${buttons.length} clickable elements:`);
-        buttons.forEach((button, i) => {
-          const visibility = button.visible ? '✅' : '❌';
-          console.log(`  ${i + 1}. ${visibility} ${button.tagName} - text: "${button.text}", id: "${button.id}", class: "${button.class}"`);
-        });
-      }
-      
-      return { inputs, buttons, onFacebook: false };
+      return {
+        onFacebook: this.page.url().includes('facebook.com'),
+        formCount: forms.length,
+        inputCount: inputs.length,
+        buttonCount: buttons.length,
+        pageTitle: await this.page.title(),
+        currentUrl: this.page.url()
+      };
     } catch (error) {
-      console.log(`⚠️ Page inspection failed: ${error.message}`);
-      return { inputs: [], buttons: [], onFacebook: false };
+      return { error: error.message };
     }
   }
 
   async testPage(pageConfig, testData) {
-    const { pageNumber, pageName, fields, navigation, pageDetection } = pageConfig;
-    console.log(`\n📄 Testing Page ${pageNumber}: ${pageName}`);
+    const { pageNumber, pageName, pageDetection, fields = [], navigation } = pageConfig;
     
     const pageResult = {
       pageNumber,
       pageName,
       success: false,
-      errors: [],
       fieldsCompleted: 0,
-      totalFields: fields.length
+      totalFields: fields.length,
+      errors: []
     };
 
     try {
-      // Extra wait for page to settle after navigation
-      if (pageNumber > 0) {
-        console.log('⏳ Waiting for page to fully load...');
-        await this.page.waitForTimeout(5000);
-        
-        try {
-          await this.page.waitForLoadState('networkidle', { timeout: 10000 });
-        } catch (networkError) {
-          console.log('⚠️ NetworkIdle timeout, continuing with page detection...');
-        }
+      console.log(`\n📄 Testing Page ${pageNumber}: ${pageName}`);
+      
+      // Wait for page to fully load
+      console.log('⏳ Waiting for page to fully load...');
+      await this.page.waitForLoadState('domcontentloaded', { timeout: this.config.settings.navigationTimeout });
+      try {
+        await this.page.waitForLoadState('networkidle', { timeout: 15000 });
+      } catch (networkError) {
+        console.log('⚠️ NetworkIdle timeout, continuing with page detection...');
       }
       
       // Check if we're on the right page
