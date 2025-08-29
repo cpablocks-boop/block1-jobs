@@ -2,8 +2,8 @@
   "metadata": {
     "offerName": "Work From Home - LocalJobMatcher",
     "offerCreator": "localjobsmatcher.com",
-    "version": "6.0",
-    "description": "Fixed flow: Facebook post -> offer link -> funnel",
+    "version": "6.1",
+    "description": "Fixed flow: Facebook post -> offer link -> funnel (with new tab handling)",
     "entryPoint": {
       "startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
     }
@@ -25,9 +25,10 @@
             "a[href*='HMLWQ96']:first-of-type",
             "a[href*='261TC5C']:first-of-type"
           ],
-          "waitAfterClick": 5000,
-          "waitForUrlChange": true,
-          "retryIfNoNavigation": true
+          "waitAfterClick": 3000,
+          "waitForUrlChange": false,
+          "retryIfNoNavigation": false,
+          "expectNewTab": true
         }
       },
       {
