@@ -22,6 +22,72 @@ class CPAFunnelTester {
       deviceProfile: null,
       proxy: proxyConfig ? 'enabled' : 'disabled'
     };
+    this.userDataPath = 'User-Data.csv';
+    this.userProfiles = [];
+    this.selectedUser = null;
+  }
+
+  async loadUserProfiles() {
+    try {
+      const csvData = await fs.readFile(this.userDataPath, 'utf8');
+      const lines = csvData.split('\n').filter(line => line.trim());
+      
+      const parseCsvLine = (line) => {
+        const values = [];
+        let current = '';
+        let inQuotes = false;
+        
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (char === '"' && !inQuotes) {
+            inQuotes = true;
+          } else if (char === '"' && inQuotes) {
+            if (i + 1 < line.length && line[i + 1] === '"') {
+              current += '"';
+              i++;
+            } else {
+              inQuotes = false;
+            }
+          } else if (char === ',' && !inQuotes) {
+            values.push(current);
+            current = '';
+          } else {
+            current += char;
+          }
+        }
+        values.push(current);
+        return values.map(v => v.replace(/^"/, '').replace(/"$/, '').trim());
+      };
+      
+      const headers = parseCsvLine(lines[0]);
+      
+      for (let i = 1; i < lines.length; i++) {
+        const values = parseCsvLine(lines[i]);
+        if (values.length === headers.length) {
+          const profile = {};
+          headers.forEach((header, index) => {
+            profile[header] = values[index];
+          });
+          this.userProfiles.push(profile);
+        }
+      }
+      
+      if (this.userProfiles.length === 0) {
+        throw new Error('No valid user profiles parsed from CSV');
+      }
+      
+      // Select random user
+      this.selectedUser = this.userProfiles[Math.floor(Math.random() * this.userProfiles.length)];
+      this.log(`--- New Automation Job Starting ---`);
+      this.log(`Configuration Loaded:`);
+      this.log(`  - User: ${this.selectedUser.firstName} ${this.selectedUser.lastName}`);
+      this.log(`  - Email: ${this.selectedUser.email}`);
+      this.log(`  - Phone: ${this.selectedUser.phone}`);
+      this.log(`  - Address: ${this.selectedUser.address}, ${this.selectedUser.city}, ${this.selectedUser.state} ${this.selectedUser.zipCode}`);
+    } catch (error) {
+      this.log(`⚠️ Could not load user profiles: ${error.message}`);
+      this.selectedUser = null;
+    }
   }
 
   async loadDeviceProfiles() {
@@ -31,7 +97,6 @@ class CPAFunnelTester {
       const csvData = await fs.readFile(this.deviceProfilePath, 'utf8');
       const lines = csvData.split('\n').filter(line => line.trim());
       
-      // Improved CSV line parser that handles quoted fields with commas
       const parseCsvLine = (line) => {
         const values = [];
         let current = '';
@@ -78,10 +143,10 @@ class CPAFunnelTester {
       
       // Select random profile
       this.selectedProfile = this.deviceProfiles[Math.floor(Math.random() * this.deviceProfiles.length)];
-      console.log(`📱 Selected device: ${this.selectedProfile.device_name} (${this.selectedProfile.profile_id})`);
+      this.log(`Selected device: ${this.selectedProfile.device_name} (${this.selectedProfile.profile_id})`);
       this.testResults.deviceProfile = this.selectedProfile.profile_id;
     } catch (error) {
-      console.log(`⚠️ Could not load device profiles: ${error.message}`);
+      this.log(`⚠️ Could not load device profiles: ${error.message}`);
       this.selectedProfile = null;
     }
   }
@@ -90,7 +155,7 @@ class CPAFunnelTester {
     try {
       const configData = await fs.readFile(this.configPath, 'utf8');
       this.config = JSON.parse(configData);
-      console.log(`✅ Loaded config: ${this.config.metadata.offerName} v${this.config.metadata.version}`);
+      this.log(`Loaded config: ${this.config.metadata.offerName} v${this.config.metadata.version}`);
     } catch (error) {
       throw new Error(`Failed to load config: ${error.message}`);
     }
@@ -131,7 +196,8 @@ class CPAFunnelTester {
         username: this.proxyConfig.username,
         password: this.proxyConfig.password
       };
-      console.log(`🌐 Using proxy: ${this.proxyConfig.server}`);
+      this.log(`Configuring browser to use Proxy Server: ${this.proxyConfig.server}`);
+      this.log(`✅ Proxy authentication configured.`);
     }
 
     this.browser = await BrowserType.launch(launchOptions);
@@ -169,56 +235,62 @@ class CPAFunnelTester {
     // Enable request/response monitoring
     this.page.on('request', request => {
       if (request.url().includes('facebook.com/tr') || request.url().includes('google-analytics.com')) {
-        console.log(`📊 Tracking pixel fired: ${request.url()}`);
+        this.log(`📊 Tracking pixel fired: ${request.url()}`);
       }
     });
 
     // Monitor for navigation events
     this.page.on('framenavigated', frame => {
       if (frame === this.page.mainFrame()) {
-        console.log(`🔄 Navigated to: ${frame.url()}`);
+        this.log(`🔄 Navigated to: ${frame.url()}`);
       }
     });
     
-    console.log(`🚀 Browser initialized: ${browserName}`);
+    this.log(`Launching browser for background job...`);
+    this.log(`🚀 Browser initialized: ${browserName}`);
   }
 
   generateTestData() {
-    const timestamp = Date.now();
-    const testData = {
-      zipCode: '10001',
-      firstName: `Test${timestamp}`,
-      lastName: `User${timestamp}`,
-      email: `test${timestamp}@testdomain.com`,
-      phone: '5551234567',
-      dobMonth: '01',
-      dobDay: '15',
-      dobYear: '1990',
-      address: '123 Test Street',
-      city: 'New York',
-      state: 'NY',
-      gender: Math.random() > 0.5 ? 'M' : 'F'  // Randomize gender
-    };
-
-    // Use device profile location if available
-    if (this.selectedProfile && this.selectedProfile.timezone) {
-      const timezone = this.selectedProfile.timezone;
-      if (timezone.includes('Los_Angeles')) {
-        testData.zipCode = '90210';
-        testData.city = 'Beverly Hills';
-        testData.state = 'CA';
-      } else if (timezone.includes('Chicago')) {
-        testData.zipCode = '60601';
-        testData.city = 'Chicago';
-        testData.state = 'IL';
-      } else if (timezone.includes('New_York')) {
-        testData.zipCode = '10001';
-        testData.city = 'New York';
-        testData.state = 'NY';
-      }
+    if (!this.selectedUser) {
+      this.log('⚠️ No user selected, falling back to generated data');
+      const timestamp = Date.now();
+      return {
+        zipCode: '10001',
+        firstName: `Test${timestamp}`,
+        lastName: `User${timestamp}`,
+        email: `test${timestamp}@testdomain.com`,
+        phone: '5551234567',
+        dobMonth: '01',
+        dobDay: '15',
+        dobYear: '1990',
+        address: '123 Test Street',
+        city: 'New York',
+        state: 'NY',
+        gender: Math.random() > 0.5 ? 'M' : 'F'
+      };
     }
 
-    return testData;
+    const [dobMonth, dobDay, dobYear] = this.selectedUser.dob.split('/');
+
+    return {
+      firstName: this.selectedUser.firstName,
+      lastName: this.selectedUser.lastName,
+      email: this.selectedUser.email,
+      phone: this.selectedUser.phone,
+      zipCode: this.selectedUser.zipCode,
+      address: this.selectedUser.address,
+      city: this.selectedUser.city,
+      state: this.selectedUser.state,
+      dobMonth,
+      dobDay,
+      dobYear,
+      gender: Math.random() > 0.5 ? 'M' : 'F'  // Still randomize if not in CSV
+    };
+  }
+
+  log(message) {
+    const prefix = this.selectedUser ? `[${this.selectedUser.email}]` : '[unknown]';
+    console.log(`${prefix} ${message}`);
   }
 
   async waitForElement(selectors, timeout = 10000) {
@@ -227,30 +299,28 @@ class CPAFunnelTester {
     for (const selector of selectorArray) {
       try {
         await this.page.waitForSelector(selector, { timeout: timeout / selectorArray.length, state: 'visible' });
-        return selector; // Return the successful selector
+        return selector;
       } catch (error) {
-        // Continue to next selector
+        // Continue to next
       }
     }
     
-    console.log(`⚠️ No elements found from selectors: ${JSON.stringify(selectorArray)}`);
+    this.log(`⚠️ No elements found from selectors: ${JSON.stringify(selectorArray)}`);
     return null;
   }
 
   async handleFacebookRedirect() {
-    console.log(`🔄 Handling Facebook redirect via click-through only...`);
+    this.log(`🔄 Handling Facebook redirect via click-through only...`);
     
-    // Wait for potential redirect page to load
     try {
       await this.page.waitForLoadState('domcontentloaded', { timeout: 15000 });
       await this.page.waitForTimeout(3000);
     } catch (error) {
-      console.log(`⚠️ Waiting for redirect page: ${error.message}`);
+      this.log(`⚠️ Waiting for redirect page: ${error.message}`);
     }
     
-    // Check if we're on a Facebook redirect/confirmation page
     if (this.page.url().includes('facebook.com')) {
-      console.log('📱 On Facebook redirect page - looking for continue/proceed elements...');
+      this.log('📱 On Facebook redirect page - looking for continue/proceed elements...');
       
       const continueSelectors = [
         'a:has-text("Continue")',
@@ -258,38 +328,37 @@ class CPAFunnelTester {
         'a:has-text("Proceed")',
         'a[href*="opph3hftrk.com"]',
         'a[href*="HMLWQ96"]',
-        'a:visible'  // Fallback
+        'a:visible'
       ];
       
       for (const selector of continueSelectors) {
         const foundSelector = await this.waitForElement(selector, 10000);
         if (foundSelector) {
           try {
-            console.log(`🖱️ Clicking redirect element: ${foundSelector}`);
+            this.log(`🖱️ Clicking redirect element: ${foundSelector}`);
             await this.page.click(foundSelector);
             await this.page.waitForTimeout(5000);
             
-            // Wait for navigation away from Facebook
             await this.page.waitForURL(url => !url.includes('facebook.com'), { timeout: 15000 });
             
-            console.log(`✅ Successfully redirected to: ${this.page.url()}`);
+            this.log(`✅ Successfully redirected to: ${this.page.url()}`);
             return true;
           } catch (clickError) {
-            console.log(`⚠️ Click failed for ${selector}: ${clickError.message}`);
+            this.log(`⚠️ Click failed for ${selector}: ${clickError.message}`);
           }
         }
       }
       
       throw new Error('Failed to find and click continue element on Facebook redirect page');
     } else {
-      console.log(`✅ Already navigated away from Facebook: ${this.page.url()}`);
+      this.log(`✅ Already navigated away from Facebook: ${this.page.url()}`);
       return true;
     }
   }
 
   async navigateToNextPage(navigation, pageNumber) {
-    console.log(`🔄 Navigating from page ${pageNumber}...`);
-    console.log(`📍 Current URL: ${this.page.url()}`);
+    this.log(`🔄 Navigating from page ${pageNumber}...`);
+    this.log(`📍 Current URL: ${this.page.url()}`);
     
     const foundSelector = await this.waitForElement(navigation.selectors);
     if (!foundSelector) {
@@ -297,10 +366,9 @@ class CPAFunnelTester {
     }
     
     try {
-      console.log(`🖱️ Clicking navigation element: ${foundSelector}`);
+      this.log(`🖱️ Clicking navigation element: ${foundSelector}`);
       await this.page.click(foundSelector);
       
-      // Handle potential new tab if expected
       if (navigation.expectNewTab) {
         const [newPage] = await Promise.all([
           this.browser.contexts()[0].waitForEvent('page', { timeout: 15000 }),
@@ -308,30 +376,27 @@ class CPAFunnelTester {
         ]);
         this.page = newPage;
         await this.page.bringToFront();
-        console.log(`🔄 Switched to new tab: ${this.page.url()}`);
+        this.log(`🔄 Switched to new tab: ${this.page.url()}`);
       }
       
-      // Wait for navigation
       await this.page.waitForTimeout(navigation.waitAfterClick || 5000);
       
       if (navigation.waitForUrlChange) {
         await this.page.waitForURL(url => url !== this.page.url(), { timeout: 15000 });
       }
       
-      // Handle Facebook redirect if applicable
       await this.handleFacebookRedirect();
       
-      console.log(`✅ Navigated successfully to: ${this.page.url()}`);
+      this.log(`✅ Navigated successfully to: ${this.page.url()}`);
     } catch (error) {
       if (navigation.retryIfNoNavigation) {
-        console.log('⚠️ Retry navigation...');
+        this.log('⚠️ Retry navigation...');
       }
       throw new Error(`Navigation failed: ${error.message}`);
     }
   }
 
   async fillField(field, testData) {
-    // Normalize optional/required
     const isOptional = field.optional || field.required === false;
 
     const foundSelector = await this.waitForElement(field.selectors || field.selector);
@@ -349,6 +414,8 @@ class CPAFunnelTester {
 
     if (!value) return false;
 
+    this.log(`Searching for ${field.fieldType} field...`);
+    this.log(`Found ${field.fieldType} field. Typing: ${value}`);
     switch (field.action) {
       case 'clear_and_type':
         await this.page.fill(foundSelector, '');
@@ -361,9 +428,8 @@ class CPAFunnelTester {
         await this.page.selectOption(foundSelector, value);
         break;
       case 'click':
-        // For radio/checkbox, if options, select matching one
         if (field.options && field.fieldType === 'gender') {
-          const genderSelector = foundSelector.replace(/-f--/, `-${value.toLowerCase()}--`); // Adjust for M/F if pattern matches
+          const genderSelector = foundSelector.replace(/-f--/, `-${value.toLowerCase()}--`);
           await this.page.click(genderSelector);
         } else {
           await this.page.click(foundSelector);
@@ -372,6 +438,7 @@ class CPAFunnelTester {
       default:
         await this.page.fill(foundSelector, value);
     }
+    this.log(`✅ Filled ${field.fieldType}.`);
 
     await this.page.waitForTimeout(Math.random() * (this.config.settings.delays.betweenFields[1] - this.config.settings.delays.betweenFields[0]) + this.config.settings.delays.betweenFields[0]);
     return true;
@@ -409,20 +476,17 @@ class CPAFunnelTester {
     };
 
     try {
-      console.log(`\n📄 Testing Page ${pageNumber}: ${pageName}`);
-      
-      // Wait for page to fully load
-      console.log('⏳ Waiting for page to fully load...');
+      this.log(`--- STEP ${pageNumber}: Automating ${pageName} ---`);
+      this.log(`⏳ Waiting for page to fully load...`);
       await this.page.waitForLoadState('domcontentloaded', { timeout: this.config.settings.navigationTimeout });
       try {
         await this.page.waitForLoadState('networkidle', { timeout: 15000 });
       } catch (networkError) {
-        console.log('⚠️ NetworkIdle timeout, continuing with page detection...');
+        this.log('⚠️ NetworkIdle timeout, continuing with page detection...');
       }
       
-      // Check if we're on the right page
       if (pageDetection?.checkForElement) {
-        console.log(`🔍 Looking for page detection element: ${pageDetection.checkForElement}`);
+        this.log(`🔍 Looking for page detection element: ${pageDetection.checkForElement}`);
         const pageDetected = await this.waitForElement([pageDetection.checkForElement], 15000);
         if (!pageDetected) {
           const inspection = await this.inspectPageForAlternatives(pageDetection.checkForElement);
@@ -433,10 +497,9 @@ class CPAFunnelTester {
           
           throw new Error(`Page detection failed: ${pageDetection.checkForElement} not found`);
         }
-        console.log(`✅ Page detected correctly`);
+        this.log(`✅ Page detected correctly`);
       }
 
-      // Fill all fields on this page
       for (const field of fields) {
         try {
           const success = await this.fillField(field, testData);
@@ -448,17 +511,16 @@ class CPAFunnelTester {
         }
       }
 
-      // Navigate to next page (if navigation is defined)
       if (navigation) {
         await this.navigateToNextPage(navigation, pageNumber);
       }
 
       pageResult.success = true;
-      console.log(`✅ Page ${pageNumber} completed successfully`);
+      this.log(`✅ Step ${pageNumber} complete. Navigated to next page.`);
       
     } catch (error) {
       pageResult.errors.push(error.message);
-      console.log(`❌ Page ${pageNumber} failed: ${error.message}`);
+      this.log(`❌ Step ${pageNumber} failed: ${error.message}`);
       throw error;
     }
 
@@ -468,16 +530,16 @@ class CPAFunnelTester {
 
   async runFullTest() {
     try {
+      await this.loadUserProfiles();
       await this.loadDeviceProfiles();
       await this.loadConfig();
       await this.initBrowser();
       
       const testData = this.generateTestData();
-      console.log(`🧪 Generated test data for: ${testData.email}`);
+      this.log(`🧪 Generated test data for: ${testData.email}`);
       
-      // Navigate to entry point
       const startUrl = this.config.metadata.entryPoint.startUrl;
-      console.log(`🌐 Navigating to entry point: ${startUrl}`);
+      this.log(`🌐 Navigating to Facebook landing page: ${startUrl}`);
       
       const startTime = Date.now();
       await this.page.goto(startUrl, {
@@ -487,27 +549,24 @@ class CPAFunnelTester {
       
       this.testResults.metrics.initialPageLoad = Date.now() - startTime;
       
-      // Wait for initial page to load
-      console.log('⏳ Waiting for initial page to load...');
+      this.log('⏳ Waiting for initial page to load...');
       await this.page.waitForTimeout(5000);
       
       try {
         await this.page.waitForLoadState('networkidle', { timeout: 15000 });
       } catch (networkError) {
-        console.log('⚠️ NetworkIdle timeout on initial page, continuing...');
+        this.log('⚠️ NetworkIdle timeout on initial page, continuing...');
       }
       
-      // Test each page in sequence
       for (const pageConfig of this.config.funnel.pages) {
         await this.testPage(pageConfig, testData);
       }
       
-      // Test completed successfully
       this.testResults.success = true;
       this.testResults.endTime = new Date().toISOString();
       this.testResults.totalDuration = Date.now() - new Date(this.testResults.startTime).getTime();
       
-      console.log('\n🎉 FUNNEL TEST COMPLETED SUCCESSFULLY!');
+      this.log('\n🎉 FUNNEL TEST COMPLETED SUCCESSFULLY!');
       this.logResults();
       
     } catch (error) {
@@ -516,9 +575,8 @@ class CPAFunnelTester {
       this.testResults.endTime = new Date().toISOString();
       this.testResults.totalDuration = Date.now() - new Date(this.testResults.startTime).getTime();
       
-      console.log(`\n💥 TEST FAILED: ${error.message}`);
+      this.log(`\n💥 TEST FAILED: ${error.message}`);
       
-      // Take screenshot on failure
       if (this.page) {
         try {
           const screenshotPath = `failure-${Date.now()}.png`;
@@ -526,9 +584,9 @@ class CPAFunnelTester {
             path: screenshotPath,
             fullPage: true 
           });
-          console.log(`📸 Screenshot saved: ${screenshotPath}`);
+          this.log(`📸 Screenshot saved: ${screenshotPath}`);
         } catch (screenshotError) {
-          console.log(`⚠️ Could not take screenshot: ${screenshotError.message}`);
+          this.log(`⚠️ Could not take screenshot: ${screenshotError.message}`);
         }
       }
       
@@ -539,25 +597,25 @@ class CPAFunnelTester {
   }
 
   logResults() {
-    console.log('\n📊 TEST RESULTS SUMMARY:');
-    console.log(`⏱️ Total Duration: ${this.testResults.totalDuration}ms`);
-    console.log(`📄 Pages Tested: ${this.testResults.pageResults.length}`);
-    console.log(`✅ Success Rate: ${this.testResults.pageResults.filter(p => p.success).length}/${this.testResults.pageResults.length}`);
+    this.log('\n📊 TEST RESULTS SUMMARY:');
+    this.log(`⏱️ Total Duration: ${this.testResults.totalDuration}ms`);
+    this.log(`📄 Pages Tested: ${this.testResults.pageResults.length}`);
+    this.log(`✅ Success Rate: ${this.testResults.pageResults.filter(p => p.success).length}/${this.testResults.pageResults.length}`);
     
     if (this.selectedProfile) {
-      console.log(`📱 Device: ${this.selectedProfile.device_name} (${this.selectedProfile.brand})`);
+      this.log(`📱 Device: ${this.selectedProfile.device_name} (${this.selectedProfile.brand})`);
     }
     
     if (this.proxyConfig) {
-      console.log(`🌐 Proxy: ${this.proxyConfig.server}`);
+      this.log(`🌐 Proxy: ${this.proxyConfig.server}`);
     }
     
     this.testResults.pageResults.forEach(result => {
       const status = result.success ? '✅' : '❌';
-      console.log(`${status} Page ${result.pageNumber} (${result.pageName}): ${result.fieldsCompleted}/${result.totalFields} fields`);
+      this.log(`${status} Page ${result.pageNumber} (${result.pageName}): ${result.fieldsCompleted}/${result.totalFields} fields`);
       
       if (result.errors.length > 0) {
-        result.errors.forEach(error => console.log(`   ⚠️ ${error}`));
+        result.errors.forEach(error => this.log(`   ⚠️ ${error}`));
       }
     });
   }
@@ -565,7 +623,8 @@ class CPAFunnelTester {
   async cleanup() {
     if (this.browser) {
       await this.browser.close();
-      console.log('🧹 Browser closed');
+      this.log('🧹 Browser closed');
+      this.log('✅ Automation job completed successfully.');
     }
   }
 
@@ -575,11 +634,10 @@ class CPAFunnelTester {
       : `test-results-${process.env.BROWSER || 'chromium'}-${Date.now()}.json`;
     
     await fs.writeFile(finalOutputPath, JSON.stringify(this.testResults, null, 2));
-    console.log(`💾 Results saved to ${finalOutputPath}`);
+    this.log(`💾 Results saved to ${finalOutputPath}`);
   }
 }
 
-// Configuration discovery function
 async function findConfigFiles() {
   const configFiles = [];
   const files = await fs.readdir('.');
@@ -593,7 +651,7 @@ async function findConfigFiles() {
           configFiles.push(file);
         }
       } catch (error) {
-        // Not a valid config file
+        // Not valid
       }
     }
   }
@@ -601,7 +659,6 @@ async function findConfigFiles() {
   return configFiles;
 }
 
-// Device profile discovery function
 async function findDeviceProfileFiles() {
   const profileFiles = [];
   const files = await fs.readdir('.');
@@ -615,12 +672,10 @@ async function findDeviceProfileFiles() {
   return profileFiles;
 }
 
-// Main execution function
 async function runTest() {
   const configFile = process.argv[2] || './wfh_localjobmatcher.json';
   let deviceProfileFile = process.argv[3] || null;
   
-  // Check if config file exists
   let actualConfigFile = configFile;
   try {
     await fs.access(configFile);
@@ -636,7 +691,6 @@ async function runTest() {
     console.log(`📋 Using config: ${actualConfigFile}`);
   }
   
-  // Auto-discover device profile files if not specified
   if (!deviceProfileFile) {
     const availableProfiles = await findDeviceProfileFiles();
     if (availableProfiles.length > 0) {
@@ -645,7 +699,6 @@ async function runTest() {
     }
   }
   
-  // Configure proxy if environment variables are set
   let proxyConfig = null;
   if (process.env.PROXY_SERVER) {
     proxyConfig = {
@@ -674,7 +727,6 @@ async function runTest() {
   }
 }
 
-// Run if executed directly
 if (require.main === module) {
   runTest();
 }
