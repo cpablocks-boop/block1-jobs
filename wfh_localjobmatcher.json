@@ -20,10 +20,10 @@
         "navigation": { 
           "type": "link", 
           "selectors": [
-            "a[href*='opph3hftrk.com/HMLWQ96/261TC5C']",
-            "a[href*='opph3hftrk.com']",
-            "a[href*='HMLWQ96']",
-            "a[href*='261TC5C']"
+            "a[href*='opph3hftrk.com/HMLWQ96/261TC5C']:first-of-type",
+            "a[href*='opph3hftrk.com']:first-of-type",
+            "a[href*='HMLWQ96']:first-of-type",
+            "a[href*='261TC5C']:first-of-type"
           ],
           "waitAfterClick": 5000,
           "waitForUrlChange": true,
