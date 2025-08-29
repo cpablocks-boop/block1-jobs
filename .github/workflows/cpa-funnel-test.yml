@@ -32,14 +32,26 @@ jobs:
         npm install
         npx playwright install --with-deps ${{ matrix.browser }}
     
-    - name: Validate config file
+    - name: Validate config and device profile files
       run: |
+        echo "🔍 Checking for configuration files..."
         if [ ! -f "wfh_localjobmatcher.json" ]; then
           echo "❌ Config file not found!"
           exit 1
         fi
         echo "✅ Config file found"
         node -e "JSON.parse(require('fs').readFileSync('wfh_localjobmatcher.json'))" && echo "✅ Valid JSON"
+        
+        echo "🔍 Checking for device profile files..."
+        if [ -f "android-device-profiles.csv" ]; then
+          echo "✅ Android device profiles found"
+        fi
+        if [ -f "iphone-device-profiles.csv" ]; then
+          echo "✅ iPhone device profiles found"
+        fi
+        
+        echo "📁 Available files:"
+        ls -la *.csv *.json 2>/dev/null || echo "No CSV/JSON files found"
     
     - name: Run CPA Funnel Tests
       env:
