@@ -2,8 +2,8 @@
 "metadata": {
 "offerName": "Work From Home - LocalJobMatcher",
 "offerCreator": "localjobsmatcher.com",
-"version": "6.5",
-"description": "Facebook-only flow: Facebook post -> offer link -> funnel (improved redirect handling). Further updated with more robust selectors for ZIP page detection, including exact matches and attribute combinations. Increased delays for better handling of dynamic content loading.",
+"version": "6.7",
+"description": "Facebook-only flow: Facebook post -> offer link -> funnel (improved redirect handling). Corrected selectors to use valid Playwright CSS syntax, replacing :contains with :has-text for text matching. Extended delays further to ensure dynamic elements are fully loaded before detection.",
 "entryPoint": {
 "startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
 }
@@ -25,7 +25,7 @@
 "a[href*='HMLWQ96']",
 "a[href*='261TC5C']"
 ],
-"waitAfterClick": 15000,
+"waitAfterClick": 20000,
 "waitForUrlChange": false,
 "retryIfNoNavigation": true,
 "maxWaitTime": 60000,
@@ -36,7 +36,7 @@
 "pageNumber": 1,
 "pageName": "ZIP Code Entry",
 "pageDetection": {
-"checkForElement": "input[name*='Zip Code'], input[placeholder*='Zip Code'], input[placeholder*='zip'], input[type='text'], input[name='postal_code'], input[name='zipcode'], input[name='l-input'], input[type='text'][placeholder='Zip Code'], input[type='text'][maxlength='5'], input.custom-input, input.icon-input"
+"checkForElement": "input[name*='Zip Code'], input[placeholder*='Zip Code'], input[placeholder*='zip'], input[type='text'], input[name='postal_code'], input[name='zipcode'], input[name='l-input'], input[type='text'][placeholder='Zip Code'], input[type='text'][maxlength='5'], input[class*='custom-input'], input[class*='icon-input'], [data-testid='viewJobsButton'], button:has-text('View Your Jobs »')"
 },
 "fields": [
 {
@@ -51,8 +51,8 @@
 "input[name='l-input']:visible",
 "input[type='text'][placeholder='Zip Code']:visible",
 "input[type='text'][maxlength='5']:visible",
-"input.custom-input:visible",
-"input.icon-input:visible",
+"input[class*='custom-input']:visible",
+"input[class*='icon-input']:visible",
 "#zip:visible",
 ".zip-input:visible",
 "form input[type='text']:visible:first",
@@ -66,19 +66,18 @@
 "selectors": [
 "button[type='submit']:visible",
 "input[type='submit']:visible",
-"button:contains('View Your Jobs »'):visible",
 "button:has-text('View Your Jobs »'):visible",
 "[data-testid='viewJobsButton']:visible",
-"button:contains('Continue'):visible",
-"button:contains('Next'):visible",
-"button:contains('Submit'):visible",
+"button:has-text('Continue'):visible",
+"button:has-text('Next'):visible",
+"button:has-text('Submit'):visible",
 ".submit-button:visible",
 ".continue-button:visible",
 "button.btn-primary:visible",
 "form button:visible:first",
 "button:visible:first"
 ],
-"waitAfterClick": 15000,
+"waitAfterClick": 20000,
 "waitForUrlChange": true,
 "retryIfNoNavigation": true
 }
@@ -134,16 +133,16 @@
 "selectors": [
 "button[type='submit']:visible",
 "input[type='submit']:visible",
-"button:contains('Continue'):visible",
-"button:contains('Next'):visible",
-"button:contains('Submit'):visible",
+"button:has-text('Continue'):visible",
+"button:has-text('Next'):visible",
+"button:has-text('Submit'):visible",
 ".submit-button:visible",
 ".continue-button:visible",
 "button.btn-primary:visible",
 "form button:visible:first",
 "button:visible:first"
 ],
-"waitAfterClick": 15000,
+"waitAfterClick": 20000,
 "waitForUrlChange": true,
 "retryIfNoNavigation": true
 }
@@ -211,16 +210,16 @@
 "selectors": [
 "button[type='submit']:visible",
 "input[type='submit']:visible",
-"button:contains('Continue'):visible",
-"button:contains('Next'):visible",
-"button:contains('Submit'):visible",
+"button:has-text('Continue'):visible",
+"button:has-text('Next'):visible",
+"button:has-text('Submit'):visible",
 ".submit-button:visible",
 ".continue-button:visible",
 "button.btn-primary:visible",
 "form button:visible:first",
 "button:visible:first"
 ],
-"waitAfterClick": 15000,
+"waitAfterClick": 20000,
 "waitForUrlChange": true,
 "retryIfNoNavigation": true
 }
@@ -299,16 +298,16 @@
 "selectors": [
 "button[type='submit']:visible",
 "input[type='submit']:visible",
-"button:contains('Continue'):visible",
-"button:contains('Next'):visible",
-"button:contains('Submit'):visible",
+"button:has-text('Continue'):visible",
+"button:has-text('Next'):visible",
+"button:has-text('Submit'):visible",
 ".submit-button:visible",
 ".continue-button:visible",
 "button.btn-primary:visible",
 "form button:visible:first",
 "button:visible:first"
 ],
-"waitAfterClick": 15000,
+"waitAfterClick": 20000,
 "waitForUrlChange": true,
 "retryIfNoNavigation": true
 }
@@ -340,7 +339,7 @@
 "button:nth-child(2):visible",
 "button:nth-child(1):visible"
 ],
-"waitAfterClick": 15000,
+"waitAfterClick": 20000,
 "waitForUrlChange": true,
 "retryIfNoNavigation": true
 }
@@ -350,7 +349,7 @@
 "settings": {
 "delays": {
 "betweenFields": [800, 2000],
-"pageLoad": 15000,
+"pageLoad": 30000,
 "navigationTimeout": 60000
 }
 }
