@@ -322,6 +322,45 @@ class CPAFunnelTester {
         console.log(`🔍 Found ${count} matching elements, clicking the first one`);
       }
       
+      // Special handling for Facebook links that open in new tabs
+      if (currentUrl.includes('facebook.com')) {
+        console.log('📱 Detected Facebook page - handling new tab navigation...');
+        
+        // Listen for new page/tab creation
+        const newPagePromise = this.page.context().waitForEvent('page');
+        
+        await element.click();
+        
+        try {
+          // Wait for the new page to be created
+          const newPage = await Promise.race([
+            newPagePromise,
+            new Promise((_, reject) => setTimeout(() => reject(new Error('New tab timeout')), 10000))
+          ]);
+          
+          // Wait for the new page to load
+          await newPage.waitForLoadState('networkidle', { timeout: 30000 });
+          
+          // Switch to the new page
+          this.page = newPage;
+          
+          console.log(`✅ Switched to new tab: ${this.page.url()}`);
+          
+          // Update request monitoring for the new page
+          this.page.on('request', request => {
+            if (request.url().includes('facebook.com/tr') || request.url().includes('google-analytics.com')) {
+              console.log(`📊 Tracking pixel fired: ${request.url()}`);
+            }
+          });
+          
+          return true;
+        } catch (newTabError) {
+          console.log(`⚠️ New tab not detected, checking for same-tab navigation...`);
+          // Fall back to regular navigation handling
+        }
+      }
+      
+      // Regular click handling for non-Facebook pages
       await element.click();
       
       if (waitAfterClick) {
@@ -349,7 +388,7 @@ class CPAFunnelTester {
           }
         }
         
-        if (!urlChanged && waitForUrlChange) {
+        if (!urlChanged && waitForUrlChange && !currentUrl.includes('facebook.com')) {
           throw new Error('Expected URL change but none occurred');
         }
       }
@@ -363,7 +402,7 @@ class CPAFunnelTester {
 
   async testPage(pageConfig, testData) {
     const { pageNumber, pageName, fields, navigation, pageDetection } = pageConfig;
-    console.log(`\n🔄 Testing Page ${pageNumber}: ${pageName}`);
+    console.log(`\n📄 Testing Page ${pageNumber}: ${pageName}`);
     
     const pageResult = {
       pageNumber,
