@@ -323,29 +323,54 @@ class CPAFunnelTester {
     }
   }
 
-  // Improved navigation with better Facebook link handling
+  // Enhanced Facebook navigation with aggressive redirect handling
   async navigateToNextPage(navigation, pageNumber) {
-    const { selector, selectors, waitAfterClick = 2000, waitForUrlChange = false, retryIfNoNavigation = false, expectNewTab = false, maxWaitTime = 30000 } = navigation;
+    const { selector, selectors, waitAfterClick = 2000, waitForUrlChange = false, retryIfNoNavigation = false, expectNewTab = false, maxWaitTime = 45000 } = navigation;
     
     try {
       const currentUrl = this.page.url();
       console.log(`🔄 Navigating from page ${pageNumber}...`);
+      console.log(`📍 Current URL: ${currentUrl}`);
       
       // Handle both old and new selector formats
       const selectorsToTry = selectors || [selector];
-      const foundSelector = await this.waitForElement(selectorsToTry, 10000);
+      const foundSelector = await this.waitForElement(selectorsToTry, 15000);
       
       if (!foundSelector) {
         // Inspect page for navigation alternatives
         const inspection = await this.inspectPageForAlternatives(selector);
         
-        // If we're on Facebook and have external links, try one more attempt
+        // If we're on Facebook and have external links, try direct navigation
         if (inspection.onFacebook && inspection.externalLinks && inspection.externalLinks.length > 0) {
-          console.log(`🔄 Attempting to click external link directly...`);
-          const visibleLink = inspection.externalLinks.find(link => link.visible);
-          if (visibleLink) {
-            await this.page.goto(visibleLink.href, { waitUntil: 'domcontentloaded', timeout: maxWaitTime });
-            console.log(`🌐 Direct navigation to: ${this.page.url()}`);
+          console.log(`🔄 Attempting to extract and navigate to external link directly...`);
+          const validLink = inspection.externalLinks.find(link => 
+            link.href && link.href.includes('opph3hftrk.com')
+          );
+          
+          if (validLink) {
+            console.log(`🌐 Found valid external link: ${validLink.href}`);
+            
+            // Extract the actual destination URL from Facebook's redirect
+            let targetUrl = validLink.href;
+            if (targetUrl.includes('l.facebook.com')) {
+              const urlMatch = targetUrl.match(/u=([^&]+)/);
+              if (urlMatch) {
+                targetUrl = decodeURIComponent(urlMatch[1]);
+                console.log(`🔗 Extracted target URL: ${targetUrl}`);
+              }
+            }
+            
+            // Navigate directly to avoid Facebook redirect issues
+            console.log(`🚀 Direct navigation to: ${targetUrl}`);
+            await this.page.goto(targetUrl, { 
+              waitUntil: 'domcontentloaded', 
+              timeout: maxWaitTime 
+            });
+            
+            // Wait for page to settle
+            await this.page.waitForTimeout(3000);
+            
+            console.log(`✅ Successfully navigated to: ${this.page.url()}`);
             return true;
           }
         }
@@ -353,38 +378,40 @@ class CPAFunnelTester {
         throw new Error(`Navigation element not found`);
       }
       
-      // Handle multiple elements by using .first() or .nth(0)
+      // Get element and try clicking
       const element = await this.page.locator(foundSelector).first();
-      
-      // Check if multiple elements exist and log it
       const count = await this.page.locator(foundSelector).count();
+      
       if (count > 1) {
-        console.log(`🔍 Found ${count} matching elements, clicking the first one`);
+        console.log(`🔍 Found ${count} matching elements, using the first one`);
       }
       
-      // Improved Facebook link handling
+      // Special Facebook link handling
       if (currentUrl.includes('facebook.com') && expectNewTab) {
-        console.log('📱 Detected Facebook page - attempting improved new tab navigation...');
+        console.log('📱 Facebook detected - using enhanced navigation strategy...');
         
         try {
-          // Get the href attribute to navigate directly if needed
+          // Get the href to see what we're clicking
           const href = await element.getAttribute('href');
-          console.log(`🔗 Link href: ${href}`);
+          console.log(`🔗 Target link: ${href}`);
           
-          // Try clicking and handling new page
+          // Method 1: Try new tab handling
           const newPagePromise = this.page.context().waitForEvent('page');
           await element.click();
+          console.log('👆 Clicked Facebook link');
           
           try {
+            // Wait for new page with longer timeout
+            console.log('⏳ Waiting for new tab to open...');
             const newPage = await Promise.race([
               newPagePromise,
-              new Promise((_, reject) => setTimeout(() => reject(new Error('New tab timeout')), 15000))
+              new Promise((_, reject) => setTimeout(() => reject(new Error('New tab timeout')), 20000))
             ]);
             
             console.log(`🔗 New tab opened: ${newPage.url()}`);
             
-            // Wait for redirect chain to complete
-            await this.handleFacebookRedirects(newPage, maxWaitTime);
+            // Enhanced redirect handling
+            await this.handleFacebookRedirectsAggressively(newPage, maxWaitTime);
             
             // Switch to the new page
             this.page = newPage;
@@ -396,20 +423,48 @@ class CPAFunnelTester {
               }
             });
             
+            console.log(`✅ Successfully navigated via new tab to: ${this.page.url()}`);
             return true;
             
           } catch (newTabError) {
-            console.log(`⚠️ New tab failed: ${newTabError.message}`);
+            console.log(`⚠️ New tab method failed: ${newTabError.message}`);
             
-            // Fallback: try direct navigation if we have the href
-            if (href && href.includes('opph3hftrk.com')) {
-              console.log(`🔄 Fallback: Direct navigation to ${href}`);
-              await this.page.goto(href, { waitUntil: 'domcontentloaded', timeout: maxWaitTime });
+            // Method 2: Extract URL and navigate directly
+            if (href && href.includes('l.facebook.com')) {
+              console.log(`🔄 Fallback: Extracting URL from Facebook link`);
+              
+              let targetUrl = href;
+              const urlMatch = href.match(/u=([^&]+)/);
+              if (urlMatch) {
+                targetUrl = decodeURIComponent(urlMatch[1]);
+                console.log(`🎯 Extracted target: ${targetUrl}`);
+                
+                await this.page.goto(targetUrl, { 
+                  waitUntil: 'domcontentloaded', 
+                  timeout: maxWaitTime 
+                });
+                
+                await this.page.waitForTimeout(3000);
+                console.log(`✅ Direct navigation successful: ${this.page.url()}`);
+                return true;
+              }
+            }
+            
+            // Method 3: Wait and check if current page changed
+            console.log(`🔄 Fallback: Checking for same-tab navigation`);
+            await this.page.waitForTimeout(5000);
+            
+            const newUrl = this.page.url();
+            if (newUrl !== currentUrl && !newUrl.includes('facebook.com')) {
+              console.log(`✅ Same-tab navigation successful: ${newUrl}`);
               return true;
             }
+            
+            throw new Error('All Facebook navigation methods failed');
           }
         } catch (error) {
-          console.log(`⚠️ Facebook navigation failed: ${error.message}`);
+          console.log(`❌ Facebook navigation error: ${error.message}`);
+          throw error;
         }
       }
       
@@ -441,7 +496,7 @@ class CPAFunnelTester {
           }
         }
         
-        if (!urlChanged && waitForUrlChange && !currentUrl.includes('facebook.com')) {
+        if (!urlChanged && waitForUrlChange) {
           throw new Error('Expected URL change but none occurred');
         }
       }
@@ -453,48 +508,102 @@ class CPAFunnelTester {
     }
   }
 
-  // New method to handle Facebook redirect chains more reliably
-  async handleFacebookRedirects(page, maxWaitTime = 30000) {
+  // More aggressive Facebook redirect handling
+  async handleFacebookRedirectsAggressively(page, maxWaitTime = 45000) {
     let finalUrl = page.url();
     let redirectCount = 0;
-    const maxRedirects = 10;
+    const maxRedirects = 15;
     const startTime = Date.now();
+    
+    console.log(`🔄 Starting redirect handling for: ${finalUrl}`);
     
     // Wait for initial load
     try {
-      await page.waitForLoadState('domcontentloaded', { timeout: 10000 });
+      await page.waitForLoadState('domcontentloaded', { timeout: 15000 });
+      console.log(`✅ Initial page load complete`);
     } catch (error) {
       console.log(`⚠️ Initial load timeout: ${error.message}`);
     }
     
-    while (finalUrl.includes('l.facebook.com') && redirectCount < maxRedirects && (Date.now() - startTime) < maxWaitTime) {
-      console.log(`🔄 Waiting for Facebook redirect ${redirectCount + 1}/${maxRedirects}...`);
-      await page.waitForTimeout(2000);
+    // Handle Facebook redirect chain with multiple strategies
+    while ((finalUrl.includes('l.facebook.com') || finalUrl.includes('facebook.com')) && 
+           !finalUrl.includes('opph3hftrk.com') && 
+           redirectCount < maxRedirects && 
+           (Date.now() - startTime) < maxWaitTime) {
       
-      const currentUrl = page.url();
+      console.log(`🔄 Handling redirect ${redirectCount + 1}/${maxRedirects}: ${finalUrl}`);
+      
+      // Strategy 1: Wait for natural redirect
+      await page.waitForTimeout(3000);
+      
+      let currentUrl = page.url();
       if (currentUrl !== finalUrl) {
         finalUrl = currentUrl;
-        console.log(`🔗 Redirected to: ${finalUrl}`);
+        console.log(`↪️ Natural redirect to: ${finalUrl}`);
+        
+        // If we've reached the target domain, break
+        if (currentUrl.includes('opph3hftrk.com')) {
+          console.log(`🎯 Reached target domain!`);
+          break;
+        }
+      } else {
+        // Strategy 2: Look for meta refresh or JavaScript redirects
+        try {
+          const metaRefresh = await page.$('meta[http-equiv="refresh"]');
+          if (metaRefresh) {
+            const content = await metaRefresh.getAttribute('content');
+            console.log(`🔄 Found meta refresh: ${content}`);
+          }
+          
+          // Strategy 3: Check for redirect links on page
+          const redirectLinks = await page.$eval('a', links => 
+            links.filter(link => link.href && (link.href.includes('opph3hftrk.com') || link.textContent.includes('click here')))
+                 .map(link => ({ href: link.href, text: link.textContent.trim() }))
+          );
+          
+          if (redirectLinks.length > 0) {
+            console.log(`🔗 Found ${redirectLinks.length} potential redirect links`);
+            const targetLink = redirectLinks.find(link => link.href.includes('opph3hftrk.com'));
+            if (targetLink) {
+              console.log(`🎯 Clicking redirect link: ${targetLink.href}`);
+              await page.goto(targetLink.href, { waitUntil: 'domcontentloaded', timeout: 15000 });
+              finalUrl = page.url();
+              console.log(`✅ Redirect link navigation: ${finalUrl}`);
+              break;
+            }
+          }
+          
+        } catch (strategyError) {
+          console.log(`⚠️ Redirect strategy error: ${strategyError.message}`);
+        }
       }
+      
       redirectCount++;
       
-      // If we're no longer on a Facebook domain, we're probably at the destination
-      if (!currentUrl.includes('facebook.com')) {
-        console.log(`✅ Left Facebook domain, reached: ${currentUrl}`);
-        break;
+      // Progressive backoff
+      if (redirectCount > 5) {
+        await page.waitForTimeout(5000);
       }
     }
     
-    // Final wait for page to be ready
+    // Final wait for page stability
     await page.waitForTimeout(3000);
     
     try {
-      await page.waitForLoadState('networkidle', { timeout: 5000 });
+      await page.waitForLoadState('networkidle', { timeout: 10000 });
     } catch (error) {
-      console.log(`⚠️ Network idle timeout: ${error.message}`);
+      console.log(`⚠️ Final networkidle timeout: ${error.message}`);
     }
     
-    console.log(`✅ Final destination: ${page.url()}`);
+    finalUrl = page.url();
+    console.log(`🏁 Final destination: ${finalUrl}`);
+    
+    if (!finalUrl.includes('opph3hftrk.com') && finalUrl.includes('facebook.com')) {
+      console.log(`🚨 WARNING: Still on Facebook after ${redirectCount} redirects`);
+      throw new Error('Facebook redirect chain did not reach target domain');
+    }
+    
+    console.log(`✅ Redirect handling completed successfully`);
   }
 
   async testPage(pageConfig, testData) {
@@ -579,64 +688,29 @@ class CPAFunnelTester {
       const testData = this.generateTestData();
       console.log(`🧪 Generated test data for: ${testData.email}`);
       
-      // Try direct navigation to landing page first
-      let startUrl = this.config.metadata.entryPoint.startUrl;
+      // Navigate to Facebook post (entry point)
+      const startUrl = this.config.metadata.entryPoint.startUrl;
+      console.log(`🌐 Navigating to Facebook post: ${startUrl}`);
       
-      // If direct URL fails, fall back to Facebook
-      console.log(`🌐 Attempting direct navigation to: ${startUrl}`);
+      const startTime = Date.now();
+      await this.page.goto(startUrl, {
+        waitUntil: 'domcontentloaded',
+        timeout: 30000
+      });
+      
+      this.testResults.metrics.initialPageLoad = Date.now() - startTime;
+      
+      // Wait for Facebook page to load completely
+      console.log('⏳ Waiting for Facebook page to load...');
+      await this.page.waitForTimeout(5000);
       
       try {
-        const startTime = Date.now();
-        await this.page.goto(startUrl, {
-          waitUntil: 'networkidle',
-          timeout: 30000
-        });
-        
-        this.testResults.metrics.initialPageLoad = Date.now() - startTime;
-        
-        // Check if we successfully reached the landing page
-        const currentUrl = this.page.url();
-        console.log(`📍 Current URL after navigation: ${currentUrl}`);
-        
-        if (currentUrl.includes('facebook.com')) {
-          console.log(`⚠️ Redirected to Facebook, will handle via Facebook flow`);
-        } else if (currentUrl.includes('opph3hftrk.com')) {
-          console.log(`✅ Successfully reached landing page directly`);
-          // Skip the Facebook page (page 0) and start from page 1
-          const funnelPages = this.config.funnel.pages.slice(1);
-          for (const pageConfig of funnelPages) {
-            await this.testPage({ ...pageConfig, pageNumber: pageConfig.pageNumber - 1 }, testData);
-          }
-          
-          this.testResults.success = true;
-          this.testResults.endTime = new Date().toISOString();
-          this.testResults.totalDuration = Date.now() - new Date(this.testResults.startTime).getTime();
-          
-          console.log('\n🎉 FUNNEL TEST COMPLETED SUCCESSFULLY (DIRECT)!');
-          this.logResults();
-          return;
-        }
-        
-      } catch (directNavError) {
-        console.log(`⚠️ Direct navigation failed: ${directNavError.message}`);
-        
-        // Try fallback URL if available
-        if (this.config.metadata.entryPoint.fallbackUrl) {
-          console.log(`🔄 Trying fallback URL: ${this.config.metadata.entryPoint.fallbackUrl}`);
-          startUrl = this.config.metadata.entryPoint.fallbackUrl;
-          await this.page.goto(startUrl, {
-            waitUntil: 'networkidle',
-            timeout: 30000
-          });
-        } else {
-          throw directNavError;
-        }
+        await this.page.waitForLoadState('networkidle', { timeout: 15000 });
+      } catch (networkError) {
+        console.log('⚠️ NetworkIdle timeout on Facebook, continuing...');
       }
       
-      // Wait a bit more for dynamic content
-      await this.page.waitForTimeout(3000);
-      
-      // Test each page in sequence
+      // Test each page in sequence (starting from Facebook)
       for (const pageConfig of this.config.funnel.pages) {
         await this.testPage(pageConfig, testData);
       }
