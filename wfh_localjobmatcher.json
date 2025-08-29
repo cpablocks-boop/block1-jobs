@@ -2,54 +2,58 @@
   "metadata": {
     "offerName": "Work From Home - LocalJobMatcher",
     "offerCreator": "localjobsmatcher.com",
-    "version": "6.1",
-    "description": "Fixed flow: Facebook post -> offer link -> funnel (with new tab handling)",
+    "version": "6.2",
+    "description": "Fixed flow: Direct to landing page or improved Facebook handling",
     "entryPoint": {
-      "startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
+      "startUrl": "https://www.opph3hftrk.com/HMLWQ96/261TC5C/",
+      "fallbackUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
     }
   },
   "funnel": {
     "pages": [
       {
         "pageNumber": 0,
-        "pageName": "Facebook Post - Click Offer Link",
+        "pageName": "Facebook Post - Click Offer Link (Optional)",
         "pageDetection": {
-          "checkForElement": "a[href*='opph3hftrk.com'], a[href*='HMLWQ96'], [href*='opph3hftrk.com']"
+          "checkForElement": "a[href*='opph3hftrk.com'], a[href*='HMLWQ96'], [href*='opph3hftrk.com'], input[name*='zip'], input[placeholder*='ZIP'], input[placeholder*='zip']"
         },
         "fields": [],
         "navigation": { 
-          "type": "link", 
+          "type": "conditional", 
           "selectors": [
-            "a[href*='opph3hftrk.com/HMLWQ96/261TC5C']:first-of-type",
-            "a[href*='opph3hftrk.com']:first-of-type",
-            "a[href*='HMLWQ96']:first-of-type",
-            "a[href*='261TC5C']:first-of-type"
+            "a[href*='opph3hftrk.com/HMLWQ96/261TC5C']",
+            "a[href*='opph3hftrk.com']",
+            "a[href*='HMLWQ96']",
+            "a[href*='261TC5C']"
           ],
-          "waitAfterClick": 3000,
-          "waitForUrlChange": false,
-          "retryIfNoNavigation": false,
-          "expectNewTab": true
+          "waitAfterClick": 5000,
+          "waitForUrlChange": true,
+          "retryIfNoNavigation": true,
+          "maxWaitTime": 30000,
+          "expectNewTab": true,
+          "skipIfDirectLanding": true
         }
       },
       {
         "pageNumber": 1,
         "pageName": "ZIP Code Entry",
         "pageDetection": {
-          "checkForElement": "input[name*='zip'], input[placeholder*='ZIP'], input[placeholder*='zip'], input[type='text']"
+          "checkForElement": "input[name*='zip'], input[placeholder*='ZIP'], input[placeholder*='zip'], input[type='text'], input[name='postal_code'], input[name='zipcode']"
         },
         "fields": [
           { 
             "fieldType": "zipCode", 
             "selectors": [
-              "input[name*='zip']",
-              "input[placeholder*='ZIP']", 
-              "input[placeholder*='zip']",
-              "input[name='postal_code']",
-              "input[name='zipcode']",
-              "input[name='zip_code']",
-              "#zip",
-              ".zip-input",
-              "input[type='text']:first-of-type"
+              "input[name*='zip']:visible",
+              "input[placeholder*='ZIP']:visible", 
+              "input[placeholder*='zip']:visible",
+              "input[name='postal_code']:visible",
+              "input[name='zipcode']:visible",
+              "input[name='zip_code']:visible",
+              "#zip:visible",
+              ".zip-input:visible",
+              "form input[type='text']:visible:first",
+              "input[type='text']:visible:first"
             ], 
             "action": "clear_and_type" 
           }
@@ -57,16 +61,17 @@
         "navigation": { 
           "type": "button", 
           "selectors": [
-            "button[type='submit']",
-            "input[type='submit']",
-            "button:contains('View Jobs')",
-            "button:contains('Continue')",
-            "button:contains('Next')",
-            "button:contains('Submit')",
-            ".submit-button",
-            ".continue-button",
-            "button.btn-primary",
-            "button:not([type='reset'])"
+            "button[type='submit']:visible",
+            "input[type='submit']:visible",
+            "button:contains('View Jobs'):visible",
+            "button:contains('Continue'):visible",
+            "button:contains('Next'):visible",
+            "button:contains('Submit'):visible",
+            ".submit-button:visible",
+            ".continue-button:visible",
+            "button.btn-primary:visible",
+            "form button:visible:first",
+            "button:visible:first"
           ],
           "waitAfterClick": 5000,
           "waitForUrlChange": true,
@@ -77,40 +82,42 @@
         "pageNumber": 2,
         "pageName": "Personal Info",
         "pageDetection": {
-          "checkForElement": "input[placeholder*='First'], input[name*='first'], input[placeholder*='Name']"
+          "checkForElement": "input[placeholder*='First'], input[name*='first'], input[placeholder*='Name'], input[name='firstName'], input[name='first_name']"
         },
         "fields": [
           { 
             "fieldType": "firstName", 
             "selectors": [
-              "input[placeholder*='First Name']",
-              "input[name*='first']",
-              "input[name='firstName']",
-              "input[name='first_name']",
-              "#first_name",
-              "#firstName"
+              "input[placeholder*='First Name']:visible",
+              "input[name*='first']:visible",
+              "input[name='firstName']:visible",
+              "input[name='first_name']:visible",
+              "#first_name:visible",
+              "#firstName:visible",
+              "input[placeholder*='First']:visible"
             ], 
             "action": "type" 
           },
           { 
             "fieldType": "lastName", 
             "selectors": [
-              "input[placeholder*='Last Name']",
-              "input[name*='last']",
-              "input[name='lastName']",
-              "input[name='last_name']",
-              "#last_name",
-              "#lastName"
+              "input[placeholder*='Last Name']:visible",
+              "input[name*='last']:visible",
+              "input[name='lastName']:visible",
+              "input[name='last_name']:visible",
+              "#last_name:visible",
+              "#lastName:visible",
+              "input[placeholder*='Last']:visible"
             ], 
             "action": "type" 
           },
           { 
             "fieldType": "email", 
             "selectors": [
-              "input[placeholder*='Email']",
-              "input[type='email']",
-              "input[name='email']",
-              "#email"
+              "input[placeholder*='Email']:visible",
+              "input[type='email']:visible",
+              "input[name='email']:visible",
+              "#email:visible"
             ], 
             "action": "type" 
           }
@@ -118,15 +125,16 @@
         "navigation": { 
           "type": "button", 
           "selectors": [
-            "button[type='submit']",
-            "input[type='submit']",
-            "button:contains('Continue')",
-            "button:contains('Next')",
-            "button:contains('Submit')",
-            ".submit-button",
-            ".continue-button",
-            "button.btn-primary",
-            "button:not([type='reset'])"
+            "button[type='submit']:visible",
+            "input[type='submit']:visible",
+            "button:contains('Continue'):visible",
+            "button:contains('Next'):visible",
+            "button:contains('Submit'):visible",
+            ".submit-button:visible",
+            ".continue-button:visible",
+            "button.btn-primary:visible",
+            "form button:visible:first",
+            "button:visible:first"
           ],
           "waitAfterClick": 5000,
           "waitForUrlChange": true,
@@ -143,22 +151,22 @@
           { 
             "fieldType": "phone", 
             "selectors": [
-              "input[name='phone']",
-              "input[type='tel']",
-              "input[placeholder*='Phone']",
-              "input[name='phoneNumber']",
-              "input[name='phone_number']",
-              "#phone"
+              "input[name='phone']:visible",
+              "input[type='tel']:visible",
+              "input[placeholder*='Phone']:visible",
+              "input[name='phoneNumber']:visible",
+              "input[name='phone_number']:visible",
+              "#phone:visible"
             ], 
             "action": "type" 
           },
           { 
             "fieldType": "dobMonth", 
             "selectors": [
-              "select[autocomplete='bday-month']",
-              "select[name*='month']",
-              "select[name='birth_month']",
-              "#birth_month"
+              "select[autocomplete='bday-month']:visible",
+              "select[name*='month']:visible",
+              "select[name='birth_month']:visible",
+              "#birth_month:visible"
             ], 
             "action": "select", 
             "optional": true 
@@ -166,10 +174,10 @@
           { 
             "fieldType": "dobDay", 
             "selectors": [
-              "select[autocomplete='bday-day']",
-              "select[name*='day']",
-              "select[name='birth_day']",
-              "#birth_day"
+              "select[autocomplete='bday-day']:visible",
+              "select[name*='day']:visible",
+              "select[name='birth_day']:visible",
+              "#birth_day:visible"
             ], 
             "action": "select", 
             "optional": true 
@@ -177,10 +185,10 @@
           { 
             "fieldType": "dobYear", 
             "selectors": [
-              "select[autocomplete='bday-year']",
-              "select[name*='year']",
-              "select[name='birth_year']",
-              "#birth_year"
+              "select[autocomplete='bday-year']:visible",
+              "select[name*='year']:visible",
+              "select[name='birth_year']:visible",
+              "#birth_year:visible"
             ], 
             "action": "select", 
             "optional": true 
@@ -188,11 +196,11 @@
           { 
             "fieldType": "consentCheckbox", 
             "selectors": [
-              "#leadid_tcpa_disclosure",
-              "input[type='checkbox']",
-              "input[name*='consent']",
-              "input[name*='agree']",
-              "input[name*='terms']"
+              "#leadid_tcpa_disclosure:visible",
+              "input[type='checkbox']:visible",
+              "input[name*='consent']:visible",
+              "input[name*='agree']:visible",
+              "input[name*='terms']:visible"
             ], 
             "action": "click",
             "optional": true
@@ -201,15 +209,16 @@
         "navigation": {
           "type": "button",
           "selectors": [
-            "button[type='submit']",
-            "input[type='submit']",
-            "button:contains('Continue')",
-            "button:contains('Next')",
-            "button:contains('Submit')",
-            ".submit-button",
-            ".continue-button",
-            "button.btn-primary",
-            "button:not([type='reset'])"
+            "button[type='submit']:visible",
+            "input[type='submit']:visible",
+            "button:contains('Continue'):visible",
+            "button:contains('Next'):visible",
+            "button:contains('Submit'):visible",
+            ".submit-button:visible",
+            ".continue-button:visible",
+            "button.btn-primary:visible",
+            "form button:visible:first",
+            "button:visible:first"
           ],
           "waitAfterClick": 5000,
           "waitForUrlChange": true,
@@ -221,7 +230,8 @@
   "settings": {
     "delays": {
       "betweenFields": [800, 2000],
-      "pageLoad": 3000
+      "pageLoad": 5000,
+      "navigationTimeout": 30000
     }
   }
 }
