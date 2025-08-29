@@ -169,6 +169,61 @@ class CPAFunnelTester {
     return null;
   }
 
+  // New method to inspect page and find alternative selectors
+  async inspectPageForAlternatives(originalSelector) {
+    try {
+      console.log(`🔍 Inspecting page for alternatives to: ${originalSelector}`);
+      
+      // Get page title and URL for context
+      const title = await this.page.title();
+      const url = this.page.url();
+      console.log(`📄 Current page: "${title}" at ${url}`);
+      
+      // Try to find input elements
+      const inputs = await this.page.$$eval('input', elements => 
+        elements.map(el => ({
+          type: el.type,
+          name: el.name,
+          id: el.id,
+          placeholder: el.placeholder,
+          class: el.className,
+          tagName: el.tagName
+        }))
+      );
+      
+      if (inputs.length > 0) {
+        console.log(`🔍 Found ${inputs.length} input elements:`);
+        inputs.forEach((input, i) => {
+          console.log(`  ${i + 1}. ${input.tagName} - type: ${input.type}, name: "${input.name}", id: "${input.id}", placeholder: "${input.placeholder}"`);
+        });
+      }
+      
+      // Try to find button elements
+      const buttons = await this.page.$$eval('button, input[type="submit"], a[role="button"]', elements => 
+        elements.map(el => ({
+          text: el.textContent?.trim(),
+          type: el.type,
+          id: el.id,
+          class: el.className,
+          tagName: el.tagName,
+          role: el.getAttribute('role')
+        }))
+      );
+      
+      if (buttons.length > 0) {
+        console.log(`🔍 Found ${buttons.length} clickable elements:`);
+        buttons.forEach((button, i) => {
+          console.log(`  ${i + 1}. ${button.tagName} - text: "${button.text}", id: "${button.id}", class: "${button.class}"`);
+        });
+      }
+      
+      return { inputs, buttons };
+    } catch (error) {
+      console.log(`⚠️ Page inspection failed: ${error.message}`);
+      return { inputs: [], buttons: [] };
+    }
+  }
+
   async fillField(field, testData) {
     const { fieldType, selector, selectors, action, optional = false, required = true } = field;
     const actuallyRequired = required && !optional;
@@ -179,10 +234,12 @@ class CPAFunnelTester {
       const foundSelector = await this.waitForElement(selectorsToTry, actuallyRequired ? 10000 : 3000);
       
       if (!foundSelector) {
+        // If required field not found, try to inspect the page
         if (actuallyRequired) {
+          await this.inspectPageForAlternatives(selector);
           throw new Error(`Required field not found: ${fieldType}`);
         } else {
-          console.log(`⭐️ Optional field skipped: ${fieldType}`);
+          console.log(`⭐ Optional field skipped: ${fieldType}`);
           return true;
         }
       }
@@ -244,6 +301,8 @@ class CPAFunnelTester {
       const foundSelector = await this.waitForElement(selectorsToTry, 10000);
       
       if (!foundSelector) {
+        // Inspect page for navigation alternatives
+        await this.inspectPageForAlternatives(selector);
         throw new Error(`Navigation element not found`);
       }
       
@@ -359,6 +418,9 @@ class CPAFunnelTester {
       
       this.testResults.metrics.initialPageLoad = Date.now() - startTime;
       
+      // Wait a bit more for dynamic content
+      await this.page.waitForTimeout(3000);
+      
       // Test each page in sequence
       for (const pageConfig of this.config.funnel.pages) {
         await this.testPage(pageConfig, testData);
@@ -458,10 +520,24 @@ async function findConfigFiles() {
   return configFiles;
 }
 
+// Device profile discovery function
+async function findDeviceProfileFiles() {
+  const profileFiles = [];
+  const files = await fs.readdir('.');
+  
+  for (const file of files) {
+    if (file.includes('device-profiles') && (file.endsWith('.csv') || file.endsWith('.csv.txt'))) {
+      profileFiles.push(file);
+    }
+  }
+  
+  return profileFiles;
+}
+
 // Main execution function with multi-template support
 async function runTest() {
   const configFile = process.argv[2] || './wfh_localjobmatcher.json';
-  const deviceProfileFile = process.argv[3] || './android-device-profiles.csv.txt';
+  let deviceProfileFile = process.argv[3] || null;
   
   // Check if config file exists
   let actualConfigFile = configFile;
@@ -477,6 +553,30 @@ async function runTest() {
     
     actualConfigFile = availableConfigs[0];
     console.log(`📋 Using config: ${actualConfigFile}`);
+  }
+  
+  // Auto-discover device profile files if not specified
+  if (!deviceProfileFile) {
+    const availableProfiles = await findDeviceProfileFiles();
+    if (availableProfiles.length > 0) {
+      deviceProfileFile = availableProfiles[0]; // Default to first found
+      console.log(`📱 Auto-discovered device profiles: ${deviceProfileFile}`);
+    }
+  } else {
+    // Check if specified device profile file exists
+    try {
+      await fs.access(deviceProfileFile);
+    } catch (error) {
+      console.log(`⚠️ Specified device profile ${deviceProfileFile} not found. Searching...`);
+      const availableProfiles = await findDeviceProfileFiles();
+      if (availableProfiles.length > 0) {
+        deviceProfileFile = availableProfiles[0];
+        console.log(`📱 Using alternative device profiles: ${deviceProfileFile}`);
+      } else {
+        deviceProfileFile = null;
+        console.log(`⚠️ No device profile files found, proceeding with defaults`);
+      }
+    }
   }
   
   const tester = new CPAFunnelTester(actualConfigFile, deviceProfileFile);
