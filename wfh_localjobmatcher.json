@@ -1,235 +1,352 @@
 {
-  "metadata": {
-    "offerName": "Work From Home - LocalJobMatcher",
-    "offerCreator": "localjobsmatcher.com",
-    "version": "6.3",
-    "description": "Facebook-only flow: Facebook post -> offer link -> funnel (improved redirect handling)",
-    "entryPoint": {
-      "startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
-    }
-  },
-  "funnel": {
-    "pages": [
-      {
-        "pageNumber": 0,
-        "pageName": "Facebook Post - Click Offer Link (Optional)",
-        "pageDetection": {
-          "checkForElement": "a[href*='opph3hftrk.com'], a[href*='HMLWQ96'], [href*='opph3hftrk.com'], input[name*='zip'], input[placeholder*='ZIP'], input[placeholder*='zip']"
-        },
-        "fields": [],
-        "navigation": { 
-          "type": "link", 
-          "selectors": [
-            "a[href*='opph3hftrk.com/HMLWQ96/261TC5C']",
-            "a[href*='opph3hftrk.com']",
-            "a[href*='HMLWQ96']",
-            "a[href*='261TC5C']"
-          ],
-          "waitAfterClick": 5000,
-          "waitForUrlChange": false,
-          "retryIfNoNavigation": true,
-          "maxWaitTime": 45000,
-          "expectNewTab": true
-        }
-      },
-      {
-        "pageNumber": 1,
-        "pageName": "ZIP Code Entry",
-        "pageDetection": {
-          "checkForElement": "input[name*='Zip Code'], input[placeholder*='Zip Code'], input[placeholder*='zip'], input[type='text'], input[name='postal_code'], input[name='zipcode']"
-        },
-        "fields": [
-          { 
-            "fieldType": "zipCode", 
-            "selectors": [
-              "input[name*='Zip Code']:visible",
-              "input[placeholder*='Zip Code']:visible", 
-              "input[placeholder*='zip']:visible",
-              "input[name='postal_code']:visible",
-              "input[name='zipcode']:visible",
-              "input[name='zip_code']:visible",
-              "#zip:visible",
-              ".zip-input:visible",
-              "form input[type='text']:visible:first",
-              "input[type='text']:visible:first"
-            ], 
-            "action": "clear_and_type" 
-          }
-        ],
-        "navigation": { 
-          "type": "button", 
-          "selectors": [
-            "button[type='submit']:visible",
-            "input[type='submit']:visible",
-            "button:contains('View Your Jobs »'):visible",
-            "button:contains('Continue'):visible",
-            "button:contains('Next'):visible",
-            "button:contains('Submit'):visible",
-            ".submit-button:visible",
-            ".continue-button:visible",
-            "button.btn-primary:visible",
-            "form button:visible:first",
-            "button:visible:first"
-          ],
-          "waitAfterClick": 5000,
-          "waitForUrlChange": true,
-          "retryIfNoNavigation": true
-        }
-      },
-      {
-        "pageNumber": 2,
-        "pageName": "Personal Info",
-        "pageDetection": {
-          "checkForElement": "input[placeholder*='First'], input[name*='first'], input[placeholder*='Name'], input[name='firstName'], input[name='first_name']"
-        },
-        "fields": [
-          { 
-            "fieldType": "firstName", 
-            "selectors": [
-              "input[placeholder*='First Name']:visible",
-              "input[name*='first']:visible",
-              "input[name='firstName']:visible",
-              "input[name='first_name']:visible",
-              "#first_name:visible",
-              "#firstName:visible",
-              "input[placeholder*='First']:visible"
-            ], 
-            "action": "type" 
-          },
-          { 
-            "fieldType": "lastName", 
-            "selectors": [
-              "input[placeholder*='Last Name']:visible",
-              "input[name*='last']:visible",
-              "input[name='lastName']:visible",
-              "input[name='last_name']:visible",
-              "#last_name:visible",
-              "#lastName:visible",
-              "input[placeholder*='Last']:visible"
-            ], 
-            "action": "type" 
-          },
-          { 
-            "fieldType": "email", 
-            "selectors": [
-              "input[placeholder*='Email']:visible",
-              "input[type='email']:visible",
-              "input[name='email']:visible",
-              "#email:visible"
-            ], 
-            "action": "type" 
-          }
-        ],
-        "navigation": { 
-          "type": "button", 
-          "selectors": [
-            "button[type='submit']:visible",
-            "input[type='submit']:visible",
-            "button:contains('Continue'):visible",
-            "button:contains('Next'):visible",
-            "button:contains('Submit'):visible",
-            ".submit-button:visible",
-            ".continue-button:visible",
-            "button.btn-primary:visible",
-            "form button:visible:first",
-            "button:visible:first"
-          ],
-          "waitAfterClick": 5000,
-          "waitForUrlChange": true,
-          "retryIfNoNavigation": true
-        }
-      },
-      {
-        "pageNumber": 3,
-        "pageName": "Phone and Additional Info",
-        "pageDetection": {
-          "checkForElement": "input[name*='phone'], input[type='tel'], input[placeholder*='Phone']"
-        },
-        "fields": [
-          { 
-            "fieldType": "phone", 
-            "selectors": [
-              "input[name='phone']:visible",
-              "input[type='tel']:visible",
-              "input[placeholder*='Phone']:visible",
-              "input[name='phoneNumber']:visible",
-              "input[name='phone_number']:visible",
-              "#phone:visible"
-            ], 
-            "action": "type" 
-          },
-          { 
-            "fieldType": "dobMonth", 
-            "selectors": [
-              "select[autocomplete='bday-month']:visible",
-              "select[name*='month']:visible",
-              "select[name='birth_month']:visible",
-              "#birth_month:visible"
-            ], 
-            "action": "select", 
-            "optional": true 
-          },
-          { 
-            "fieldType": "dobDay", 
-            "selectors": [
-              "select[autocomplete='bday-day']:visible",
-              "select[name*='day']:visible",
-              "select[name='birth_day']:visible",
-              "#birth_day:visible"
-            ], 
-            "action": "select", 
-            "optional": true 
-          },
-          { 
-            "fieldType": "dobYear", 
-            "selectors": [
-              "select[autocomplete='bday-year']:visible",
-              "select[name*='year']:visible",
-              "select[name='birth_year']:visible",
-              "#birth_year:visible"
-            ], 
-            "action": "select", 
-            "optional": true 
-          },
-          { 
-            "fieldType": "consentCheckbox", 
-            "selectors": [
-              "#leadid_tcpa_disclosure:visible",
-              "input[type='checkbox']:visible",
-              "input[name*='consent']:visible",
-              "input[name*='agree']:visible",
-              "input[name*='terms']:visible"
-            ], 
-            "action": "click",
-            "optional": true
-          }
-        ],
-        "navigation": {
-          "type": "button",
-          "selectors": [
-            "button[type='submit']:visible",
-            "input[type='submit']:visible",
-            "button:contains('Continue'):visible",
-            "button:contains('Next'):visible",
-            "button:contains('Submit'):visible",
-            ".submit-button:visible",
-            ".continue-button:visible",
-            "button.btn-primary:visible",
-            "form button:visible:first",
-            "button:visible:first"
-          ],
-          "waitAfterClick": 5000,
-          "waitForUrlChange": true,
-          "retryIfNoNavigation": true
-        }
-      }
-    ]
-  },
-  "settings": {
-    "delays": {
-      "betweenFields": [800, 2000],
-      "pageLoad": 5000,
-      "navigationTimeout": 30000
-    }
-  }
+"metadata": {
+"offerName": "Work From Home - LocalJobMatcher",
+"offerCreator": "localjobsmatcher.com",
+"version": "6.4",
+"description": "Facebook-only flow: Facebook post -> offer link -> funnel (improved redirect handling). Updated with new selectors from funnel mapping extension for better detection and interaction.",
+"entryPoint": {
+"startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
+}
+},
+"funnel": {
+"pages": [
+{
+"pageNumber": 0,
+"pageName": "Facebook Post - Click Offer Link (Optional)",
+"pageDetection": {
+"checkForElement": "a[href*='opph3hftrk.com'], a[href*='HMLWQ96'], [href*='opph3hftrk.com'], input[name*='zip'], input[placeholder*='ZIP'], input[placeholder*='zip']"
+},
+"fields": [],
+"navigation": {
+"type": "link",
+"selectors": [
+"a[href*='opph3hftrk.com/HMLWQ96/261TC5C']",
+"a[href*='opph3hftrk.com']",
+"a[href*='HMLWQ96']",
+"a[href*='261TC5C']"
+],
+"waitAfterClick": 10000,
+"waitForUrlChange": false,
+"retryIfNoNavigation": true,
+"maxWaitTime": 45000,
+"expectNewTab": true
+}
+},
+{
+"pageNumber": 1,
+"pageName": "ZIP Code Entry",
+"pageDetection": {
+"checkForElement": "input[name*='Zip Code'], input[placeholder*='Zip Code'], input[placeholder*='zip'], input[type='text'], input[name='postal_code'], input[name='zipcode'], input[name='l-input']"
+},
+"fields": [
+{
+"fieldType": "zipCode",
+"selectors": [
+"input[name*='Zip Code']:visible",
+"input[placeholder*='Zip Code']:visible",
+"input[placeholder*='zip']:visible",
+"input[name='postal_code']:visible",
+"input[name='zipcode']:visible",
+"input[name='zip_code']:visible",
+"input[name='l-input']:visible",
+"#zip:visible",
+".zip-input:visible",
+"form input[type='text']:visible:first",
+"input[type='text']:visible:first"
+],
+"action": "clear_and_type"
+}
+],
+"navigation": {
+"type": "button",
+"selectors": [
+"button[type='submit']:visible",
+"input[type='submit']:visible",
+"button:has-text('View Your Jobs »'):visible",
+"[data-testid='viewJobsButton']:visible",
+"button:has-text('Continue'):visible",
+"button:has-text('Next'):visible",
+"button:has-text('Submit'):visible",
+".submit-button:visible",
+".continue-button:visible",
+"button.btn-primary:visible",
+"form button:visible:first",
+"button:visible:first"
+],
+"waitAfterClick": 10000,
+"waitForUrlChange": true,
+"retryIfNoNavigation": true
+}
+},
+{
+"pageNumber": 2,
+"pageName": "Personal Info",
+"pageDetection": {
+"checkForElement": "input[placeholder*='First'], input[name*='first'], input[placeholder*='Name'], input[name='firstName'], input[name='first_name'], input[name='fname'], input[name='lname'], input[name='email'], #male, #female"
+},
+"fields": [
+{
+"fieldType": "firstName",
+"selectors": [
+"input[placeholder*='First Name']:visible",
+"input[name*='first']:visible",
+"input[name='firstName']:visible",
+"input[name='first_name']:visible",
+"input[name='fname']:visible",
+"#first_name:visible",
+"#firstName:visible",
+"input[placeholder*='First']:visible"
+],
+"action": "type"
+},
+{
+"fieldType": "lastName",
+"selectors": [
+"input[placeholder*='Last Name']:visible",
+"input[name*='last']:visible",
+"input[name='lastName']:visible",
+"input[name='last_name']:visible",
+"input[name='lname']:visible",
+"#last_name:visible",
+"#lastName:visible",
+"input[placeholder*='Last']:visible"
+],
+"action": "type"
+},
+{
+"fieldType": "email",
+"selectors": [
+"input[placeholder*='Email']:visible",
+"input[type='email']:visible",
+"input[name='email']:visible",
+"#email:visible"
+],
+"action": "type"
+}
+],
+"navigation": {
+"type": "button",
+"selectors": [
+"button[type='submit']:visible",
+"input[type='submit']:visible",
+"button:has-text('Continue'):visible",
+"button:has-text('Next'):visible",
+"button:has-text('Submit'):visible",
+".submit-button:visible",
+".continue-button:visible",
+"button.btn-primary:visible",
+"form button:visible:first",
+"button:visible:first"
+],
+"waitAfterClick": 10000,
+"waitForUrlChange": true,
+"retryIfNoNavigation": true
+}
+},
+{
+"pageNumber": 3,
+"pageName": "Address Entry",
+"pageDetection": {
+"checkForElement": "input[name='addr1'], input[placeholder*='Street Address'], input[name='addr2'], input[placeholder*='Apt'], input[name='city'], input[placeholder*='City'], select[name='state'], input[name='zip'], input[placeholder*='Zip Code']"
+},
+"fields": [
+{
+"fieldType": "address",
+"selectors": [
+"input[name='addr1']:visible",
+"input[placeholder*='Street Address']:visible",
+"input[name='address1']:visible",
+"input[name*='address']:visible:first",
+"#address:visible"
+],
+"action": "type"
+},
+{
+"fieldType": "apt",
+"selectors": [
+"input[name='addr2']:visible",
+"input[placeholder*='Apt']:visible",
+"input[placeholder*='Suite']:visible",
+"input[name='address2']:visible",
+"input[name*='apt']:visible"
+],
+"action": "type",
+"optional": true
+},
+{
+"fieldType": "city",
+"selectors": [
+"input[name='city']:visible",
+"input[placeholder*='City']:visible",
+"#city:visible"
+],
+"action": "type"
+},
+{
+"fieldType": "state",
+"selectors": [
+"select[name='state']:visible",
+"select[name*='state']:visible",
+"#state:visible"
+],
+"action": "select"
+},
+{
+"fieldType": "zipCode",
+"selectors": [
+"input[name='zip']:visible",
+"input[placeholder*='Zip Code']:visible",
+"#zip:visible"
+],
+"action": "type"
+}
+],
+"navigation": {
+"type": "button",
+"selectors": [
+"button[type='submit']:visible",
+"input[type='submit']:visible",
+"button:has-text('Continue'):visible",
+"button:has-text('Next'):visible",
+"button:has-text('Submit'):visible",
+".submit-button:visible",
+".continue-button:visible",
+"button.btn-primary:visible",
+"form button:visible:first",
+"button:visible:first"
+],
+"waitAfterClick": 10000,
+"waitForUrlChange": true,
+"retryIfNoNavigation": true
+}
+},
+{
+"pageNumber": 4,
+"pageName": "Phone and Additional Info",
+"pageDetection": {
+"checkForElement": "input[name*='phone'], input[type='tel'], input[placeholder*='Phone'], select[name*='month'], select[name*='day'], select[name*='year'], input[type='checkbox'], #leadid_tcpa_disclosure"
+},
+"fields": [
+{
+"fieldType": "phone",
+"selectors": [
+"input[name='phone']:visible",
+"input[type='tel']:visible",
+"input[placeholder*='Phone']:visible",
+"input[name='phoneNumber']:visible",
+"input[name='phone_number']:visible",
+"#phone:visible"
+],
+"action": "type"
+},
+{
+"fieldType": "dobMonth",
+"selectors": [
+"select[autocomplete='bday-month']:visible",
+"select[name*='month']:visible",
+"select[name='birth_month']:visible",
+"select[name='month']:visible",
+"#birth_month:visible"
+],
+"action": "select",
+"optional": true
+},
+{
+"fieldType": "dobDay",
+"selectors": [
+"select[autocomplete='bday-day']:visible",
+"select[name*='day']:visible",
+"select[name='birth_day']:visible",
+"select[name='day']:visible",
+"#birth_day:visible"
+],
+"action": "select",
+"optional": true
+},
+{
+"fieldType": "dobYear",
+"selectors": [
+"select[autocomplete='bday-year']:visible",
+"select[name*='year']:visible",
+"select[name='birth_year']:visible",
+"select[name='year']:visible",
+"#birth_year:visible"
+],
+"action": "select",
+"optional": true
+},
+{
+"fieldType": "consentCheckbox",
+"selectors": [
+"#leadid_tcpa_disclosure:visible",
+"input[type='checkbox']:visible",
+"input[name*='consent']:visible",
+"input[name*='agree']:visible",
+"input[name*='terms']:visible",
+"input[name='jornaya_leadid_tcpadisclosure']:visible"
+],
+"action": "click",
+"optional": true
+}
+],
+"navigation": {
+"type": "button",
+"selectors": [
+"button[type='submit']:visible",
+"input[type='submit']:visible",
+"button:has-text('Continue'):visible",
+"button:has-text('Next'):visible",
+"button:has-text('Submit'):visible",
+".submit-button:visible",
+".continue-button:visible",
+"button.btn-primary:visible",
+"form button:visible:first",
+"button:visible:first"
+],
+"waitAfterClick": 10000,
+"waitForUrlChange": true,
+"retryIfNoNavigation": true
+}
+},
+{
+"pageNumber": 5,
+"pageName": "Job Search Confirmation",
+"pageDetection": {
+"checkForElement": "input[placeholder*='City, State or Zipcode'], button:has-text('Find Jobs'), button:has-text('Career Resources'), button:has-text('Search')"
+},
+"fields": [
+{
+"fieldType": "zipCode",
+"selectors": [
+"input[placeholder*='City, State or Zipcode']:visible",
+"input[type='text']:nth-of-type(2):visible"
+],
+"action": "type",
+"optional": true
+}
+],
+"navigation": {
+"type": "button",
+"selectors": [
+"button:has-text('Find Jobs'):visible",
+"button:has-text('Career Resources'):visible",
+"button:has-text('Search'):visible",
+"button:nth-child(3):visible",
+"button:nth-child(2):visible",
+"button:nth-child(1):visible"
+],
+"waitAfterClick": 10000,
+"waitForUrlChange": true,
+"retryIfNoNavigation": true
+}
+}
+]
+},
+"settings": {
+"delays": {
+"betweenFields": [800, 2000],
+"pageLoad": 10000,
+"navigationTimeout": 45000
+}
+}
 }
