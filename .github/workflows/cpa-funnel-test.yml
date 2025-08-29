@@ -53,11 +53,16 @@ jobs:
         echo "📁 Available files:"
         ls -la *.csv *.json 2>/dev/null || echo "No CSV/JSON files found"
     
-    - name: Run CPA Funnel Tests
+    - name: Run CPA Funnel Tests with Proxy
       env:
         BROWSER: ${{ matrix.browser }}
         HEADLESS: true
         CI: true
+        USE_DEFAULT_PROXY: true
+        # Or use custom proxy settings:
+        # PROXY_SERVER: '38.146.27.33:11000'
+        # PROXY_USER: 'neon'
+        # PROXY_PASS: 'neon'
       run: |
         echo "🧪 Starting funnel test with ${{ matrix.browser }}"
         timeout 300 node test-funnel.js || echo "Test timed out after 5 minutes"
@@ -97,8 +102,8 @@ jobs:
       run: |
         echo "# 📊 CPA Funnel Test Summary" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "| Browser | Status | Duration | Success Rate |" >> $GITHUB_STEP_SUMMARY
-        echo "|---------|--------|----------|--------------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Browser | Status | Duration | Success Rate | Proxy |" >> $GITHUB_STEP_SUMMARY
+        echo "|---------|--------|----------|--------------|-------|" >> $GITHUB_STEP_SUMMARY
         
         for file in *test-results*.json; do
           if [ -f "$file" ]; then
@@ -107,11 +112,12 @@ jobs:
             duration=$(jq -r '.totalDuration' "$file" 2>/dev/null || echo "0")
             success_count=$(jq -r '.pageResults | map(select(.success)) | length' "$file" 2>/dev/null || echo "0")
             total_count=$(jq -r '.pageResults | length' "$file" 2>/dev/null || echo "0")
+            proxy=$(jq -r '.proxy' "$file" 2>/dev/null || echo "disabled")
             
             status_emoji=$([ "$status" = "true" ] && echo "✅" || echo "❌")
             duration_sec=$((duration / 1000))
             
-            echo "| $browser | $status_emoji | ${duration_sec}s | $success_count/$total_count |" >> $GITHUB_STEP_SUMMARY
+            echo "| $browser | $status_emoji | ${duration_sec}s | $success_count/$total_count | $proxy |" >> $GITHUB_STEP_SUMMARY
           fi
         done
         
