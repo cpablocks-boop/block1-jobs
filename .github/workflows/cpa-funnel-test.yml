@@ -60,7 +60,7 @@ jobs:
         CI: true
         USE_DEFAULT_PROXY: true
         # Or use custom proxy settings:
-        # PROXY_SERVER: '38.146.27.33:11000'
+        # PROXY_SERVER: '38.134.148.20:8000'
         # PROXY_USER: 'neon'
         # PROXY_PASS: 'neon'
       run: |
