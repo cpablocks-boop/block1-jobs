@@ -511,7 +511,7 @@ async function runTest() {
     };
   } else if (process.env.USE_DEFAULT_PROXY === 'true') {
     proxyConfig = {
-      server: '38.146.27.33:11000',
+      server: '38.134.148.20:8000',
       username: 'neon',
       password: 'neon'
     };
