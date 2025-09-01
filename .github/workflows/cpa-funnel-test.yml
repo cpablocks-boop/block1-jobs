@@ -26,13 +26,34 @@ on:
     - cron: '0 6 * * *'
 
 jobs:
+  prepare-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      browsers: ${{ steps.set-matrix.outputs.browsers }}
+      template: ${{ steps.set-matrix.outputs.template }}
+    steps:
+    - name: Set matrix values
+      id: set-matrix
+      run: |
+        # Handle browsers input
+        browsers_input="${{ github.event.inputs.browsers || 'chromium,firefox,webkit' }}"
+        # Convert comma-separated string to JSON array
+        browsers_json=$(echo "$browsers_input" | jq -R 'split(",")')
+        echo "browsers=$browsers_json" >> $GITHUB_OUTPUT
+        
+        # Handle template input
+        template_input="${{ github.event.inputs.template || 'wfh_localjobmatcher.json' }}"
+        template_json=$(echo "[$template_input]" | jq -c '.')
+        echo "template=$template_json" >> $GITHUB_OUTPUT
+
   funnel-test:
     runs-on: ubuntu-latest
+    needs: prepare-matrix
     
     strategy:
       matrix:
-        browser: ${{ fromJson(format('["{0}"]', join(split(github.event.inputs.browsers || 'chromium,firefox,webkit', ','), '","'))) }}
-        template: ${{ fromJson(format('["{0}"]', github.event.inputs.template || 'wfh_localjobmatcher.json')) }}
+        browser: ${{ fromJson(needs.prepare-matrix.outputs.browsers) }}
+        template: ${{ fromJson(needs.prepare-matrix.outputs.template) }}
       fail-fast: false
     
     steps:
