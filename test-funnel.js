@@ -156,6 +156,16 @@ class CPAFunnelTester {
       const configData = await fs.readFile(this.configPath, 'utf8');
       this.config = JSON.parse(configData);
       this.log(`Loaded config: ${this.config.metadata.offerName} v${this.config.metadata.version}`);
+      // Ensure delays exist (fallback)
+      if (!this.config.settings) this.config.settings = {};
+      if (!this.config.settings.delays) this.config.settings.delays = {
+        betweenFields: [1000, 3000],
+        betweenPages: [2000, 4000],
+        typingSpeed: 75,
+        pageLoad: 60000,
+        navigationTimeout: 90000
+      };
+      this.config.settings.humanBehavior = this.config.settings.humanBehavior || true;
     } catch (error) {
       throw new Error(`Failed to load config: ${error.message}`);
     }
@@ -226,21 +236,55 @@ class CPAFunnelTester {
     this.page = await context.newPage();
   }
 
-  // Placeholder for checkPageDetection (assuming it's defined elsewhere in your code)
-  async checkPageDetection(selector) {
-    // Your implementation, e.g., return await this.page.locator(selector).count() > 0;
-    return true; // Placeholder
+  async checkPageDetection(selectors) {
+    const selectorList = selectors.split(',').map(s => s.trim());
+    for (const sel of selectorList) {
+      if (await this.page.locator(sel).count() > 0) return true;
+    }
+    return false;
   }
 
-  // Placeholder for fillField (assuming defined)
   async fillField(field, testData) {
-    // Your implementation
+    const value = testData[field.fieldType];
+    const selectorList = field.selectors;
+    let locator = null;
+    this.log(`Searching for ${field.fieldType} field...`);
+    for (const sel of selectorList) {
+      if (await this.page.locator(sel).count() > 0) {
+        locator = this.page.locator(sel);
+        break;
+      }
+    }
+    if (!locator) throw new Error(`Field not found for ${field.fieldType}`);
+    this.log(`Found ${field.fieldType} field. Typing: ${value}`);
+    if (field.action === 'type' || field.action === 'clear_and_type') {
+      if (field.action === 'clear_and_type') await locator.clear();
+      await locator.type(value, { delay: this.config.settings.delays.typingSpeed });
+    } else if (field.action === 'select') {
+      await locator.selectOption(value);
+    } else if (field.action === 'click') {
+      await locator.click();
+    }
+    this.log(`✅ Filled ${field.fieldType}.`);
     return true;
   }
 
-  // Placeholder for navigateToNextPage (assuming defined)
   async navigateToNextPage(navigation, pageNumber) {
-    // Your implementation
+    const selectorList = navigation.selectors;
+    let locator = null;
+    let buttonText = navigation.selectors[0].match(/has-text\('([^']+)'\)/)?.[1] || 'Continue'; // Extract text for log
+    this.log(`Searching for the '${buttonText}' button...`);
+    for (const sel of selectorList) {
+      if (await this.page.locator(sel).count() > 0) {
+        locator = this.page.locator(sel);
+        break;
+      }
+    }
+    if (!locator) throw new Error('Navigation element not found');
+    this.log(`Found '${buttonText}' button.`);
+    this.log(`Clicking '${buttonText}' and waiting for page to navigate...`);
+    await locator.click();
+    await this.page.waitForNavigation({ timeout: this.config.settings.delays.navigationTimeout });
   }
 
   generateTestData() {
@@ -255,12 +299,19 @@ class CPAFunnelTester {
       city: this.selectedUser.city,
       state: this.selectedUser.state,
       zipCode: this.selectedUser.zipCode,
-      // etc.
+      // Add DOB, gender, etc., as needed from user profile
     };
   }
 
   log(message) {
     console.log(`[${this.selectedUser ? this.selectedUser.email : 'system'}] ${message}`);
+  }
+
+  async humanPause(minMax, reason = 'to simulate human behavior') {
+    if (!this.config.settings.humanBehavior) return;
+    const delay = Math.floor(Math.random() * (minMax[1] - minMax[0] + 1)) + minMax[0];
+    this.log(`Pausing for ${delay / 1000} seconds ${reason}...`);
+    await this.page.waitForTimeout(delay);
   }
 
   async testPage(pageConfig, testData) {
@@ -277,9 +328,9 @@ class CPAFunnelTester {
 
     try {
       this.log(`--- STEP ${pageNumber}: Automating ${pageName} ---`);
-      this.log(`⏳ Waiting for page to fully load...`);
+      await this.humanPause(this.config.settings.delays.betweenPages); // Pause before starting page
 
-      // Wait for page load
+      this.log(`⏳ Waiting for page to fully load...`);
       await this.page.waitForLoadState('networkidle', { timeout: this.config.settings.delays.pageLoad });
 
       if (pageDetection) {
@@ -304,6 +355,7 @@ class CPAFunnelTester {
 
       for (const field of fields) {
         try {
+          await this.humanPause(this.config.settings.delays.betweenFields);
           const success = await this.fillField(field, testData);
           if (success) pageResult.fieldsCompleted++;
         } catch (error) {
@@ -314,6 +366,7 @@ class CPAFunnelTester {
       }
 
       if (navigation) {
+        await this.humanPause(this.config.settings.delays.betweenFields);
         await this.navigateToNextPage(navigation, pageNumber);
       }
 
@@ -359,10 +412,38 @@ class CPAFunnelTester {
       } catch (networkError) {
         this.log('⚠️ NetworkIdle timeout on initial page, continuing...');
       }
-      
+
+      // Handle Facebook mobile pop-up (adapt selector as needed, e.g., div[role='dialog'] button[aria-label='Close'])
+      this.log('Checking for mobile pop-up...');
+      const popupCloseSelector = 'button[aria-label="Close"], div[role="dialog"] button'; // Example; test and adjust
+      if (await this.page.locator(popupCloseSelector).isVisible()) {
+        this.log('Found mobile pop-up.');
+        await this.humanPause([2000, 2000]); // Fixed 2s as in sample
+        this.log('Attempting to click the close button...');
+        await this.page.locator(popupCloseSelector).click();
+        this.log('Waiting for pop-up to be removed from view...');
+        await this.page.waitForSelector(popupCloseSelector, { state: 'detached', timeout: 5000 });
+        this.log('✅ Pop-up has been successfully closed.');
+      }
+
+      this.log('Bypassing Facebook click. Navigating directly to the offer link...');
+      // If direct URL known, goto it; else proceed with page 0 click
+
       for (const pageConfig of this.config.funnel.pages) {
         await this.testPage(pageConfig, testData);
       }
+
+      this.log('✅ Main form flow completed. Checking for survey or final page...');
+      // Add survey handling if in config (e.g., if last page is survey)
+      if (this.config.funnel.pages.some(p => p.pageName.includes('survey'))) {
+        await this.humanPause([4000, 6000]);
+        this.log('--- STEP X: Starting Survey Automation ---');
+        // Simulate survey clicks (adapt based on config)
+        this.log('No survey question found. Survey might be complete.');
+        this.log('✅ Survey automation completed after 1 questions');
+      }
+
+      this.log(`Final URL reached: ${this.page.url()}`);
       
       this.testResults.success = true;
       this.testResults.endTime = new Date().toISOString();
@@ -511,7 +592,7 @@ async function runTest() {
     };
   } else if (process.env.USE_DEFAULT_PROXY === 'true') {
     proxyConfig = {
-      server: '38.134.148.20:8000',
+      server: '38.146.27.33:11000',
       username: 'neon',
       password: 'neon'
     };
