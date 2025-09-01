@@ -6,54 +6,16 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
-    inputs:
-      template:
-        description: 'Template to test'
-        required: false
-        default: 'wfh_localjobmatcher.json'
-        type: choice
-        options:
-        - 'wfh_localjobmatcher.json'
-        - 'android_mystery_sample_box.json'
-        - 'android_survival_kit.json'
-        - 'android_walmart_gift_card.json'
-        - 'desktop_walmart_gift_card.json'
-      browsers:
-        description: 'Browsers to test (comma-separated)'
-        required: false
-        default: 'chromium,firefox,webkit'
   schedule:
     - cron: '0 6 * * *'
 
 jobs:
-  prepare-matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      browsers: ${{ steps.set-matrix.outputs.browsers }}
-      template: ${{ steps.set-matrix.outputs.template }}
-    steps:
-    - name: Set matrix values
-      id: set-matrix
-      run: |
-        # Handle browsers input
-        browsers_input="${{ github.event.inputs.browsers || 'chromium,firefox,webkit' }}"
-        # Convert comma-separated string to JSON array
-        browsers_json=$(echo "$browsers_input" | jq -R 'split(",")')
-        echo "browsers=$browsers_json" >> $GITHUB_OUTPUT
-        
-        # Handle template input
-        template_input="${{ github.event.inputs.template || 'wfh_localjobmatcher.json' }}"
-        template_json=$(echo "[$template_input]" | jq -c '.')
-        echo "template=$template_json" >> $GITHUB_OUTPUT
-
   funnel-test:
     runs-on: ubuntu-latest
-    needs: prepare-matrix
     
     strategy:
       matrix:
-        browser: ${{ fromJson(needs.prepare-matrix.outputs.browsers) }}
-        template: ${{ fromJson(needs.prepare-matrix.outputs.template) }}
+        browser: [chromium, firefox, webkit]
       fail-fast: false
     
     steps:
@@ -73,12 +35,12 @@ jobs:
     - name: Validate config and device profile files
       run: |
         echo "🔍 Checking for configuration files..."
-        if [ ! -f "${{ matrix.template }}" ]; then
-          echo "❌ Config file ${{ matrix.template }} not found!"
+        if [ ! -f "wfh_localjobmatcher.json" ]; then
+          echo "❌ Config file not found!"
           exit 1
         fi
-        echo "✅ Config file found: ${{ matrix.template }}"
-        node -e "JSON.parse(require('fs').readFileSync('${{ matrix.template }}'))" && echo "✅ Valid JSON"
+        echo "✅ Config file found"
+        node -e "JSON.parse(require('fs').readFileSync('wfh_localjobmatcher.json'))" && echo "✅ Valid JSON"
         
         echo "🔍 Checking for device profile files..."
         if [ -f "android-device-profiles.csv" ]; then
@@ -94,19 +56,22 @@ jobs:
     - name: Run CPA Funnel Tests with Proxy
       env:
         BROWSER: ${{ matrix.browser }}
-        TEMPLATE: ${{ matrix.template }}
         HEADLESS: true
         CI: true
         USE_DEFAULT_PROXY: true
+        # Or use custom proxy settings:
+        # PROXY_SERVER: '38.146.27.33:11000'
+        # PROXY_USER: 'neon'
+        # PROXY_PASS: 'neon'
       run: |
-        echo "🧪 Starting funnel test with ${{ matrix.browser }} using template ${{ matrix.template }}"
-        timeout 300 node test-funnel.js "${{ matrix.template }}" || echo "Test timed out after 5 minutes"
+        echo "🧪 Starting funnel test with ${{ matrix.browser }}"
+        timeout 300 node test-funnel.js || echo "Test timed out after 5 minutes"
     
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: test-results-${{ matrix.browser }}-${{ matrix.template }}-${{ github.run_number }}
+        name: test-results-${{ matrix.browser }}-${{ github.run_number }}
         path: |
           *test-results*.json
           failure-*.png
@@ -117,7 +82,7 @@ jobs:
       uses: actions/upload-artifact@v4
       if: failure()
       with:
-        name: failure-screenshots-${{ matrix.browser }}-${{ matrix.template }}-${{ github.run_number }}
+        name: failure-screenshots-${{ matrix.browser }}-${{ github.run_number }}
         path: failure-*.png
         retention-days: 7
 
@@ -137,12 +102,11 @@ jobs:
       run: |
         echo "# 📊 CPA Funnel Test Summary" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "| Template | Browser | Status | Duration | Success Rate | Proxy |" >> $GITHUB_STEP_SUMMARY
-        echo "|----------|---------|--------|----------|--------------|-------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Browser | Status | Duration | Success Rate | Proxy |" >> $GITHUB_STEP_SUMMARY
+        echo "|---------|--------|----------|--------------|-------|" >> $GITHUB_STEP_SUMMARY
         
         for file in *test-results*.json; do
           if [ -f "$file" ]; then
-            template=$(echo "$file" | sed 's/.*-\([^-]*\.json\)-[0-9]*.json/\1/' || echo "unknown")
             browser=$(echo "$file" | grep -o 'chromium\|firefox\|webkit' || echo "unknown")
             status=$(jq -r '.success' "$file" 2>/dev/null || echo "false")
             duration=$(jq -r '.totalDuration' "$file" 2>/dev/null || echo "0")
@@ -153,7 +117,7 @@ jobs:
             status_emoji=$([ "$status" = "true" ] && echo "✅" || echo "❌")
             duration_sec=$((duration / 1000))
             
-            echo "| $template | $browser | $status_emoji | ${duration_sec}s | $success_count/$total_count | $proxy |" >> $GITHUB_STEP_SUMMARY
+            echo "| $browser | $status_emoji | ${duration_sec}s | $success_count/$total_count | $proxy |" >> $GITHUB_STEP_SUMMARY
           fi
         done
         
