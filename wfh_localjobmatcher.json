@@ -2,8 +2,8 @@
   "metadata": {
     "offerName": "Work From Home - LocalJobMatcher",
     "offerCreator": "localjobsmatcher.com",
-    "version": "6.8",
-    "description": "Facebook-only flow: Facebook post -> offer link -> funnel (improved redirect handling). Updated with significantly increased delays to handle potential dynamic loading issues. Simplified detection selectors to focus on most reliable ones (placeholder and name) to avoid any potential selector parsing issues. Incorporated latest mapping data for ZIP page.",
+    "version": "6.9",
+    "description": "Facebook-only flow with proper delay configuration and fixed settings structure",
     "entryPoint": {
       "startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
     }
@@ -162,71 +162,71 @@
         }
       },
       {
-  "pageNumber": 4,
-  "pageName": "Phone and Additional Info",
-  "pageDetection": {
-    "checkForElement": "input[name='phone'], select[type='month'], select[type='day'], select[type='year'], #leadid_tcpa_disclosure"
-  },
-  "fields": [
-    {
-      "fieldType": "phone",
-      "selectors": [
-        "input[name='phone']:visible",
-        "input[type='tel']:visible"
-      ],
-      "action": "type"
-    },
-    {
-      "fieldType": "dobMonth",
-      "selectors": [
-        "select[type='month']:visible",
-        "select[autocomplete='bday-month']:visible"
-      ],
-      "action": "select",
-      "optional": true
-    },
-    {
-      "fieldType": "dobDay",
-      "selectors": [
-        "select[type='day']:visible",
-        "select[autocomplete='bday-day']:visible"
-      ],
-      "action": "select",
-      "optional": true
-    },
-    {
-      "fieldType": "dobYear",
-      "selectors": [
-        "select[type='year']:visible",
-        "select[autocomplete='bday-year']:visible"
-      ],
-      "action": "select",
-      "optional": true
-    },
-    {
-      "fieldType": "consentCheckbox",
-      "selectors": [
-        "#leadid_tcpa_disclosure:visible",
-        "input[name='tcpa-box']:visible",
-        "input[type='checkbox']:visible"
-      ],
-      "action": "click",
-      "required": true
-    }
-  ],
-  "navigation": {
-    "type": "button",
-    "selectors": [
-      "button:has-text('I AGREE'):visible",
-      "button[data-text*='I AGREE']:visible",
-      "button.sc-pZOBi:visible",
-      "button[type='button']:visible:last"
-    ],
-    "waitAfterClick": 30000,
-    "waitForUrlChange": true,
-    "retryIfNoNavigation": true
-  }
-},
+        "pageNumber": 4,
+        "pageName": "Phone and Additional Info",
+        "pageDetection": {
+          "checkForElement": "input[name='phone'], select[type='month'], select[type='day'], select[type='year'], #leadid_tcpa_disclosure"
+        },
+        "fields": [
+          {
+            "fieldType": "phone",
+            "selectors": [
+              "input[name='phone']:visible",
+              "input[type='tel']:visible"
+            ],
+            "action": "type"
+          },
+          {
+            "fieldType": "dobMonth",
+            "selectors": [
+              "select[type='month']:visible",
+              "select[autocomplete='bday-month']:visible"
+            ],
+            "action": "select",
+            "optional": true
+          },
+          {
+            "fieldType": "dobDay",
+            "selectors": [
+              "select[type='day']:visible",
+              "select[autocomplete='bday-day']:visible"
+            ],
+            "action": "select",
+            "optional": true
+          },
+          {
+            "fieldType": "dobYear",
+            "selectors": [
+              "select[type='year']:visible",
+              "select[autocomplete='bday-year']:visible"
+            ],
+            "action": "select",
+            "optional": true
+          },
+          {
+            "fieldType": "consentCheckbox",
+            "selectors": [
+              "#leadid_tcpa_disclosure:visible",
+              "input[name='tcpa-box']:visible",
+              "input[type='checkbox']:visible"
+            ],
+            "action": "click",
+            "required": true
+          }
+        ],
+        "navigation": {
+          "type": "button",
+          "selectors": [
+            "button:has-text('I AGREE'):visible",
+            "button[data-text*='I AGREE']:visible",
+            "button.sc-pZOBi:visible",
+            "button[type='button']:visible:last"
+          ],
+          "waitAfterClick": 30000,
+          "waitForUrlChange": true,
+          "retryIfNoNavigation": true
+        }
+      },
       {
         "pageNumber": 5,
         "pageName": "Job Search Confirmation",
@@ -247,15 +247,22 @@
     ]
   },
   "settings": {
-  "pageFlowVariations": {
-    "allowSkipOptionalPages": true,
-    "maxRetries": 3,
-    "detectPageRedirects": true
-  },
-  "antiDetection": {
-    "randomizeTimings": true,
-    "simulateHumanBehavior": true,
-    "rotateUserAgents": true
+    "delays": {
+      "betweenFields": [500, 1500],
+      "typingSpeed": 100,
+      "beforeNavigation": 2000,
+      "afterNavigation": 5000
+    },
+    "navigationTimeout": 30000,
+    "pageFlowVariations": {
+      "allowSkipOptionalPages": true,
+      "maxRetries": 3,
+      "detectPageRedirects": true
+    },
+    "antiDetection": {
+      "randomizeTimings": true,
+      "simulateHumanBehavior": true,
+      "rotateUserAgents": true
+    }
   }
-}
 }
