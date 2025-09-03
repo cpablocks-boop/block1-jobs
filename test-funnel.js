@@ -397,52 +397,68 @@ class CPAFunnelTester {
   }
 
   async fillField(field, testData) {
-    const isOptional = field.optional || field.required === false;
+  const isOptional = field.optional || field.required === false;
 
-    const foundSelector = await this.waitForElement(field.selectors || field.selector);
-    if (!foundSelector) {
-      if (!isOptional) {
-        throw new Error(`Required field not found: ${field.fieldType}`);
-      }
-      return false;
+  const foundSelector = await this.waitForElement(field.selectors || field.selector);
+  if (!foundSelector) {
+    if (!isOptional) {
+      throw new Error(`Required field not found: ${field.fieldType}`);
     }
-
-    const value = testData[field.fieldType];
-    if (!value && !isOptional) {
-      throw new Error(`No test data for required field: ${field.fieldType}`);
-    }
-
-    if (!value) return false;
-
-    this.log(`Searching for ${field.fieldType} field...`);
-    this.log(`Found ${field.fieldType} field. Typing: ${value}`);
-    switch (field.action) {
-      case 'clear_and_type':
-        await this.page.fill(foundSelector, '');
-        await this.page.type(foundSelector, value, { delay: this.config.settings?.delays?.typingSpeed || 100 });
-        break;
-      case 'type':
-        await this.page.type(foundSelector, value, { delay: this.config.settings?.delays?.typingSpeed || 100 });
-        break;
-      case 'select':
-        await this.page.selectOption(foundSelector, value);
-        break;
-      case 'click':
-        if (field.options && field.fieldType === 'gender') {
-          const genderSelector = foundSelector.replace(/-f--/, `-${value.toLowerCase()}--`);
-          await this.page.click(genderSelector);
-        } else {
-          await this.page.click(foundSelector);
-        }
-        break;
-      default:
-        await this.page.fill(foundSelector, value);
-    }
-    this.log(`✅ Filled ${field.fieldType}.`);
-
-    await this.page.waitForTimeout(Math.random() * (this.config.settings.delays.betweenFields[1] - this.config.settings.delays.betweenFields[0]) + this.config.settings.delays.betweenFields[0]);
-    return true;
+    return false;
   }
+
+  const value = testData[field.fieldType];
+  if (!value && !isOptional && field.fieldType !== 'consentCheckbox') {
+    throw new Error(`No test data for required field: ${field.fieldType}`);
+  }
+
+  this.log(`Searching for ${field.fieldType} field...`);
+  
+  switch (field.action) {
+    case 'clear_and_type':
+      await this.page.fill(foundSelector, '');
+      await this.page.type(foundSelector, value, { delay: this.config.settings?.delays?.typingSpeed || 100 });
+      break;
+    case 'type':
+      await this.page.type(foundSelector, value, { delay: this.config.settings?.delays?.typingSpeed || 100 });
+      break;
+    case 'select':
+      await this.page.selectOption(foundSelector, value);
+      break;
+    case 'click':
+      if (field.fieldType === 'consentCheckbox') {
+        const isChecked = await this.page.isChecked(foundSelector).catch(() => false);
+        if (!isChecked) {
+          await this.page.click(foundSelector);
+          this.log(`✅ Checked consent checkbox`);
+          await this.page.waitForTimeout(500);
+          const nowChecked = await this.page.isChecked(foundSelector).catch(() => false);
+          if (!nowChecked) {
+            await this.page.click(foundSelector, { force: true });
+            this.log(`🔄 Force-clicked checkbox`);
+          }
+        } else {
+          this.log(`✓ Checkbox already checked`);
+        }
+      } else if (field.options && field.fieldType === 'gender') {
+        const genderSelector = foundSelector.replace(/-f--/, `-${value.toLowerCase()}--`);
+        await this.page.click(genderSelector);
+      } else {
+        await this.page.click(foundSelector);
+      }
+      break;
+    default:
+      await this.page.fill(foundSelector, value);
+  }
+  
+  if (field.fieldType !== 'consentCheckbox') {
+    this.log(`Found ${field.fieldType} field. Typing: ${value}`);
+  }
+  this.log(`✅ Filled ${field.fieldType}.`);
+
+  await this.page.waitForTimeout(Math.random() * (this.config.settings.delays.betweenFields[1] - this.config.settings.delays.betweenFields[0]) + this.config.settings.delays.betweenFields[0]);
+  return true;
+}
 
   async inspectPageForAlternatives(expectedSelector) {
     try {
