@@ -247,10 +247,15 @@
     ]
   },
   "settings": {
-    "delays": {
-      "betweenFields": [1000, 3000],
-      "pageLoad": 60000,
-      "navigationTimeout": 90000
-    }
+  "pageFlowVariations": {
+    "allowSkipOptionalPages": true,
+    "maxRetries": 3,
+    "detectPageRedirects": true
+  },
+  "antiDetection": {
+    "randomizeTimings": true,
+    "simulateHumanBehavior": true,
+    "rotateUserAgents": true
   }
+}
 }
