@@ -1,15 +1,18 @@
 {
   "name": "cpa-funnel-automation",
-  "version": "1.0.0",
-  "description": "Automated testing for CPA funnel conversion flows",
+  "version": "2.0.0",
+  "description": "Mobile automated testing for CPA funnel conversion flows with warm-up sessions",
   "main": "test-funnel.js",
   "scripts": {
     "test": "node test-funnel.js",
-    "test:debug": "HEADLESS=false node test-funnel.js",
-    "test:chromium": "BROWSER=chromium node test-funnel.js",
-    "test:firefox": "BROWSER=firefox node test-funnel.js",
-    "test:webkit": "BROWSER=webkit node test-funnel.js",
-    "install-browsers": "npx playwright install"
+    "test:mobile": "node mobile-session-runner.js",
+    "test:interactive": "node cli-runner.js",
+    "test:single": "SESSIONS=1 node mobile-session-runner.js",
+    "test:batch5": "SESSIONS=5 node mobile-session-runner.js",
+    "test:batch10": "SESSIONS=10 node mobile-session-runner.js",
+    "test:nowarmup": "DO_WARMUP=false SESSIONS=1 node mobile-session-runner.js",
+    "install-browsers": "npx playwright install chromium",
+    "install-deps": "npx playwright install-deps chromium"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
@@ -20,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JohncMr/wfh-headless-automation.git"
+    "url": "https://github.com/cpablocks-boop/block1-jobs.git"
   },
   "keywords": [
     "automation",
@@ -28,6 +31,8 @@
     "cpa",
     "funnel",
     "playwright",
-    "github-actions"
+    "mobile",
+    "warm-up",
+    "session-management"
   ]
 }
