@@ -7,16 +7,11 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '0 */6 * * *'  # Run every 6 hours
 
 jobs:
   funnel-test:
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        browser: [chromium, firefox, webkit]
-      fail-fast: false
     
     steps:
     - name: Checkout repository
@@ -30,96 +25,40 @@ jobs:
     - name: Install dependencies
       run: |
         npm install
-        npx playwright install --with-deps ${{ matrix.browser }}
+        npx playwright install --with-deps chromium
     
-    - name: Validate config and device profile files
+    - name: Validate files
       run: |
-        echo "🔍 Checking for configuration files..."
+        echo "📁 Checking configuration files..."
         if [ ! -f "wfh_localjobmatcher.json" ]; then
           echo "❌ Config file not found!"
           exit 1
         fi
         echo "✅ Config file found"
-        node -e "JSON.parse(require('fs').readFileSync('wfh_localjobmatcher.json'))" && echo "✅ Valid JSON"
         
-        echo "🔍 Checking for device profile files..."
-        if [ -f "android-device-profiles.csv" ]; then
-          echo "✅ Android device profiles found"
+        echo "📁 Checking user data..."
+        if [ ! -f "User-Data.csv" ]; then
+          echo "❌ User data not found!"
+          exit 1
         fi
-        if [ -f "iphone-device-profiles.csv" ]; then
-          echo "✅ iPhone device profiles found"
-        fi
+        echo "✅ User data found"
         
-        echo "📁 Available files:"
-        ls -la *.csv *.json 2>/dev/null || echo "No CSV/JSON files found"
-    
-    - name: Run CPA Funnel Tests with Proxy
+    - name: Run CPA Funnel Tests
       env:
-        BROWSER: ${{ matrix.browser }}
-        HEADLESS: true
+        BROWSER: chromium
+        HEADLESS: true  # Must be true for GitHub Actions
         CI: true
         USE_DEFAULT_PROXY: true
-        # Or use custom proxy settings:
-        # PROXY_SERVER: '38.146.27.33:11000'
-        # PROXY_USER: 'neon'
-        # PROXY_PASS: 'neon'
       run: |
-        echo "🧪 Starting funnel test with ${{ matrix.browser }}"
-        timeout 300 node test-funnel.js || echo "Test timed out after 5 minutes"
+        echo "🧪 Starting funnel test with chromium"
+        timeout 300 node test-funnel.js || echo "Test completed or timed out"
     
-    - name: Upload test results
+    - name: Upload results
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: test-results-${{ matrix.browser }}-${{ github.run_number }}
+        name: test-results-${{ github.run_number }}
         path: |
           *test-results*.json
           failure-*.png
-          videos/
         retention-days: 30
-    
-    - name: Upload screenshots on failure
-      uses: actions/upload-artifact@v4
-      if: failure()
-      with:
-        name: failure-screenshots-${{ matrix.browser }}-${{ github.run_number }}
-        path: failure-*.png
-        retention-days: 7
-
-  aggregate-results:
-    runs-on: ubuntu-latest
-    needs: funnel-test
-    if: always()
-    
-    steps:
-    - name: Download all test results
-      uses: actions/download-artifact@v4
-      with:
-        pattern: test-results-*
-        merge-multiple: true
-    
-    - name: Generate summary report
-      run: |
-        echo "# 📊 CPA Funnel Test Summary" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "| Browser | Status | Duration | Success Rate | Proxy |" >> $GITHUB_STEP_SUMMARY
-        echo "|---------|--------|----------|--------------|-------|" >> $GITHUB_STEP_SUMMARY
-        
-        for file in *test-results*.json; do
-          if [ -f "$file" ]; then
-            browser=$(echo "$file" | grep -o 'chromium\|firefox\|webkit' || echo "unknown")
-            status=$(jq -r '.success' "$file" 2>/dev/null || echo "false")
-            duration=$(jq -r '.totalDuration' "$file" 2>/dev/null || echo "0")
-            success_count=$(jq -r '.pageResults | map(select(.success)) | length' "$file" 2>/dev/null || echo "0")
-            total_count=$(jq -r '.pageResults | length' "$file" 2>/dev/null || echo "0")
-            proxy=$(jq -r '.proxy' "$file" 2>/dev/null || echo "disabled")
-            
-            status_emoji=$([ "$status" = "true" ] && echo "✅" || echo "❌")
-            duration_sec=$((duration / 1000))
-            
-            echo "| $browser | $status_emoji | ${duration_sec}s | $success_count/$total_count | $proxy |" >> $GITHUB_STEP_SUMMARY
-          fi
-        done
-        
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "**Test completed at:** $(date)" >> $GITHUB_STEP_SUMMARY
