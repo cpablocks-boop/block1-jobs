@@ -180,8 +180,7 @@
       "fieldType": "dobMonth",
       "selectors": [
         "select[type='month']:visible",
-        "select[autocomplete='bday-month']:visible",
-        "select.sc-oUcyK:first"
+        "select[autocomplete='bday-month']:visible"
       ],
       "action": "select",
       "optional": true
@@ -190,8 +189,7 @@
       "fieldType": "dobDay",
       "selectors": [
         "select[type='day']:visible",
-        "select[autocomplete='bday-day']:visible",
-        "select.sc-oUcyK:nth(1)"
+        "select[autocomplete='bday-day']:visible"
       ],
       "action": "select",
       "optional": true
@@ -200,8 +198,7 @@
       "fieldType": "dobYear",
       "selectors": [
         "select[type='year']:visible",
-        "select[autocomplete='bday-year']:visible",
-        "select.sc-oUcyK:last"
+        "select[autocomplete='bday-year']:visible"
       ],
       "action": "select",
       "optional": true
@@ -214,7 +211,7 @@
         "input[type='checkbox']:visible"
       ],
       "action": "click",
-      "optional": true
+      "required": true
     }
   ],
   "navigation": {
@@ -223,7 +220,6 @@
       "button:has-text('I AGREE'):visible",
       "button[data-text*='I AGREE']:visible",
       "button.sc-pZOBi:visible",
-      "button.iclziw:visible",
       "button[type='button']:visible:last"
     ],
     "waitAfterClick": 30000,
