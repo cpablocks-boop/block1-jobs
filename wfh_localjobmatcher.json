@@ -162,64 +162,75 @@
         }
       },
       {
-        "pageNumber": 4,
-        "pageName": "Phone and Additional Info",
-        "pageDetection": {
-          "checkForElement": "input[name='phone'], select[name='month'], select[name='day'], select[name='year'], #leadid_tcpa_disclosure"
-        },
-        "fields": [
-          {
-            "fieldType": "phone",
-            "selectors": [
-              "input[name='phone']:visible"
-            ],
-            "action": "type"
-          },
-          {
-            "fieldType": "dobMonth",
-            "selectors": [
-              "select[name='month']:visible"
-            ],
-            "action": "select",
-            "optional": true
-          },
-          {
-            "fieldType": "dobDay",
-            "selectors": [
-              "select[name='day']:visible"
-            ],
-            "action": "select",
-            "optional": true
-          },
-          {
-            "fieldType": "dobYear",
-            "selectors": [
-              "select[name='year']:visible"
-            ],
-            "action": "select",
-            "optional": true
-          },
-          {
-            "fieldType": "consentCheckbox",
-            "selectors": [
-              "#leadid_tcpa_disclosure:visible",
-              "input[type='checkbox']:visible"
-            ],
-            "action": "click",
-            "optional": true
-          }
-        ],
-        "navigation": {
-          "type": "button",
-          "selectors": [
-            "button:has-text('Continue'):visible",
-            "button:visible:first"
-          ],
-          "waitAfterClick": 30000,
-          "waitForUrlChange": true,
-          "retryIfNoNavigation": true
-        }
-      },
+  "pageNumber": 4,
+  "pageName": "Phone and Additional Info",
+  "pageDetection": {
+    "checkForElement": "input[name='phone'], select[type='month'], select[type='day'], select[type='year'], #leadid_tcpa_disclosure"
+  },
+  "fields": [
+    {
+      "fieldType": "phone",
+      "selectors": [
+        "input[name='phone']:visible",
+        "input[type='tel']:visible"
+      ],
+      "action": "type"
+    },
+    {
+      "fieldType": "dobMonth",
+      "selectors": [
+        "select[type='month']:visible",
+        "select[autocomplete='bday-month']:visible",
+        "select.sc-oUcyK:first"
+      ],
+      "action": "select",
+      "optional": true
+    },
+    {
+      "fieldType": "dobDay",
+      "selectors": [
+        "select[type='day']:visible",
+        "select[autocomplete='bday-day']:visible",
+        "select.sc-oUcyK:nth(1)"
+      ],
+      "action": "select",
+      "optional": true
+    },
+    {
+      "fieldType": "dobYear",
+      "selectors": [
+        "select[type='year']:visible",
+        "select[autocomplete='bday-year']:visible",
+        "select.sc-oUcyK:last"
+      ],
+      "action": "select",
+      "optional": true
+    },
+    {
+      "fieldType": "consentCheckbox",
+      "selectors": [
+        "#leadid_tcpa_disclosure:visible",
+        "input[name='tcpa-box']:visible",
+        "input[type='checkbox']:visible"
+      ],
+      "action": "click",
+      "optional": true
+    }
+  ],
+  "navigation": {
+    "type": "button",
+    "selectors": [
+      "button:has-text('I AGREE'):visible",
+      "button[data-text*='I AGREE']:visible",
+      "button.sc-pZOBi:visible",
+      "button.iclziw:visible",
+      "button[type='button']:visible:last"
+    ],
+    "waitAfterClick": 30000,
+    "waitForUrlChange": true,
+    "retryIfNoNavigation": true
+  }
+},
       {
         "pageNumber": 5,
         "pageName": "Job Search Confirmation",
