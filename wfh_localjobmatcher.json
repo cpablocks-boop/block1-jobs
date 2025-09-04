@@ -297,10 +297,22 @@
         "isDynamic": true,
         "optional": true,
         "pageDetection": {
+          "logging": {
+            "onPageLoad": "🔍 Checking for additional dynamic pages (Page 6)...",
+            "onDetectionStart": "📋 Attempting to identify page type..."
+          },
           "variations": [],
           "fallback": {
+            "logging": {
+              "onUnknown": "⚠️ Unknown page type at position 6 - capturing for future mapping",
+              "onScreenshot": "📸 Screenshot saved for page mapping",
+              "onUrlCapture": "🔗 Page URL: {url}",
+              "onTextCapture": "📄 Visible text elements captured",
+              "onFallbackAction": "🔄 Trying common navigation: Continue/Next/Skip..."
+            },
             "logUnknownPage": true,
             "takeScreenshot": true,
+            "captureVisibleText": true,
             "tryCommonButtons": ["Continue", "Next", "Skip", "Submit"]
           }
         }
@@ -311,10 +323,24 @@
         "isDynamic": true,
         "optional": true,
         "pageDetection": {
+          "logging": {
+            "onPageLoad": "🔍 Checking for additional dynamic pages (Page 7)...",
+            "onDetectionStart": "📋 Attempting to identify page type...",
+            "onFinalPage": "🏁 Checking if this is the final page..."
+          },
           "variations": [],
           "fallback": {
+            "logging": {
+              "onUnknown": "⚠️ Unknown page type at position 7 - capturing for future mapping",
+              "onScreenshot": "📸 Screenshot saved for page mapping",
+              "onUrlCapture": "🔗 Page URL: {url}",
+              "onTextCapture": "📄 Visible text elements captured",
+              "onFallbackAction": "🔄 Trying common navigation: Continue/Next/Skip/Submit/Finish...",
+              "onComplete": "✅ Funnel completion detected"
+            },
             "logUnknownPage": true,
             "takeScreenshot": true,
+            "captureVisibleText": true,
             "tryCommonButtons": ["Continue", "Next", "Skip", "Submit", "Finish"]
           }
         }
