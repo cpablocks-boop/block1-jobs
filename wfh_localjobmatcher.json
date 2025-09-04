@@ -2,8 +2,8 @@
   "metadata": {
     "offerName": "Work From Home - LocalJobMatcher",
     "offerCreator": "localjobsmatcher.com",
-    "version": "6.9",
-    "description": "Facebook-only flow with proper delay configuration and fixed settings structure",
+    "version": "7.0",
+    "description": "Facebook flow with dynamic survey/offer page handling",
     "entryPoint": {
       "startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
     }
@@ -54,7 +54,7 @@
           "type": "button",
           "selectors": [
             "[data-testid='viewJobsButton']:visible",
-            "button:has-text('View Your Jobs »'):visible",
+            "button:has-text('View Your Jobs Â»'):visible",
             "button:visible:first"
           ],
           "waitAfterClick": 30000,
@@ -229,19 +229,94 @@
       },
       {
         "pageNumber": 5,
-        "pageName": "Job Search Confirmation",
+        "pageName": "Dynamic Survey/Offer Page 1",
+        "isDynamic": true,
         "pageDetection": {
-          "checkForElement": "button:has-text('Find Jobs'), button:has-text('Career Resources')"
-        },
-        "fields": [],
-        "navigation": {
-          "type": "button",
-          "selectors": [
-            "button:has-text('Find Jobs'):visible"
+          "variations": [
+            {
+              "name": "Employment Status Survey",
+              "detection": {
+                "checkForText": [
+                  "What best describes your current employment status?",
+                  "current employment status"
+                ],
+                "checkForElement": "div:has-text('current employment status'), div.sc-pciEQ"
+              },
+              "fields": [],
+              "navigation": {
+                "type": "randomChoice",
+                "choices": [
+                  {
+                    "selectors": ["button:has-text('Full Time'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Part Time'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Unemployed'):visible"]
+                  }
+                ],
+                "waitAfterClick": 30000,
+                "waitForUrlChange": true,
+                "retryIfNoNavigation": true
+              }
+            },
+            {
+              "name": "Fresh Careers Offer",
+              "detection": {
+                "checkForText": [
+                  "Interested in getting daily Work From Home job alerts via SMS?",
+                  "job alerts via SMS"
+                ],
+                "checkForElement": "div:has-text('job alerts via SMS'), div.sc-pZOBi"
+              },
+              "fields": [],
+              "navigation": {
+                "type": "button",
+                "selectors": [
+                  "[data-testid='skipButton']:visible",
+                  "div[data-testid='skipButton']:visible",
+                  "div:has-text('Skip'):visible"
+                ],
+                "waitAfterClick": 30000,
+                "waitForUrlChange": true,
+                "retryIfNoNavigation": true
+              }
+            }
           ],
-          "waitAfterClick": 30000,
-          "waitForUrlChange": true,
-          "retryIfNoNavigation": true
+          "fallback": {
+            "logUnknownPage": true,
+            "takeScreenshot": true,
+            "tryCommonButtons": ["Continue", "Next", "Skip"]
+          }
+        }
+      },
+      {
+        "pageNumber": 6,
+        "pageName": "Dynamic Survey/Offer Page 2",
+        "isDynamic": true,
+        "optional": true,
+        "pageDetection": {
+          "variations": [],
+          "fallback": {
+            "logUnknownPage": true,
+            "takeScreenshot": true,
+            "tryCommonButtons": ["Continue", "Next", "Skip", "Submit"]
+          }
+        }
+      },
+      {
+        "pageNumber": 7,
+        "pageName": "Dynamic Survey/Offer Page 3",
+        "isDynamic": true,
+        "optional": true,
+        "pageDetection": {
+          "variations": [],
+          "fallback": {
+            "logUnknownPage": true,
+            "takeScreenshot": true,
+            "tryCommonButtons": ["Continue", "Next", "Skip", "Submit", "Finish"]
+          }
         }
       }
     ]
@@ -257,7 +332,13 @@
     "pageFlowVariations": {
       "allowSkipOptionalPages": true,
       "maxRetries": 3,
-      "detectPageRedirects": true
+      "detectPageRedirects": true,
+      "handleDynamicPages": true
+    },
+    "dynamicPageHandling": {
+      "maxAttemptsPerVariation": 2,
+      "textMatchStrategy": "fullThenPartial",
+      "continueOnUnknown": true
     },
     "antiDetection": {
       "randomizeTimings": true,
