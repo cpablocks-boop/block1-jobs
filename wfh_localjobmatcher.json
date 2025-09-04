@@ -247,6 +247,9 @@
                 "type": "randomChoice",
                 "choices": [
                   {
+                    "selectors": ["button:has-text('On Disability'):visible"]
+                  },
+                  {
                     "selectors": ["button:has-text('Full Time'):visible"]
                   },
                   {
@@ -254,6 +257,9 @@
                   },
                   {
                     "selectors": ["button:has-text('Unemployed'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Student'):visible"]
                   }
                 ],
                 "waitAfterClick": 30000,
