@@ -565,7 +565,7 @@ class CPAFunnelTester {
   async handleEmploymentStatusSurvey(variation) {
     this.log(`🎲 Randomly selecting employment status option...`);
     
-    const options = ['Full Time', 'Part Time', 'Unemployed'];
+    const options = ['On Disability', 'Full Time', 'Part Time', 'Unemployed', 'Student'];
     const selectedOption = options[Math.floor(Math.random() * options.length)];
     
     this.log(`📊 Selecting '${selectedOption}' employment status...`);
