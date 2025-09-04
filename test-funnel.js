@@ -397,68 +397,247 @@ class CPAFunnelTester {
   }
 
   async fillField(field, testData) {
-  const isOptional = field.optional || field.required === false;
+    const isOptional = field.optional || field.required === false;
 
-  const foundSelector = await this.waitForElement(field.selectors || field.selector);
-  if (!foundSelector) {
-    if (!isOptional) {
-      throw new Error(`Required field not found: ${field.fieldType}`);
-    }
-    return false;
-  }
-
-  const value = testData[field.fieldType];
-  if (!value && !isOptional && field.fieldType !== 'consentCheckbox') {
-    throw new Error(`No test data for required field: ${field.fieldType}`);
-  }
-
-  this.log(`Searching for ${field.fieldType} field...`);
-  
-  switch (field.action) {
-    case 'clear_and_type':
-      await this.page.fill(foundSelector, '');
-      await this.page.type(foundSelector, value, { delay: this.config.settings?.delays?.typingSpeed || 100 });
-      break;
-    case 'type':
-      await this.page.type(foundSelector, value, { delay: this.config.settings?.delays?.typingSpeed || 100 });
-      break;
-    case 'select':
-      await this.page.selectOption(foundSelector, value);
-      break;
-    case 'click':
-      if (field.fieldType === 'consentCheckbox') {
-        const isChecked = await this.page.isChecked(foundSelector).catch(() => false);
-        if (!isChecked) {
-          await this.page.click(foundSelector);
-          this.log(`✅ Checked consent checkbox`);
-          await this.page.waitForTimeout(500);
-          const nowChecked = await this.page.isChecked(foundSelector).catch(() => false);
-          if (!nowChecked) {
-            await this.page.click(foundSelector, { force: true });
-            this.log(`🔄 Force-clicked checkbox`);
-          }
-        } else {
-          this.log(`✓ Checkbox already checked`);
-        }
-      } else if (field.options && field.fieldType === 'gender') {
-        const genderSelector = foundSelector.replace(/-f--/, `-${value.toLowerCase()}--`);
-        await this.page.click(genderSelector);
-      } else {
-        await this.page.click(foundSelector);
+    const foundSelector = await this.waitForElement(field.selectors || field.selector);
+    if (!foundSelector) {
+      if (!isOptional) {
+        throw new Error(`Required field not found: ${field.fieldType}`);
       }
-      break;
-    default:
-      await this.page.fill(foundSelector, value);
-  }
-  
-  if (field.fieldType !== 'consentCheckbox') {
-    this.log(`Found ${field.fieldType} field. Typing: ${value}`);
-  }
-  this.log(`✅ Filled ${field.fieldType}.`);
+      return false;
+    }
 
-  await this.page.waitForTimeout(Math.random() * (this.config.settings.delays.betweenFields[1] - this.config.settings.delays.betweenFields[0]) + this.config.settings.delays.betweenFields[0]);
-  return true;
-}
+    const value = testData[field.fieldType];
+    if (!value && !isOptional && field.fieldType !== 'consentCheckbox') {
+      throw new Error(`No test data for required field: ${field.fieldType}`);
+    }
+
+    this.log(`Searching for ${field.fieldType} field...`);
+    
+    switch (field.action) {
+      case 'clear_and_type':
+        await this.page.fill(foundSelector, '');
+        await this.page.type(foundSelector, value, { delay: this.config.settings?.delays?.typingSpeed || 100 });
+        break;
+      case 'type':
+        await this.page.type(foundSelector, value, { delay: this.config.settings?.delays?.typingSpeed || 100 });
+        break;
+      case 'select':
+        await this.page.selectOption(foundSelector, value);
+        break;
+      case 'click':
+        if (field.fieldType === 'consentCheckbox') {
+          const isChecked = await this.page.isChecked(foundSelector).catch(() => false);
+          if (!isChecked) {
+            await this.page.click(foundSelector);
+            this.log(`✅ Checked consent checkbox`);
+            await this.page.waitForTimeout(500);
+            const nowChecked = await this.page.isChecked(foundSelector).catch(() => false);
+            if (!nowChecked) {
+              await this.page.click(foundSelector, { force: true });
+              this.log(`🔄 Force-clicked checkbox`);
+            }
+          } else {
+            this.log(`✔ Checkbox already checked`);
+          }
+        } else if (field.options && field.fieldType === 'gender') {
+          const genderSelector = foundSelector.replace(/-f--/, `-${value.toLowerCase()}--`);
+          await this.page.click(genderSelector);
+        } else {
+          await this.page.click(foundSelector);
+        }
+        break;
+      default:
+        await this.page.fill(foundSelector, value);
+    }
+    
+    if (field.fieldType !== 'consentCheckbox') {
+      this.log(`Found ${field.fieldType} field. Typing: ${value}`);
+    }
+    this.log(`✅ Filled ${field.fieldType}.`);
+
+    await this.page.waitForTimeout(Math.random() * (this.config.settings.delays.betweenFields[1] - this.config.settings.delays.betweenFields[0]) + this.config.settings.delays.betweenFields[0]);
+    return true;
+  }
+
+  async handleDynamicPage(pageConfig, testData) {
+    const { pageNumber, pageName, pageDetection } = pageConfig;
+    
+    this.log(`🔍 Checking for dynamic page variations...`);
+    this.log(`📋 Attempting to identify page type...`);
+    
+    // Check each variation
+    for (const variation of pageDetection.variations) {
+      this.log(`🔎 Searching for ${variation.name} elements...`);
+      
+      // Check for text-based detection
+      if (variation.detection.checkForText) {
+        for (const textToCheck of variation.detection.checkForText) {
+          this.log(`📝 Looking for text: '${textToCheck}'`);
+          
+          try {
+            // Check if the text exists on the page
+            const textExists = await this.page.locator(`text="${textToCheck}"`).first().isVisible({ timeout: 3000 })
+              .catch(() => false);
+            
+            if (textExists) {
+              this.log(`✅ DETECTED: ${variation.name} page`);
+              
+              // Handle navigation based on variation type
+              if (variation.name === "Employment Status Survey") {
+                await this.handleEmploymentStatusSurvey(variation);
+              } else if (variation.name === "Fresh Careers Offer") {
+                await this.handleFreshCareersOffer(variation);
+              }
+              
+              return { success: true, variationFound: variation.name };
+            }
+          } catch (error) {
+            this.log(`❌ Not ${variation.name}`);
+          }
+        }
+      }
+      
+      // Also check for element-based detection as fallback
+      if (variation.detection.checkForElement) {
+        const elementFound = await this.waitForElement(
+          variation.detection.checkForElement.split(',').map(s => s.trim()), 
+          3000
+        );
+        
+        if (elementFound) {
+          this.log(`✅ DETECTED: ${variation.name} page (via element)`);
+          
+          // Handle navigation based on variation type
+          if (variation.name === "Employment Status Survey") {
+            await this.handleEmploymentStatusSurvey(variation);
+          } else if (variation.name === "Fresh Careers Offer") {
+            await this.handleFreshCareersOffer(variation);
+          }
+          
+          return { success: true, variationFound: variation.name };
+        }
+      }
+    }
+    
+    // No variation matched
+    this.log(`⚠️ Unknown page type detected - capturing details for analysis`);
+    this.log(`🔗 Current URL: ${this.page.url()}`);
+    
+    // Try to capture visible text for debugging
+    try {
+      const pageText = await this.page.locator('body').textContent();
+      const truncatedText = pageText.substring(0, 500).replace(/\s+/g, ' ').trim();
+      this.log(`📄 Page content preview: ${truncatedText}...`);
+    } catch (error) {
+      this.log(`⚠️ Could not capture page text: ${error.message}`);
+    }
+    
+    // Take screenshot
+    try {
+      const screenshotPath = `unknown-page-${pageNumber}-${Date.now()}.png`;
+      await this.page.screenshot({ path: screenshotPath, fullPage: true });
+      this.log(`📸 Screenshot saved: ${screenshotPath}`);
+    } catch (error) {
+      this.log(`⚠️ Could not take screenshot: ${error.message}`);
+    }
+    
+    // Try common buttons as fallback
+    this.log(`🔄 Attempting fallback: looking for common navigation buttons...`);
+    const commonButtons = ['Continue', 'Next', 'Skip', 'Submit', 'Finish'];
+    for (const buttonText of commonButtons) {
+      const buttonFound = await this.waitForElement([
+        `button:has-text("${buttonText}")`,
+        `a:has-text("${buttonText}")`
+      ], 2000);
+      
+      if (buttonFound) {
+        this.log(`🔘 Found '${buttonText}' button - clicking...`);
+        await this.page.click(buttonFound);
+        await this.page.waitForTimeout(5000);
+        return { success: true, variationFound: 'unknown', fallbackUsed: buttonText };
+      }
+    }
+    
+    return { success: false, variationFound: null };
+  }
+
+  async handleEmploymentStatusSurvey(variation) {
+    this.log(`🎲 Randomly selecting employment status option...`);
+    
+    const options = ['Full Time', 'Part Time', 'Unemployed'];
+    const selectedOption = options[Math.floor(Math.random() * options.length)];
+    
+    this.log(`📊 Selecting '${selectedOption}' employment status...`);
+    
+    try {
+      // Try to click the button with the selected text
+      const buttonSelector = `button:has-text("${selectedOption}"):visible`;
+      await this.page.click(buttonSelector, { timeout: 10000 });
+      
+      this.log(`✅ Employment status submitted`);
+      
+      // Wait for navigation
+      await this.page.waitForTimeout(variation.navigation?.waitAfterClick || 5000);
+      
+      if (variation.navigation?.waitForUrlChange) {
+        try {
+          await this.page.waitForURL(url => url !== this.page.url(), { timeout: 15000 });
+        } catch (error) {
+          this.log(`⚠️ URL didn't change after selection, continuing...`);
+        }
+      }
+    } catch (error) {
+      this.log(`❌ Failed to select employment status: ${error.message}`);
+      throw error;
+    }
+  }
+
+  async handleFreshCareersOffer(variation) {
+    this.log(`⏭️ Skipping Fresh Careers SMS offer...`);
+    this.log(`🔍 Looking for Skip button with data-testid='skipButton'`);
+    
+    try {
+      // Try multiple selectors for the skip button
+      const skipSelectors = [
+        '[data-testid="skipButton"]:visible',
+        'div[data-testid="skipButton"]:visible',
+        'div:has-text("Skip"):visible',
+        'button:has-text("Skip"):visible'
+      ];
+      
+      let clicked = false;
+      for (const selector of skipSelectors) {
+        try {
+          await this.page.click(selector, { timeout: 5000 });
+          clicked = true;
+          break;
+        } catch (error) {
+          // Try next selector
+        }
+      }
+      
+      if (!clicked) {
+        throw new Error('Could not find Skip button');
+      }
+      
+      this.log(`✅ Successfully skipped SMS offer`);
+      
+      // Wait for navigation
+      await this.page.waitForTimeout(variation.navigation?.waitAfterClick || 5000);
+      
+      if (variation.navigation?.waitForUrlChange) {
+        try {
+          await this.page.waitForURL(url => url !== this.page.url(), { timeout: 15000 });
+        } catch (error) {
+          this.log(`⚠️ URL didn't change after skipping, continuing...`);
+        }
+      }
+    } catch (error) {
+      this.log(`❌ Failed to skip offer: ${error.message}`);
+      throw error;
+    }
+  }
 
   async inspectPageForAlternatives(expectedSelector) {
     try {
@@ -480,233 +659,254 @@ class CPAFunnelTester {
   }
 
   async testPage(pageConfig, testData) {
-  const { pageNumber, pageName, pageDetection, fields = [], navigation, optional = false } = pageConfig;
-  
-  const pageResult = {
-    pageNumber,
-    pageName,
-    success: false,
-    fieldsCompleted: 0,
-    totalFields: fields.length,
-    errors: [],
-    skipped: false
-  };
+    const { pageNumber, pageName, pageDetection, fields = [], navigation, optional = false, isDynamic = false } = pageConfig;
+    
+    const pageResult = {
+      pageNumber,
+      pageName,
+      success: false,
+      fieldsCompleted: 0,
+      totalFields: fields.length,
+      errors: [],
+      skipped: false,
+      dynamicVariation: null
+    };
 
-  try {
-    this.log(`--- STEP ${pageNumber}: Automating ${pageName} ---`);
-    this.log(`⏳ Waiting for page to fully load...`);
-    await this.page.waitForLoadState('domcontentloaded', { timeout: this.config.settings.navigationTimeout });
-    
     try {
-      await this.page.waitForLoadState('networkidle', { timeout: 15000 });
-    } catch (networkError) {
-      this.log('⚠️ NetworkIdle timeout, continuing with page detection...');
-    }
-    
-    // Check if we're on this page or if we've skipped to the next
-    if (pageDetection?.checkForElement) {
-      this.log(`🔍 Looking for page detection element: ${pageDetection.checkForElement}`);
-      const pageDetected = await this.waitForElement([pageDetection.checkForElement], optional ? 5000 : 15000);
+      this.log(`--- STEP ${pageNumber}: Automating ${pageName} ---`);
+      this.log(`⏳ Waiting for page to fully load...`);
+      await this.page.waitForLoadState('domcontentloaded', { timeout: this.config.settings.navigationTimeout });
       
-      if (!pageDetected) {
-        if (optional) {
-          this.log(`⏭️ Optional page not detected, checking if we've moved to next page...`);
+      try {
+        await this.page.waitForLoadState('networkidle', { timeout: 15000 });
+      } catch (networkError) {
+        this.log('⚠️ NetworkIdle timeout, continuing with page detection...');
+      }
+      
+      // Handle dynamic pages differently
+      if (isDynamic && pageDetection?.variations) {
+        const dynamicResult = await this.handleDynamicPage(pageConfig, testData);
+        
+        if (dynamicResult.success) {
+          pageResult.success = true;
+          pageResult.dynamicVariation = dynamicResult.variationFound;
           
-          // Check if we're on the next page instead
-          const nextPageIndex = this.config.funnel.pages.findIndex(p => p.pageNumber === pageNumber + 1);
-          if (nextPageIndex !== -1) {
-            const nextPage = this.config.funnel.pages[nextPageIndex];
-            if (nextPage.pageDetection?.checkForElement) {
-              const nextPageDetected = await this.waitForElement([nextPage.pageDetection.checkForElement], 5000);
-              if (nextPageDetected) {
-                this.log(`✅ Skipped to next page (${nextPage.pageName}) - optional page was not present`);
-                pageResult.skipped = true;
-                pageResult.success = true;
-                this.testResults.pageResults.push(pageResult);
-                return pageResult;
+          if (dynamicResult.fallbackUsed) {
+            this.log(`📝 Used fallback navigation: ${dynamicResult.fallbackUsed}`);
+          }
+        } else {
+          throw new Error('Failed to handle dynamic page - no variation matched');
+        }
+        
+      } else {
+        // Regular page handling (existing code)
+        if (pageDetection?.checkForElement) {
+          this.log(`🔍 Looking for page detection element: ${pageDetection.checkForElement}`);
+          const pageDetected = await this.waitForElement([pageDetection.checkForElement], optional ? 5000 : 15000);
+          
+          if (!pageDetected) {
+            if (optional) {
+              this.log(`⏭️ Optional page not detected, checking if we've moved to next page...`);
+              
+              // Check if we're on the next page instead
+              const nextPageIndex = this.config.funnel.pages.findIndex(p => p.pageNumber === pageNumber + 1);
+              if (nextPageIndex !== -1) {
+                const nextPage = this.config.funnel.pages[nextPageIndex];
+                if (nextPage.pageDetection?.checkForElement) {
+                  const nextPageDetected = await this.waitForElement([nextPage.pageDetection.checkForElement], 5000);
+                  if (nextPageDetected) {
+                    this.log(`✅ Skipped to next page (${nextPage.pageName}) - optional page was not present`);
+                    pageResult.skipped = true;
+                    pageResult.success = true;
+                    this.testResults.pageResults.push(pageResult);
+                    return pageResult;
+                  }
+                }
               }
+              
+              // If we can't detect the next page either, still mark as skipped but successful
+              this.log(`⚠️ Optional page skipped - continuing with funnel`);
+              pageResult.skipped = true;
+              pageResult.success = true;
+              this.testResults.pageResults.push(pageResult);
+              return pageResult;
+            } else {
+              // Required page not found
+              const inspection = await this.inspectPageForAlternatives(pageDetection.checkForElement);
+              
+              if (inspection.onFacebook) {
+                throw new Error(`Still on Facebook page - navigation from page ${pageNumber - 1} failed`);
+              }
+              
+              throw new Error(`Page detection failed: ${pageDetection.checkForElement} not found`);
             }
           }
-          
-          // If we can't detect the next page either, still mark as skipped but successful
-          this.log(`⚠️ Optional page skipped - continuing with funnel`);
-          pageResult.skipped = true;
-          pageResult.success = true;
-          this.testResults.pageResults.push(pageResult);
-          return pageResult;
-        } else {
-          // Required page not found
-          const inspection = await this.inspectPageForAlternatives(pageDetection.checkForElement);
-          
-          if (inspection.onFacebook) {
-            throw new Error(`Still on Facebook page - navigation from page ${pageNumber - 1} failed`);
+          this.log(`✅ Page detected correctly`);
+        }
+
+        // Fill fields only if page was detected
+        for (const field of fields) {
+          try {
+            const success = await this.fillField(field, testData);
+            if (success) pageResult.fieldsCompleted++;
+          } catch (error) {
+            pageResult.errors.push(`${field.fieldType}: ${error.message}`);
+            const isRequired = !field.optional && field.required !== false;
+            if (isRequired) throw error;
           }
-          
-          throw new Error(`Page detection failed: ${pageDetection.checkForElement} not found`);
+        }
+
+        // Navigate only if page was detected and not skipped
+        if (navigation && !pageResult.skipped) {
+          await this.navigateToNextPage(navigation, pageNumber);
         }
       }
-      this.log(`✅ Page detected correctly`);
+
+      pageResult.success = true;
+      this.log(`✅ Step ${pageNumber} complete. ${pageResult.skipped ? 'Page was skipped.' : 'Navigated to next page.'}`);
+      
+    } catch (error) {
+      pageResult.errors.push(error.message);
+      this.log(`❌ Step ${pageNumber} failed: ${error.message}`);
+      throw error;
     }
 
-    // Fill fields only if page was detected
-    for (const field of fields) {
-      try {
-        const success = await this.fillField(field, testData);
-        if (success) pageResult.fieldsCompleted++;
-      } catch (error) {
-        pageResult.errors.push(`${field.fieldType}: ${error.message}`);
-        const isRequired = !field.optional && field.required !== false;
-        if (isRequired) throw error;
-      }
-    }
-
-    // Navigate only if page was detected and not skipped
-    if (navigation && !pageResult.skipped) {
-      await this.navigateToNextPage(navigation, pageNumber);
-    }
-
-    pageResult.success = true;
-    this.log(`✅ Step ${pageNumber} complete. ${pageResult.skipped ? 'Page was skipped.' : 'Navigated to next page.'}`);
-    
-  } catch (error) {
-    pageResult.errors.push(error.message);
-    this.log(`❌ Step ${pageNumber} failed: ${error.message}`);
-    throw error;
+    this.testResults.pageResults.push(pageResult);
+    return pageResult;
   }
-
-  this.testResults.pageResults.push(pageResult);
-  return pageResult;
-}
 
   async runFullTest() {
-  try {
-    await this.loadUserProfiles();
-    await this.loadDeviceProfiles();
-    await this.loadConfig();
-    await this.initBrowser();
-    
-    const testData = this.generateTestData();
-    this.log(`🧪 Generated test data for: ${testData.email}`);
-    
-    const startUrl = this.config.metadata.entryPoint.startUrl;
-    this.log(`🌐 Navigating to Facebook landing page: ${startUrl}`);
-    
-    const startTime = Date.now();
-    await this.page.goto(startUrl, {
-      waitUntil: 'domcontentloaded',
-      timeout: 30000
-    });
-    
-    this.testResults.metrics.initialPageLoad = Date.now() - startTime;
-    
-    this.log('⏳ Waiting for initial page to load...');
-    await this.page.waitForTimeout(5000);
-    
     try {
-      await this.page.waitForLoadState('networkidle', { timeout: 15000 });
-    } catch (networkError) {
-      this.log('⚠️ NetworkIdle timeout on initial page, continuing...');
-    }
-    
-    // Process pages sequentially
-    let previousPageSkipped = false;
-    for (let i = 0; i < this.config.funnel.pages.length; i++) {
-      const pageConfig = this.config.funnel.pages[i];
+      await this.loadUserProfiles();
+      await this.loadDeviceProfiles();
+      await this.loadConfig();
+      await this.initBrowser();
       
-      // If the previous optional page was skipped, check if we're already on this page
-      if (previousPageSkipped && pageConfig.pageDetection?.checkForElement) {
-        const currentPageDetected = await this.waitForElement(
-          [pageConfig.pageDetection.checkForElement], 
-          3000
-        );
+      const testData = this.generateTestData();
+      this.log(`🧪 Generated test data for: ${testData.email}`);
+      
+      const startUrl = this.config.metadata.entryPoint.startUrl;
+      this.log(`🌐 Navigating to Facebook landing page: ${startUrl}`);
+      
+      const startTime = Date.now();
+      await this.page.goto(startUrl, {
+        waitUntil: 'domcontentloaded',
+        timeout: 30000
+      });
+      
+      this.testResults.metrics.initialPageLoad = Date.now() - startTime;
+      
+      this.log('⏳ Waiting for initial page to load...');
+      await this.page.waitForTimeout(5000);
+      
+      try {
+        await this.page.waitForLoadState('networkidle', { timeout: 15000 });
+      } catch (networkError) {
+        this.log('⚠️ NetworkIdle timeout on initial page, continuing...');
+      }
+      
+      // Process pages sequentially
+      let previousPageSkipped = false;
+      for (let i = 0; i < this.config.funnel.pages.length; i++) {
+        const pageConfig = this.config.funnel.pages[i];
         
-        if (currentPageDetected) {
-          this.log(`📍 Already on page ${pageConfig.pageNumber} (${pageConfig.pageName}) after skipping previous optional page`);
-          // Process this page normally
-          const result = await this.testPage(pageConfig, testData);
-          previousPageSkipped = false;
-          continue;
+        // If the previous optional page was skipped, check if we're already on this page
+        if (previousPageSkipped && pageConfig.pageDetection?.checkForElement) {
+          const currentPageDetected = await this.waitForElement(
+            [pageConfig.pageDetection.checkForElement], 
+            3000
+          );
+          
+          if (currentPageDetected) {
+            this.log(`📍 Already on page ${pageConfig.pageNumber} (${pageConfig.pageName}) after skipping previous optional page`);
+            // Process this page normally
+            const result = await this.testPage(pageConfig, testData);
+            previousPageSkipped = false;
+            continue;
+          }
+        }
+        
+        const result = await this.testPage(pageConfig, testData);
+        previousPageSkipped = result.skipped;
+        
+        // If this page was skipped and we've already moved to the next page,
+        // the next iteration should handle it properly
+        if (result.skipped) {
+          this.log(`📋 Page ${pageConfig.pageNumber} was skipped - continuing with next page in sequence`);
         }
       }
       
-      const result = await this.testPage(pageConfig, testData);
-      previousPageSkipped = result.skipped;
+      this.testResults.success = true;
+      this.testResults.endTime = new Date().toISOString();
+      this.testResults.totalDuration = Date.now() - new Date(this.testResults.startTime).getTime();
       
-      // If this page was skipped and we've already moved to the next page,
-      // the next iteration should handle it properly
-      if (result.skipped) {
-        this.log(`📋 Page ${pageConfig.pageNumber} was skipped - continuing with next page in sequence`);
+      this.log('\n🎉 FUNNEL TEST COMPLETED SUCCESSFULLY!');
+      this.logResults();
+      
+    } catch (error) {
+      this.testResults.success = false;
+      this.testResults.errors.push(error.message);
+      this.testResults.endTime = new Date().toISOString();
+      this.testResults.totalDuration = Date.now() - new Date(this.testResults.startTime).getTime();
+      
+      this.log(`\n💥 TEST FAILED: ${error.message}`);
+      
+      if (this.page) {
+        try {
+          const screenshotPath = `failure-${Date.now()}.png`;
+          await this.page.screenshot({ 
+            path: screenshotPath,
+            fullPage: true 
+          });
+          this.log(`📸 Screenshot saved: ${screenshotPath}`);
+        } catch (screenshotError) {
+          this.log(`⚠️ Could not take screenshot: ${screenshotError.message}`);
+        }
       }
+      
+      throw error;
+    } finally {
+      await this.cleanup();
     }
-    
-    this.testResults.success = true;
-    this.testResults.endTime = new Date().toISOString();
-    this.testResults.totalDuration = Date.now() - new Date(this.testResults.startTime).getTime();
-    
-    this.log('\n🎉 FUNNEL TEST COMPLETED SUCCESSFULLY!');
-    this.logResults();
-    
-  } catch (error) {
-    this.testResults.success = false;
-    this.testResults.errors.push(error.message);
-    this.testResults.endTime = new Date().toISOString();
-    this.testResults.totalDuration = Date.now() - new Date(this.testResults.startTime).getTime();
-    
-    this.log(`\n💥 TEST FAILED: ${error.message}`);
-    
-    if (this.page) {
-      try {
-        const screenshotPath = `failure-${Date.now()}.png`;
-        await this.page.screenshot({ 
-          path: screenshotPath,
-          fullPage: true 
-        });
-        this.log(`📸 Screenshot saved: ${screenshotPath}`);
-      } catch (screenshotError) {
-        this.log(`⚠️ Could not take screenshot: ${screenshotError.message}`);
-      }
-    }
-    
-    throw error;
-  } finally {
-    await this.cleanup();
   }
-}
 
-// Also update the logResults method to show skipped pages
-logResults() {
-  this.log('\n📊 TEST RESULTS SUMMARY:');
-  this.log(`⏱️ Total Duration: ${this.testResults.totalDuration}ms`);
-  this.log(`📄 Pages Tested: ${this.testResults.pageResults.length}`);
-  
-  const successCount = this.testResults.pageResults.filter(p => p.success).length;
-  const skippedCount = this.testResults.pageResults.filter(p => p.skipped).length;
-  
-  this.log(`✅ Success Rate: ${successCount}/${this.testResults.pageResults.length}`);
-  if (skippedCount > 0) {
-    this.log(`⏭️ Pages Skipped: ${skippedCount}`);
-  }
-  
-  if (this.selectedProfile) {
-    this.log(`📱 Device: ${this.selectedProfile.device_name} (${this.selectedProfile.brand})`);
-  }
-  
-  if (this.proxyConfig) {
-    this.log(`🌐 Proxy: ${this.proxyConfig.server}`);
-  }
-  
-  this.testResults.pageResults.forEach(result => {
-    let status = result.success ? '✅' : '❌';
-    if (result.skipped) status = '⏭️';
+  logResults() {
+    this.log('\n📊 TEST RESULTS SUMMARY:');
+    this.log(`⏱️ Total Duration: ${this.testResults.totalDuration}ms`);
+    this.log(`📄 Pages Tested: ${this.testResults.pageResults.length}`);
     
-    const statusText = result.skipped ? 'SKIPPED' : `${result.fieldsCompleted}/${result.totalFields} fields`;
-    this.log(`${status} Page ${result.pageNumber} (${result.pageName}): ${statusText}`);
+    const successCount = this.testResults.pageResults.filter(p => p.success).length;
+    const skippedCount = this.testResults.pageResults.filter(p => p.skipped).length;
     
-    if (result.errors.length > 0) {
-      result.errors.forEach(error => this.log(`   ⚠️ ${error}`));
+    this.log(`✅ Success Rate: ${successCount}/${this.testResults.pageResults.length}`);
+    if (skippedCount > 0) {
+      this.log(`⏭️ Pages Skipped: ${skippedCount}`);
     }
-  });
-}
+    
+    if (this.selectedProfile) {
+      this.log(`📱 Device: ${this.selectedProfile.device_name} (${this.selectedProfile.brand})`);
+    }
+    
+    if (this.proxyConfig) {
+      this.log(`🌐 Proxy: ${this.proxyConfig.server}`);
+    }
+    
+    this.testResults.pageResults.forEach(result => {
+      let status = result.success ? '✅' : '❌';
+      if (result.skipped) status = '⏭️';
+      
+      const statusText = result.skipped ? 'SKIPPED' : `${result.fieldsCompleted}/${result.totalFields} fields`;
+      this.log(`${status} Page ${result.pageNumber} (${result.pageName}): ${statusText}`);
+      
+      if (result.dynamicVariation) {
+        this.log(`   📝 Dynamic variation: ${result.dynamicVariation}`);
+      }
+      
+      if (result.errors.length > 0) {
+        result.errors.forEach(error => this.log(`   ⚠️ ${error}`));
+      }
+    });
+  }
 
   async cleanup() {
     if (this.browser) {
