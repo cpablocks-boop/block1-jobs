@@ -260,7 +260,7 @@ class CPAFunnelTester {
         lastName: `User${timestamp}`,
         email: `test${timestamp}@testdomain.com`,
         phone: '5551234567',
-        dobMonth: '01',
+        dobMonth: '1',  // Changed from '01' to '1'
         dobDay: '15',
         dobYear: '1990',
         address: '123 Test Street',
@@ -276,14 +276,14 @@ class CPAFunnelTester {
       firstName: this.selectedUser.firstName,
       lastName: this.selectedUser.lastName,
       email: this.selectedUser.email,
-      phone: this.selectedUser.phone,
+      phone: this.selectedUser.phone.replace(/^1/, ''), // Remove leading "1" if present
       zipCode: this.selectedUser.zipCode,
       address: this.selectedUser.address,
       city: this.selectedUser.city,
       state: this.selectedUser.state,
-      dobMonth,
-      dobDay,
-      dobYear,
+      dobMonth: String(parseInt(dobMonth)), // Convert "01" to "1", "02" to "2", etc.
+      dobDay: String(parseInt(dobDay)),     // Convert "01" to "1", "02" to "2", etc.
+      dobYear: dobYear,                     // Keep year as-is (e.g., "1990")
       gender: Math.random() > 0.5 ? 'M' : 'F'  // Still randomize if not in CSV
     };
   }
@@ -706,7 +706,7 @@ class CPAFunnelTester {
           
           if (!pageDetected) {
             if (optional) {
-              this.log(`⏭️ Optional page not detected, checking if we've moved to next page...`);
+              this.log(`⭕️ Optional page not detected, checking if we've moved to next page...`);
               
               // Check if we're on the next page instead
               const nextPageIndex = this.config.funnel.pages.findIndex(p => p.pageNumber === pageNumber + 1);
@@ -818,7 +818,7 @@ class CPAFunnelTester {
           );
           
           if (currentPageDetected) {
-            this.log(`📍 Already on page ${pageConfig.pageNumber} (${pageConfig.pageName}) after skipping previous optional page`);
+            this.log(`🔍 Already on page ${pageConfig.pageNumber} (${pageConfig.pageName}) after skipping previous optional page`);
             // Process this page normally
             const result = await this.testPage(pageConfig, testData);
             previousPageSkipped = false;
@@ -873,14 +873,14 @@ class CPAFunnelTester {
   logResults() {
     this.log('\n📊 TEST RESULTS SUMMARY:');
     this.log(`⏱️ Total Duration: ${this.testResults.totalDuration}ms`);
-    this.log(`📄 Pages Tested: ${this.testResults.pageResults.length}`);
+    this.log(`🔄 Pages Tested: ${this.testResults.pageResults.length}`);
     
     const successCount = this.testResults.pageResults.filter(p => p.success).length;
     const skippedCount = this.testResults.pageResults.filter(p => p.skipped).length;
     
     this.log(`✅ Success Rate: ${successCount}/${this.testResults.pageResults.length}`);
     if (skippedCount > 0) {
-      this.log(`⏭️ Pages Skipped: ${skippedCount}`);
+      this.log(`⭕️ Pages Skipped: ${skippedCount}`);
     }
     
     if (this.selectedProfile) {
@@ -893,14 +893,16 @@ class CPAFunnelTester {
     
     this.testResults.pageResults.forEach(result => {
       let status = result.success ? '✅' : '❌';
-      if (result.skipped) status = '⏭️';
+      if (result.skipped) status = '⭕️';
       
-      const statusText = result.skipped ? 'SKIPPED' : `${result.fieldsCompleted}/${result.totalFields} fields`;
-      this.log(`${status} Page ${result.pageNumber} (${result.pageName}): ${statusText}`);
+      let statusText = result.skipped ? 'SKIPPED' : `${result.fieldsCompleted}/${result.totalFields} fields`;
       
+      // Add dynamic variation info if present
       if (result.dynamicVariation) {
-        this.log(`   📝 Dynamic variation: ${result.dynamicVariation}`);
+        statusText += ` - ${result.dynamicVariation}`;
       }
+      
+      this.log(`${status} Page ${result.pageNumber} (${result.pageName}): ${statusText}`);
       
       if (result.errors.length > 0) {
         result.errors.forEach(error => this.log(`   ⚠️ ${error}`));
