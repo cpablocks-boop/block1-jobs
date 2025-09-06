@@ -260,7 +260,7 @@ class CPAFunnelTester {
         lastName: `User${timestamp}`,
         email: `test${timestamp}@testdomain.com`,
         phone: '5551234567',
-        dobMonth: '1',  // Changed from '01' to '1'
+        dobMonth: '1',
         dobDay: '15',
         dobYear: '1990',
         address: '123 Test Street',
@@ -460,11 +460,41 @@ class CPAFunnelTester {
     return true;
   }
 
+  async debugButtons() {
+    try {
+      const buttons = await this.page.$eval('button', buttons => 
+        buttons.map(b => ({ 
+          text: b.textContent.trim(), 
+          classes: b.className,
+          visible: b.offsetParent !== null
+        }))
+      );
+      
+      const divButtons = await this.page.$eval('div[role="button"]', divs => 
+        divs.map(d => ({ 
+          text: d.textContent.trim(), 
+          classes: d.className,
+          visible: d.offsetParent !== null
+        }))
+      );
+      
+      this.log(`🔍 Found ${buttons.length} buttons: ${JSON.stringify(buttons.slice(0, 5))}`);
+      this.log(`🔍 Found ${divButtons.length} div buttons: ${JSON.stringify(divButtons.slice(0, 5))}`);
+    } catch (error) {
+      this.log(`⚠️ Could not debug buttons: ${error.message}`);
+    }
+  }
+
   async handleDynamicPage(pageConfig, testData) {
     const { pageNumber, pageName, pageDetection } = pageConfig;
     
     this.log(`🔍 Checking for dynamic page variations...`);
     this.log(`📋 Attempting to identify page type...`);
+    
+    // Debug buttons if enabled
+    if (this.config.settings?.dynamicPageHandling?.debugButtons) {
+      await this.debugButtons();
+    }
     
     // Check each variation
     for (const variation of pageDetection.variations) {
@@ -548,7 +578,8 @@ class CPAFunnelTester {
     for (const buttonText of commonButtons) {
       const buttonFound = await this.waitForElement([
         `button:has-text("${buttonText}")`,
-        `a:has-text("${buttonText}")`
+        `a:has-text("${buttonText}")`,
+        `div[role="button"]:has-text("${buttonText}")`
       ], 2000);
       
       if (buttonFound) {
@@ -571,9 +602,36 @@ class CPAFunnelTester {
     this.log(`📊 Selecting '${selectedOption}' employment status...`);
     
     try {
-      // Try to click the button with the selected text
-      const buttonSelector = `button:has-text("${selectedOption}"):visible`;
-      await this.page.click(buttonSelector, { timeout: 10000 });
+      // Try multiple selector patterns
+      const selectors = [
+        `button:has-text("${selectedOption}"):visible`,
+        `button:text-is("${selectedOption}"):visible`,
+        `div[role="button"]:has-text("${selectedOption}"):visible`,
+        `*:has-text("${selectedOption}"):visible`
+      ];
+      
+      let clicked = false;
+      for (const selector of selectors) {
+        try {
+          await this.page.click(selector, { timeout: 5000 });
+          clicked = true;
+          this.log(`✅ Clicked using selector: ${selector}`);
+          break;
+        } catch (error) {
+          // Try next selector
+        }
+      }
+      
+      if (!clicked) {
+        // Try clicking by text content directly
+        await this.page.getByText(selectedOption, { exact: true }).click({ timeout: 5000 });
+        clicked = true;
+        this.log(`✅ Clicked using getByText`);
+      }
+      
+      if (!clicked) {
+        throw new Error(`Could not click ${selectedOption} button`);
+      }
       
       this.log(`✅ Employment status submitted`);
       
@@ -641,9 +699,9 @@ class CPAFunnelTester {
 
   async inspectPageForAlternatives(expectedSelector) {
     try {
-      const forms = await this.page.$$('form');
-      const inputs = await this.page.$$('input');
-      const buttons = await this.page.$$('button');
+      const forms = await this.page.$('form');
+      const inputs = await this.page.$('input');
+      const buttons = await this.page.$('button');
       
       return {
         onFacebook: this.page.url().includes('facebook.com'),
@@ -692,7 +750,7 @@ class CPAFunnelTester {
           pageResult.dynamicVariation = dynamicResult.variationFound;
           
           if (dynamicResult.fallbackUsed) {
-            this.log(`📝 Used fallback navigation: ${dynamicResult.fallbackUsed}`);
+            this.log(`🔍 Used fallback navigation: ${dynamicResult.fallbackUsed}`);
           }
         } else {
           throw new Error('Failed to handle dynamic page - no variation matched');
@@ -706,7 +764,7 @@ class CPAFunnelTester {
           
           if (!pageDetected) {
             if (optional) {
-              this.log(`⭕️ Optional page not detected, checking if we've moved to next page...`);
+              this.log(`⏭️ Optional page not detected, checking if we've moved to next page...`);
               
               // Check if we're on the next page instead
               const nextPageIndex = this.config.funnel.pages.findIndex(p => p.pageNumber === pageNumber + 1);
@@ -821,12 +879,26 @@ class CPAFunnelTester {
             this.log(`🔍 Already on page ${pageConfig.pageNumber} (${pageConfig.pageName}) after skipping previous optional page`);
             // Process this page normally
             const result = await this.testPage(pageConfig, testData);
+            
+            // Check if we should stop processing (reached final page)
+            if (result.stopProcessing) {
+              this.log(`🏁 Stopping processing - final destination reached`);
+              break;
+            }
+            
             previousPageSkipped = false;
             continue;
           }
         }
         
         const result = await this.testPage(pageConfig, testData);
+        
+        // Check if we should stop processing (reached final page)
+        if (result.stopProcessing) {
+          this.log(`🏁 Stopping processing - final destination reached`);
+          break;
+        }
+        
         previousPageSkipped = result.skipped;
         
         // If this page was skipped and we've already moved to the next page,
@@ -880,7 +952,7 @@ class CPAFunnelTester {
     
     this.log(`✅ Success Rate: ${successCount}/${this.testResults.pageResults.length}`);
     if (skippedCount > 0) {
-      this.log(`⭕️ Pages Skipped: ${skippedCount}`);
+      this.log(`⏭️ Pages Skipped: ${skippedCount}`);
     }
     
     if (this.selectedProfile) {
@@ -893,7 +965,7 @@ class CPAFunnelTester {
     
     this.testResults.pageResults.forEach(result => {
       let status = result.success ? '✅' : '❌';
-      if (result.skipped) status = '⭕️';
+      if (result.skipped) status = '⏭️';
       
       let statusText = result.skipped ? 'SKIPPED' : `${result.fieldsCompleted}/${result.totalFields} fields`;
       
