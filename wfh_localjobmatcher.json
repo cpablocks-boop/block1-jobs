@@ -2,8 +2,8 @@
   "metadata": {
     "offerName": "Work From Home - LocalJobMatcher",
     "offerCreator": "localjobsmatcher.com",
-    "version": "7.0",
-    "description": "Facebook flow with dynamic survey/offer page handling",
+    "version": "7.1",
+    "description": "Facebook flow with dynamic survey/offer page handling - fixed page ordering",
     "entryPoint": {
       "startUrl": "https://www.facebook.com/61575553191003/posts/pfbid0sdVc5c1ucHj7v9f9wLQ51JE9AL2JFbNn1sv4Aec6DmgT4rqqkkHTqH5n6g88rYeVl/?app=fbl"
     }
@@ -54,7 +54,7 @@
           "type": "button",
           "selectors": [
             "[data-testid='viewJobsButton']:visible",
-            "button:has-text('View Your Jobs Â»'):visible",
+            "button:has-text('View Your Jobs'):visible",
             "button:visible:first"
           ],
           "waitAfterClick": 30000,
@@ -240,26 +240,26 @@
                   "What best describes your current employment status?",
                   "current employment status"
                 ],
-                "checkForElement": "div:has-text('current employment status'), div.sc-pciEQ"
+                "checkForElement": "button:has-text('Full Time'), button:has-text('Part Time'), button:has-text('Unemployed'), button:has-text('Student'), button:has-text('On Disability')"
               },
               "fields": [],
               "navigation": {
                 "type": "randomChoice",
                 "choices": [
                   {
-                    "selectors": ["button:has-text('On Disability'):visible"]
+                    "selectors": ["button:has-text('On Disability'):visible", "div[role='button']:has-text('On Disability'):visible"]
                   },
                   {
-                    "selectors": ["button:has-text('Full Time'):visible"]
+                    "selectors": ["button:has-text('Full Time'):visible", "div[role='button']:has-text('Full Time'):visible"]
                   },
                   {
-                    "selectors": ["button:has-text('Part Time'):visible"]
+                    "selectors": ["button:has-text('Part Time'):visible", "div[role='button']:has-text('Part Time'):visible"]
                   },
                   {
-                    "selectors": ["button:has-text('Unemployed'):visible"]
+                    "selectors": ["button:has-text('Unemployed'):visible", "div[role='button']:has-text('Unemployed'):visible"]
                   },
                   {
-                    "selectors": ["button:has-text('Student'):visible"]
+                    "selectors": ["button:has-text('Student'):visible", "div[role='button']:has-text('Student'):visible"]
                   }
                 ],
                 "waitAfterClick": 30000,
@@ -274,7 +274,7 @@
                   "Interested in getting daily Work From Home job alerts via SMS?",
                   "job alerts via SMS"
                 ],
-                "checkForElement": "div:has-text('job alerts via SMS'), div.sc-pZOBi"
+                "checkForElement": "div:has-text('job alerts via SMS'), div.sc-pZOBi, [data-testid='skipButton']"
               },
               "fields": [],
               "navigation": {
@@ -282,7 +282,8 @@
                 "selectors": [
                   "[data-testid='skipButton']:visible",
                   "div[data-testid='skipButton']:visible",
-                  "div:has-text('Skip'):visible"
+                  "div:has-text('Skip'):visible",
+                  "button:has-text('Skip'):visible"
                 ],
                 "waitAfterClick": 30000,
                 "waitForUrlChange": true,
@@ -303,19 +304,66 @@
         "isDynamic": true,
         "optional": true,
         "pageDetection": {
-          "logging": {
-            "onPageLoad": "🔍 Checking for additional dynamic pages (Page 6)...",
-            "onDetectionStart": "📋 Attempting to identify page type..."
-          },
-          "variations": [],
-          "fallback": {
-            "logging": {
-              "onUnknown": "⚠️ Unknown page type at position 6 - capturing for future mapping",
-              "onScreenshot": "📸 Screenshot saved for page mapping",
-              "onUrlCapture": "🔗 Page URL: {url}",
-              "onTextCapture": "📄 Visible text elements captured",
-              "onFallbackAction": "🔄 Trying common navigation: Continue/Next/Skip..."
+          "variations": [
+            {
+              "name": "Employment Status Survey",
+              "detection": {
+                "checkForText": [
+                  "What best describes your current employment status?",
+                  "current employment status"
+                ],
+                "checkForElement": "button:has-text('Full Time'), button:has-text('Part Time'), button:has-text('Unemployed'), button:has-text('Student'), button:has-text('On Disability')"
+              },
+              "fields": [],
+              "navigation": {
+                "type": "randomChoice",
+                "choices": [
+                  {
+                    "selectors": ["button:has-text('On Disability'):visible", "div[role='button']:has-text('On Disability'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Full Time'):visible", "div[role='button']:has-text('Full Time'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Part Time'):visible", "div[role='button']:has-text('Part Time'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Unemployed'):visible", "div[role='button']:has-text('Unemployed'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Student'):visible", "div[role='button']:has-text('Student'):visible"]
+                  }
+                ],
+                "waitAfterClick": 30000,
+                "waitForUrlChange": true,
+                "retryIfNoNavigation": true
+              }
             },
+            {
+              "name": "Fresh Careers Offer",
+              "detection": {
+                "checkForText": [
+                  "Interested in getting daily Work From Home job alerts via SMS?",
+                  "job alerts via SMS"
+                ],
+                "checkForElement": "div:has-text('job alerts via SMS'), div.sc-pZOBi, [data-testid='skipButton']"
+              },
+              "fields": [],
+              "navigation": {
+                "type": "button",
+                "selectors": [
+                  "[data-testid='skipButton']:visible",
+                  "div[data-testid='skipButton']:visible",
+                  "div:has-text('Skip'):visible",
+                  "button:has-text('Skip'):visible"
+                ],
+                "waitAfterClick": 30000,
+                "waitForUrlChange": true,
+                "retryIfNoNavigation": true
+              }
+            }
+          ],
+          "fallback": {
             "logUnknownPage": true,
             "takeScreenshot": true,
             "captureVisibleText": true,
@@ -329,21 +377,70 @@
         "isDynamic": true,
         "optional": true,
         "pageDetection": {
-          "logging": {
-            "onPageLoad": "🔍 Checking for additional dynamic pages (Page 7)...",
-            "onDetectionStart": "📋 Attempting to identify page type...",
-            "onFinalPage": "🏁 Checking if this is the final page..."
+          "checkForDomain": {
+            "finalDomain": "localjobmatching.com",
+            "continueDomain": "localjobsmatcher.com"
           },
-          "variations": [],
-          "fallback": {
-            "logging": {
-              "onUnknown": "⚠️ Unknown page type at position 7 - capturing for future mapping",
-              "onScreenshot": "📸 Screenshot saved for page mapping",
-              "onUrlCapture": "🔗 Page URL: {url}",
-              "onTextCapture": "📄 Visible text elements captured",
-              "onFallbackAction": "🔄 Trying common navigation: Continue/Next/Skip/Submit/Finish...",
-              "onComplete": "✅ Funnel completion detected"
+          "variations": [
+            {
+              "name": "Employment Status Survey",
+              "detection": {
+                "checkForText": [
+                  "What best describes your current employment status?",
+                  "current employment status"
+                ],
+                "checkForElement": "button:has-text('Full Time'), button:has-text('Part Time'), button:has-text('Unemployed'), button:has-text('Student'), button:has-text('On Disability')"
+              },
+              "fields": [],
+              "navigation": {
+                "type": "randomChoice",
+                "choices": [
+                  {
+                    "selectors": ["button:has-text('On Disability'):visible", "div[role='button']:has-text('On Disability'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Full Time'):visible", "div[role='button']:has-text('Full Time'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Part Time'):visible", "div[role='button']:has-text('Part Time'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Unemployed'):visible", "div[role='button']:has-text('Unemployed'):visible"]
+                  },
+                  {
+                    "selectors": ["button:has-text('Student'):visible", "div[role='button']:has-text('Student'):visible"]
+                  }
+                ],
+                "waitAfterClick": 30000,
+                "waitForUrlChange": true,
+                "retryIfNoNavigation": true
+              }
             },
+            {
+              "name": "Fresh Careers Offer",
+              "detection": {
+                "checkForText": [
+                  "Interested in getting daily Work From Home job alerts via SMS?",
+                  "job alerts via SMS"
+                ],
+                "checkForElement": "div:has-text('job alerts via SMS'), div.sc-pZOBi, [data-testid='skipButton']"
+              },
+              "fields": [],
+              "navigation": {
+                "type": "button",
+                "selectors": [
+                  "[data-testid='skipButton']:visible",
+                  "div[data-testid='skipButton']:visible",
+                  "div:has-text('Skip'):visible",
+                  "button:has-text('Skip'):visible"
+                ],
+                "waitAfterClick": 30000,
+                "waitForUrlChange": true,
+                "retryIfNoNavigation": true
+              }
+            }
+          ],
+          "fallback": {
             "logUnknownPage": true,
             "takeScreenshot": true,
             "captureVisibleText": true,
@@ -370,7 +467,8 @@
     "dynamicPageHandling": {
       "maxAttemptsPerVariation": 2,
       "textMatchStrategy": "fullThenPartial",
-      "continueOnUnknown": true
+      "continueOnUnknown": true,
+      "debugButtons": true
     },
     "antiDetection": {
       "randomizeTimings": true,
