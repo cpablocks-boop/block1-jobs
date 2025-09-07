@@ -22,7 +22,7 @@ jobs:
       with:
         node-version: '18'
     
-    - - name: Install dependencies
+    - name: Install dependencies
   run: |
     echo "📦 Installing dependencies with rebrowser patches..."
     npm install
