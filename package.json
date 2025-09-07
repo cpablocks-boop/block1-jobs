@@ -13,10 +13,13 @@
     "test:nowarmup": "DO_WARMUP=false SESSIONS=1 node mobile-session-runner.js",
     "install-browsers": "npx playwright install chromium",
     "install-deps": "npx playwright install-deps chromium"
-  },
+    },
   "devDependencies": {
     "@playwright/test": "^1.40.0",
-    "playwright": "^1.40.0"
+    "rebrowser-playwright": "^1.48.2"
+  },
+  "dependencies": {
+    "rebrowser-puppeteer": "^24.8.1"
   },
   "engines": {
     "node": ">=16"
