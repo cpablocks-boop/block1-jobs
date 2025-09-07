@@ -22,10 +22,12 @@ jobs:
       with:
         node-version: '18'
     
-    - name: Install dependencies
-      run: |
-        npm install
-        npx playwright install --with-deps chromium
+    - - name: Install dependencies
+  run: |
+    echo "📦 Installing dependencies with rebrowser patches..."
+    npm install
+    echo "🎭 Installing Rebrowser Playwright with Chromium..."
+    npx rebrowser-playwright install --with-deps chromium
     
     - name: Validate files
       run: |
