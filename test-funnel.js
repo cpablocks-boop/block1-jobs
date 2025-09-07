@@ -1,4 +1,4 @@
-const { chromium, firefox, webkit } = require('playwright');
+const { chromium, firefox, webkit } = require('rebrowser-playwright');
 const fs = require('fs').promises;
 const path = require('path');
 
